@@ -1,0 +1,59 @@
+pdf:
+  set: CT18NLO
+  member: 0
+
+integration:
+  q2_min_gev2: 2.0
+  w2_min_gev2: 4.0
+  nx: 72
+  ny: 110
+  y_min: 1.0e-5
+  y_split: 0.08
+  y_log_bins: 55
+  y_linear_bins: 55
+
+energy_grid:
+  emin_gev: 1.0e3
+  emax_gev: 1.0e8
+  n: 111
+
+physics:
+  sin2thetaW: 0.23122
+  tau_beta_cm2_per_g: 0.0
+  secondary_numu_branching: 0.18
+  antinu_charge_radius_sign: -1.0
+
+transport:
+  max_step_km: 5.0
+  max_interaction_probability: 0.0125
+
+historical:
+  nadir_deg: [0.0, 30.0, 50.0, 60.0]
+  cutoff_gev: 1.0e8
+  z_depth_steps: 900
+  z_iterations: 3
+
+  # Published RR convergence statement:
+  rr_F3_over_F2_max_fraction: 0.05
+
+  # RR says first iteration is insufficient; harder spectra can change at O(20%),
+  # and the old first-iteration result can undershoot the final answer by up to 40%.
+  rr_F2_over_F1_min_effect: 0.08
+  rr_F2_over_F1_max_effect: 0.50
+
+  # Independent direct transport should agree with RR-style Z^(2).
+  rr_direct_vs_Z2_max_fraction: 0.10
+
+  # Published qualitative Fig. 8 physics.
+  rr_hard_bump_min: 1.05
+  rr_soft_bump_max: 1.05
+
+  # DRS/RR quantitative historical check around 1 PeV for vertical E^-1:
+  # DRS quotes nu_tau ~6% and nu_mu/e ~1% of incident flux.
+  drs_nutau_1pev_min: 0.025
+  drs_nutau_1pev_max: 0.12
+  drs_numu_1pev_min: 0.003
+  drs_numu_1pev_max: 0.03
+
+  # DRS Eq. (5) is explicitly an approximation; direct secondary is a little softer.
+  drs_eq5_median_fractional_tolerance: 0.45

@@ -1,0 +1,368 @@
+nutau-prop v0.2 DEVELOPMENT / EXECUTION LOG
+===========================================
+
+2026-10-27 — historical-validation release reconstructed from the preserved v0.1 package.
+
+ENTRY STATUS
+------------
+v0.1 had already:
+  * installed and loaded LHAPDF 6.5.6 with CT18NLO;
+  * generated the SM DIS table;
+  * returned PREM vertical X = 1.0946e10 g/cm^2;
+  * produced the first RR-style flux plot;
+  * completed the BSM scan and a nominal >5% distortion gate.
+
+That BSM PASS is now marked PROVISIONAL.  It is not accepted unless the
+historical transport gate passes.
+
+v0.2 IMPLEMENTED
+----------------
+1. NumPy compatibility: np.trapz -> np.trapezoid.
+2. Fixed negative --r2 argparse usage (--r2=-1e-32).
+3. Multicore cross-section generation (--workers; default run uses 8).
+4. Exact polarized secondary nu_mu/anti-nu_mu tau-decay spectrum from
+   Rakshit-Reya Eq. (31), B=0.18.
+5. Primary nu_mu CC attenuation + NC regeneration.
+6. Dutta-Reno-Sarcevic flux regression using their Eq. (5):
+      F_secondary ~= B (F_nutau - F_numu).
+7. Independent discretized Picard iteration of the coupled nu_tau/tau
+   equations, with Z_eff reconstructed from each iterate.
+8. Rakshit-Reya Fig. 8 comparison against coarse anchors read from the paper.
+9. Mandatory historical gate.  BSM scanning is blocked on any RR/DRS failure.
+10. Every subsequent run appends terminal output to this same PROGRESS.log.
+
+IMPORTANT
+---------
+The Picard solver is an independent numerical solution of the same coupled
+transport equations; it is not a literal transcription of RR Eq. (22).  That
+independence is deliberate so the direct solver and iterative solver can
+cross-check one another.
+
+The historical papers used older small-x/PDF inputs.  CT18NLO is retained as
+the installed default; therefore the figure comparison is a broad historical
+regression, not a percent-level claim using obsolete PDFs.
+
+The DRS upward-muon-rate Fig. 2 is NOT yet a hard v0.2 gate.  v0.2 first makes
+the flux-level secondary channel mandatory.  If this gate passes, Fig. 2 is the
+next historical observable to implement before detector-level publishability.
+
+RUNTIME OUTPUT
+--------------
+All output from run_all.sh or run_historical_validation.sh is appended below.
+
+PACKAGE QA BEFORE RELEASE
+-------------------------
+- Fixed parallel precompute BSMModel keyword: antinu_sign.
+- Historical step size tightened from 10 km to 5 km.
+- Python syntax compilation and unit tests rerun before packaging.
+
+2026-10-27 — v0.3 HISTORICAL VALIDATION CORRECTION
+==================================================
+
+WHY v0.2 FAILED
+---------------
+User run returned:
+  RR F3/F2 max change = 0.746
+  hard E^-1 F2/F1 effect = 1.329
+  RR figure-shape log-RMS = 0.448
+so the RR gate correctly failed.
+
+Audit of v0.2 found three implementation problems:
+1. The tau->nu_tau decay kernel used only the leptonic g0,g1 polynomial.
+   The historical Dutta-Reno-Sarcevic/Rakshit-Reya calculation uses the full
+   inclusive tau decay mixture: e, mu, pi, rho, a1 and multiprong X.
+2. The historical published fluxes combine nu and antinu, while v0.2 only
+   propagated neutrinos.
+3. The v0.2 "Picard" iteration was not the RR Z iteration and therefore its
+   2nd/3rd-iteration convergence could not be compared to RR's published
+   convergence statement.
+
+v0.3 CORRECTIONS
+----------------
+A. Full inclusive tau->nu_tau decay distribution implemented from DRS PRD 62,
+   123001 Appendix A/Table I.  Normalization is unit tested for P=+/-1.
+
+B. Historical validation now precomputes and propagates separate neutrino and
+   antineutrino LHAPDF tables, with tau- P=-1 and tau+ P=+1, and combines them
+   only at the final observable level.
+
+C. RRZIterator replaces the ad hoc v0.2 Picard solver.  It uses a decay-aware
+   Z^(0), then iterates the actual NC and tau-decay source/F ratios in the
+   effective-Z ansatz.  The direct stepwise transport solver remains separate,
+   providing an independent numerical cross-check of Z^(2).
+
+D. The unreliable hand-entered Fig. 8 anchor RMS gate was removed.  It is
+   replaced by published physics statements:
+     * |F3/F2 - 1| < 5% for relevant bins;
+     * the second iteration is non-negligible for hard E^-1;
+     * direct solver agrees with Z2;
+     * hard E^-1 has the 10^4-10^5 GeV regeneration bump;
+     * E^-2 has no comparable bump.
+
+E. DRS gate now uses their explicit historical quantitative statement:
+   for vertical E^-1 at 1 PeV, nu_tau is about 6% and nu_mu/e about 1% of
+   incident flux, with broad ranges retained because CT18NLO is not CTEQ5.
+
+F. DRS Eq. (5), B [F_nutau - F_numu], is retained as an independent approximate
+   secondary-flux check against the direct polarized tau-decay calculation.
+
+BSM calculations remain blocked until BOTH RR and DRS gates pass.
+
+QA NOTE
+-------
+An inherited v0.1/v0.2 unit test imported `tau_decay_pdf`.  v0.3 restores this
+public name as a backward-compatible alias to the corrected full inclusive
+`tau_nutau_pdf`; no old leptonic-only physics is restored.
+
+2026-10-27 — v0.4 ICECUBE EVENT-WEIGHTED OBSERVABILITY STAGE
+=============================================================
+
+INPUT STATUS
+------------
+The user's v0.3 run passed the combined historical validation gate:
+  * Rakshit-Reya: PASS
+  * Dutta-Reno-Sarcevic: PASS
+The subsequent v0.3 BSM flux scan also passed its 5% distortion gate.
+
+DETECTOR DATA CHOICE
+--------------------
+v0.4 uses the official IceCube public release accompanying
+  M. G. Aartsen et al., Phys. Rev. D 91, 022001 (2015),
+641 days of contained events above 1 TeV.
+
+Official data-release URL:
+https://icecube.wisc.edu/data-releases/2015/02/search-for-contained-neutrino-events-at-energies-greater-than-1-tev-in-2-years-of-data/
+
+The release provides `effective_area.nu_tau.txt` in true neutrino-energy and
+zenith bins.  IceCube states that the quoted total effective area is an average
+for neutrinos and antineutrinos and is to be multiplied by their summed flux.
+
+FLUX USED
+---------
+Per-flavor nu+nubar astrophysical best fit from the same 2015 analysis:
+  Phi0 = 2.06e-18 GeV^-1 cm^-2 s^-1 sr^-1 at 100 TeV
+  gamma = 2.46
+restricted to the quoted fit interval 25 TeV -- 1.4 PeV.
+
+CRITICAL EARTH-ATTENUATION TREATMENT
+------------------------------------
+The published IceCube effective area already contains the Standard-Model
+zenith-dependent Earth attenuation.  Therefore v0.4 does NOT multiply Aeff by
+the transmitted flux again.  It reweights the published Aeff by
+
+  R_prop(E,theta) = T_BSM / T_SM
+
+for upgoing bins.  Downgoing bins have R_prop=1.
+
+DETECTOR-INTERACTION TREATMENT
+------------------------------
+The same BSM interaction can also change the probability to interact inside
+IceCube.  The public total Aeff does not separate CC and NC acceptance weights,
+so v0.4 reports:
+  1. propagation-only counts/significance;
+  2. propagation + detector proxy, where Aeff is additionally reweighted by
+     the inclusive (sigma_CC + sigma_NC)_BSM / SM ratio.
+
+This second quantity is explicitly a detector-response proxy, not yet the final
+CC/NC/topology likelihood.
+
+NEUTRINO / ANTINEUTRINO CORRECTION
+----------------------------------
+v0.4 generates and propagates nu_tau and antinu_tau separately, then combines
+equal incident fluxes.  It also corrects a sign-convention issue retained as an
+open caveat in v0.3: a diagonal neutrino charge-radius contribution has the
+same relative interference sign for neutrino and antineutrino scattering.
+The antineutrino cross section still differs through the usual chiral
+kinematics; no extra manual BSM coupling sign flip is applied.
+
+STATISTICAL DIAGNOSTICS
+-----------------------
+For every BSM model v0.4 writes:
+  * total SM and BSM expected counts;
+  * fractional total count shift;
+  * fixed-flux Poisson Asimov significance;
+  * significance after profiling an overall flux normalization;
+  * significance after profiling normalization AND spectral index;
+  * propagation-only versions of the first two;
+  * a clearly labelled 7.5-year sqrt(exposure) projection using the same 2015
+    acceptance (diagnostic only, NOT a reproduction of the later HESE sample);
+  * exposure required for nominal 2 sigma and 3 sigma at fixed response.
+
+The final observability judgment should use the normalization+tilt-profiled
+quantity, not the raw fixed-flux significance.
+
+RUNTIME OUTPUT
+--------------
+`run_detector_gate.sh` appends the actual numerical results below this line.
+
+2026-10-27 — v0.5 FUTURE-DETECTOR / LARGER-COUPLING GATE
+========================================================
+
+WHY THIS STAGE EXISTS
+---------------------
+v0.4 showed that the validated BSM propagation effect is real but invisible
+in the 641-day IceCube contained-event response after profiling astrophysical
+normalization and spectral tilt:
+  strongest tested charge-radius point (-6e-32 cm^2):
+  Z_profile_norm_tilt ~ 0.02.
+
+v0.5 therefore asks two separate questions:
+  1. Can a larger coupling that is still compatible with an external bound
+     move the distortion into higher-statistics energy bins?
+  2. Would IceCube-Gen2 or a substantially larger tau-neutrino telescope then
+     achieve >=2 sigma in a realistic exposure?
+
+EXTERNAL TAU CHARGE-RADIUS BOUND
+--------------------------------
+Atzori Corona et al., Phys. Rev. Lett. 135, 231803 (2025),
+arXiv:2504.05272, report the global-fit 1-sigma interval
+  -20 <= <r_nu_tau^2> / (1e-32 cm^2) <= +20.
+v0.5 therefore expands the charge-radius scan to +/-20e-32 cm^2.
+
+IMPORTANT: that global analysis also emphasizes momentum dependence of the
+effective neutrino charge radius.  The constant high-Q charge-radius benchmark
+used here is therefore a controlled phenomenological benchmark, not a claim
+that an arbitrary low-Q fitted radius must remain constant through PeV DIS.
+
+FORWARD-BLIND DERIVATIVE SCAN
+-----------------------------
+eps_em_inf is also extended to +/-0.1, +/-0.2, +/-0.3 and +/-0.5.
+These points are explicitly labelled EXPLORATORY.  v0.5 does not claim a
+model-independent laboratory allowed range for eps_em_inf.  Their purpose is
+to determine how large a genuinely forward-blind high-Q interaction would
+have to be for future telescopes to see it.
+
+ICECUBE-GEN2 PROJECTION
+-----------------------
+No invented Gen2 response matrix is used.
+
+Public Gen2 design information states:
+  * optical-array sensitivity improves by about a factor of five;
+  * IceCube-Gen2 will detect about 5-10 times as many neutrinos above 30 TeV;
+  * the optical instrumented volume is about 8 km^3;
+  * identified tau-neutrino rate above 300 TeV is expected to reach >=1/year,
+    compared with about 0.2/year in IceCube.
+
+v0.5 therefore carries two transparent 10-year scale scenarios:
+  baseline:   Aeff x5
+  optimistic: Aeff x10
+and separately quotes the x5 tau-tag-rate scaling.
+
+Because multiplying every response bin by a common exposure/area factor leaves
+the profiled best-fit nuisance parameters unchanged, the profiled Asimov
+significance scales exactly as sqrt(area x exposure).  This is tested in the
+unit suite.
+
+GENERIC FUTURE TAU TELESCOPE
+----------------------------
+Rather than attaching unsupported effective areas to GRAND/Trinity/TAMBO,
+v0.5 also reports the detector-independent acceptance multiplier required for
+2 sigma and 3 sigma in 10 years, and tabulates x10, x30, x100, x300, x1000.
+
+ENERGY LOCALIZATION
+-------------------
+The profiled likelihood is decomposed into:
+  25-100 TeV
+  100-300 TeV
+  300-1000 TeV
+  1-1.4 PeV
+
+This determines whether the useful BSM information has actually migrated into
+a populated optical-telescope band or remains confined to nearly opaque PeV
+bins better matched to Earth-skimming UHE tau concepts.
+
+DECISION RULE
+-------------
+Only charge-radius points inside the quoted 2025 external 1-sigma interval
+are allowed to trigger the "externally bounded" publishability decision.
+Derivative-em points are reported separately and never promoted to "allowed"
+solely because current IceCube lacks sensitivity.
+
+RUNTIME OUTPUT
+--------------
+`run_future_gate.sh` appends the numerical result below this line.
+
+2026-10-27 — v0.6 KM3NeT/ARCA GATE
+==================================
+
+ENTRY RESULT FROM v0.5
+----------------------
+Largest externally bounded tau charge-radius benchmark:
+  <r_nu_tau^2> = -2.0e-31 cm^2
+
+User's v0.5 output:
+  current IceCube profiled Z = 0.08984
+  total event shift = +13.89%
+  Gen2 10 yr x5 projected Z = 0.4795
+  Gen2 10 yr x10 projected Z = 0.6782
+  area multiplier needed for 2 sigma in 10 yr = 86.97
+  dominant profiled information energy = 2.371e5 GeV
+
+Thus IceCube and simple Gen2 exposure scaling fail.
+
+WHY ARCA IS TESTED DIFFERENTLY
+------------------------------
+The 2024 full-ARCA simulation provides two complementary selected samples:
+  cosmic-neutrino tracks:  220/year for the paper's reference E^-2 flux
+  cosmic-neutrino showers:  60/year for the same flux.
+
+For a tau-specific interaction, the high-statistics nu_mu CC track sample is
+essentially BSM-insensitive and can constrain the common astrophysical flux
+normalisation and spectral index.  The BSM effect resides mainly in the
+shower sample and, for Earth propagation, in its upgoing/down-going contrast.
+
+This is a stronger nuisance-control strategy than the previous IceCube
+tau-effective-area-only fold.
+
+PUBLIC RESPONSE STATUS
+----------------------
+The 2024 ARCA paper states that the generated/analysed datasets and code are
+public at Zenodo record 10949703.  v0.6 automatically downloads that record and
+writes a complete file inventory.
+
+However, v0.6 does NOT silently guess an unknown Zenodo table schema.  Until an
+exact machine-readable response is positively identified, the numerical gate
+uses a coarse digitisation of published Fig.7(b,c), calibrated separately to
+the exact Table-1/2 cosmic rates (220 track and 60 shower events/year).
+
+This makes the result reproducible and normalization-anchored, while honestly
+retaining a response-shape systematic.
+
+ARCA RESPONSE USED
+------------------
+Fig.7(c) shower components:
+  * nu_e CC (+ Glashow, outside our main 25 TeV--1.4 PeV interval)
+  * nu_tau CC shower decay
+  * all-flavour NC
+with separate upgoing and downgoing curves.
+
+Fig.7(b) control sample:
+  nu_mu CC tracks in four cos(theta) bins.
+
+For equal astrophysical flavor fluxes:
+  * nu_e CC is unaffected by the tau-only BSM interaction;
+  * nu_tau CC is modified by Earth propagation only;
+  * only the tau one-third of the all-flavour NC component is modified by
+    tau propagation and the BSM NC detector cross section;
+  * nu_mu CC tracks are used as an unaffected normalization/slope control.
+
+STATISTICAL GATE
+----------------
+The likelihood profiles one common astrophysical normalization and spectral
+index, first using showers alone and then using tracks+showers.
+
+The present ARCA gate is deliberately SIGNAL-ONLY: published atmospheric
+background rates are not yet available bin-by-bin in the fallback response.
+Therefore it is an OPTIMISTIC UPPER BOUND on achievable significance.
+
+Decision logic:
+  * if even tracks+showers signal-only gives Z < 2, ARCA cannot rescue the
+    benchmark and no background refinement can reverse that conclusion;
+  * if Z >= 2, exact Zenodo response and binned backgrounds become mandatory
+    before any positive claim.
+
+The already-passed Rakshit-Reya / Dutta-Reno-Sarcevic transport validation is
+unchanged.
+
+[v0.7] Added Case-6 momentum-growing dimension-7 DIS calculation with CT10nlo and explicit Q/Lambda and sqrt(shat)/Lambda EFT cuts. Mac Studio validation: no-cut rNP/SM = 5.34e-4 at 0.1 PeV and 1.38e-2 at 1 PeV; conservative sqrt(shat)<Lambda retains O(0.3-0.7) effects at 10-300 PeV for Lambda~2.44 TeV.
+[v0.8] Added UHE cosmogenic event fold using official IceCube 12.6-y EHE effective area and KM3NeT KM3-230213A bright-track response. Primary prediction uses sqrt(shat)<Lambda; Q<Lambda retained only as aggressive envelope. Case-6 NC topology caveat made explicit.

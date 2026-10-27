@@ -1,0 +1,21 @@
+ICECUBE columns: '1.06e+06', '1.27e+00'
+VALIDATION KM3 Ehlert SM 335d = 0.242754  target=0.242767
+VALIDATION KM3 central90      = 0.211081  target=0.211117
+IceCube EHE Ehlert SM 12.6y  = 0.001767
+
+PRIMARY: conservative sqrt(shat)<Lambda
+ Lambda_TeV  c4_over_4pi  IceCube_SM  IceCube_shat_proxy  IceCube_frac_shat  IceCube_P0_shat  KM3_brighttrack_SM  KM3_NC_equiv_shat_proxy  KM3_NC_equiv_shat_central90  naive_flux_scale_90_if_zero
+        1.5        0.231    0.001767            0.002073             0.1731           0.9979              0.2428                   0.2838                       0.2481                         1111
+          2       0.5475    0.001767            0.002505             0.4174           0.9975              0.2428                   0.3412                       0.3003                        919.1
+       2.44       0.9942    0.001767            0.003115             0.7625           0.9969              0.2428                   0.4223                       0.3747                        739.2
+          3        1.848    0.001767            0.004254              1.407           0.9958              0.2428                   0.5726                       0.5131                        541.3
+
+AGGRESSIVE Q<Lambda envelope
+ Lambda_TeV  IceCube_Q_proxy  KM3_NC_equiv_Q_proxy
+        1.5         0.003773                0.5058
+          2         0.006193                0.8186
+       2.44         0.009285                 1.215
+          3          0.01459                 1.889
+
+IMPORTANT: Case 6 is NC-like; KM3 NC-equivalent values are acceptance proxies, not new bright-track counts.
+WROTE results/v0.8/uhe_event_counts_v0_8.csv

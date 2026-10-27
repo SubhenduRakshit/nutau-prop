@@ -1,0 +1,23 @@
+icecube:
+  release_name: "IceCube 2015 contained events >1 TeV, 641 days"
+  release_url: "https://icecube.wisc.edu/data-releases/20150219_Search_for_contained_neutrino_events_at_energies_greater_than_1_TeV_in_2_years_of_data.zip"
+  effective_area_file: "effective_area.nu_tau.txt"
+  exposure_days: 641.0
+
+flux:
+  # IceCube PRD 91, 022001 (2015): per-flavor (nu+nubar) best fit.
+  phi0_per_gev_cm2_s_sr: 2.06e-18
+  pivot_gev: 1.0e5
+  gamma: 2.46
+  gamma_sigma: 0.12
+  # Restrict to the published best-fit validity interval for the quoted flux.
+  energy_min_gev: 2.5e4
+  energy_max_gev: 1.4e6
+
+analysis:
+  # Aeff already includes SM Earth attenuation.  BSM propagation is therefore
+  # applied as T_BSM/T_SM, never by multiplying by T_BSM again.
+  minimum_sm_events_for_reporting: 0.01
+  profile_gamma_min: 2.0
+  profile_gamma_max: 3.0
+  projection_exposure_years: 7.5

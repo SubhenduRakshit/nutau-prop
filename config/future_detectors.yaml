@@ -1,0 +1,28 @@
+constraints:
+  # Atzori Corona et al., PRL 135, 231803 (2025), Eq. (16):
+  # 1 sigma global-fit interval from scattering data.
+  tau_charge_radius_abs_1sigma_cm2: 2.0e-31
+  citation: "Phys. Rev. Lett. 135, 231803 (2025); arXiv:2504.05272"
+
+icecube_gen2:
+  exposure_years: 10.0
+
+  # Public Gen2 design page: overall sensitivity x5 and 5-10x as many
+  # neutrinos above 30 TeV.  These are transparent scaling scenarios,
+  # NOT a claim to possess a full Gen2 response matrix.
+  baseline_area_multiplier: 5.0
+  optimistic_area_multiplier: 10.0
+
+  # Gen2 TDR: identified tau rate above 300 TeV >=1/yr versus ~0.2/yr
+  # in IceCube, providing a separate tau-tagging scale cross-check.
+  tau_tag_rate_multiplier: 5.0
+
+generic_future_tau:
+  # Detector-agnostic acceptance multipliers relative to the same IceCube
+  # 2015 nu_tau response, used only to show what scale would actually be needed.
+  area_multipliers: [10, 30, 100, 300, 1000]
+  exposure_years: 10.0
+
+decision:
+  discovery_sigma: 3.0
+  evidence_sigma: 2.0

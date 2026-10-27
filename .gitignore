@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.egg-info/
+cache/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+!PROGRESS.log
+*.out
+*.synctex.gz

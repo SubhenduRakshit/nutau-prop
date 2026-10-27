@@ -1,0 +1,12 @@
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT10nlo/CT10nlo_0000.dat
+CT10nlo PDF set, member #0, version 4; LHAPDF ID = 11000
+L=1.00TeV c4=  0.86 c4/4pi= 0.07 rQ(1,10,100,300PeV)=0.0137,0.119,0.27,0.352 rS=0.0129,0.0317,0.0411,0.0469
+L=1.50TeV c4=  2.90 c4/4pi= 0.23 rQ(1,10,100,300PeV)=0.0138,0.254,0.798,1.11 rS=0.0138,0.0909,0.148,0.177
+L=2.00TeV c4=  6.88 c4/4pi= 0.55 rQ(1,10,100,300PeV)=0.0138,0.364,1.64,2.44 rS=0.0138,0.194,0.351,0.434
+L=2.44TeV c4= 12.49 c4/4pi= 0.99 rQ(1,10,100,300PeV)=0.0138,0.418,2.63,4.11 rS=0.0138,0.302,0.569,0.719
+L=3.00TeV c4= 23.22 c4/4pi= 1.85 rQ(1,10,100,300PeV)=0.0138,0.442,4.16,6.94 rS=0.0138,0.404,1.03,1.33
+L=4.00TeV c4= 55.04 c4/4pi= 4.38 rQ(1,10,100,300PeV)=0.0138,0.446,7.32,13.9 rS=0.0138,0.446,2.31,3.1
+VALIDATION no-cut rNP/SM at 0.1,1 PeV=0.000534,0.0138
+WROTE results/v0.8/case6_pdf_cut_v0_8.csv
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

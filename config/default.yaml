@@ -1,0 +1,49 @@
+pdf:
+  set: CT18NLO
+  member: 0
+
+integration:
+  q2_min_gev2: 2.0
+  w2_min_gev2: 4.0
+  nx: 72
+  ny: 110
+  y_min: 1.0e-5
+  y_split: 0.08
+  y_log_bins: 55
+  y_linear_bins: 55
+
+energy_grid:
+  emin_gev: 1.0e4
+  emax_gev: 1.0e7
+  n: 81
+
+physics:
+  sin2thetaW: 0.23122
+  spectral_index: 2.5
+  tau_beta_cm2_per_g: 0.85e-6
+  tau_polarization: -1.0
+  antinu_charge_radius_sign: 1.0
+
+transport:
+  cos_zenith_abs: [0.2, 0.5, 0.8, 1.0]
+  max_step_km: 12.0
+  max_interaction_probability: 0.025
+
+benchmarks:
+  charge_radius_cm2:
+    - 0.0
+    - 1.0e-32
+    - -1.0e-32
+    - 3.0e-32
+    - -3.0e-32
+    - 6.0e-32
+    - -6.0e-32
+  derivative:
+    eps_em_inf: [0.01, 0.03, 0.06]
+    mediator_mass_gev: [0.01, 0.1, 1.0]
+
+gate:
+  minimum_distortion: 0.05
+  energy_min_gev: 1.0e5
+  energy_max_gev: 5.0e6
+  min_sm_transmission: 1.0e-4

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nutau-prop"
+version = "0.8.0"
+description = "Tau-neutrino transport with validated TeV-PeV gates and v0.8 UHE momentum-growing Case-6 event forecasts"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "PyYAML>=6.0",
+  "matplotlib>=3.8",
+  "pandas>=2.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

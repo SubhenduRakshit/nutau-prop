@@ -1,0 +1,33 @@
+arca:
+  zenodo_record: 10949703
+  zenodo_api: "https://zenodo.org/api/records/10949703"
+  exposure_years: 10.0
+
+  # Published full-ARCA BDT-selected cosmic-neutrino rates for Eq.(6)
+  # reference flux Phi = 1.2e-8 (E/GeV)^-2 per flavor:
+  reference_flux_phi0_at_1GeV: 1.2e-8
+  reference_gamma: 2.0
+  reference_track_rate_per_year: 220.0
+  reference_shower_rate_per_year: 60.0
+
+  # Shower purity is 77% in the published final selection.
+  # The first gate below is deliberately signal-only (optimistic upper bound).
+  published_shower_neutrino_purity: 0.77
+
+analysis_flux:
+  # Same flux used in the IceCube v0.4/v0.5 comparison.
+  phi0_per_gev_cm2_s_sr: 2.06e-18
+  pivot_gev: 1.0e5
+  gamma: 2.46
+  energy_min_gev: 2.5e4
+  energy_max_gev: 1.4e6
+
+profile:
+  gamma_min: 2.0
+  gamma_max: 3.0
+
+gate:
+  evidence_sigma: 2.0
+  discovery_sigma: 3.0
+  # If exact Zenodo response is not machine-parsed automatically, a published
+  # Fig.7 digitization calibrated to Table 1/2 rates is used and flagged.
