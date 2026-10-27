@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nutau-prop"
-version = "0.17.0"
-description = "Tau-neutrino Earth transport with exact finite-beta tau loss-decay evolution and momentum-growing BSM interactions"
+version = "0.18.1"
+description = "Tau-neutrino Earth transport with exact finite-beta tau loss-decay evolution and certified chirality-aware BSM transport"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.26",
