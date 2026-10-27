@@ -1,0 +1,237 @@
+nutau-prop v0.10 CHAT-TAB RECONCILIATION / CANONICAL PHYSICS CHECKPOINT
+=====================================================================
+Date: 2026-10-27
+Author/project owner: Subhendu Rakshit
+
+PURPOSE OF THIS FILE
+--------------------
+This is a versioned continuation/checkpoint of PROGRESS.log.  It does not
+replace, truncate, or rewrite the earlier execution history.  It records the
+scientific state reached in the present chat before subsequent work is allowed
+to change the interpretation.
+
+CANONICAL PROJECT GOAL
+----------------------
+The project is about tau-neutrino propagation through the Earth in the
+presence of non-standard interactions.  The central question is whether a
+physically allowed interaction can produce a sufficiently large and
+characteristic propagation distortion to be observable.  The project is NOT
+a no-go-theorem project, and it is NOT the separate cosmogenic-neutrino /
+UHECR proton-fraction project.
+
+The sequence of this project matters:
+
+1. The historical nu_tau/tau transport machinery was first validated against
+   Dutta-Reno-Sarcevic and Rakshit-Reya benchmarks.
+2. Smooth charge-radius and derivative/forward-blind interaction benchmarks
+   were then propagated through IceCube/ARCA-style observables.  Their
+   distortions were too weak or too degenerate with flux normalization/slope
+   to provide a useful signal in the tested responses.
+3. The user therefore required a qualitatively different interaction with
+   genuine momentum enhancement.  This destroyed the earlier smooth-model
+   failure: the momentum-growing operator can generate a large high-energy
+   cross-section modification.
+4. The new problem is not lack of momentum enhancement.  The problem is that
+   the same enhancement extends into the UHE/cosmogenic-neutrino regime and
+   collides with IceCube/KM3NeT observations/limits.
+
+v0.7 MOMENTUM-GROWING CASE-6 RESULT
+----------------------------------
+The benchmark is the dimension-seven Case-6 neutrino-quark operator discussed
+by Pandey, Karmakar and Rakshit, JHEP 11 (2019) 046,
+
+  L_C6 = C4 (bar nu_i^c <->partial_mu nu_j)(bar q gamma^mu q) + h.c.,
+
+with benchmark coefficient
+
+  C4 = 8.6e-10 GeV^-3.
+
+The PDF-level calculation used CT10nlo and integrated explicitly over Bjorken
+x and y with
+
+  shat ~= 2 m_N E_nu x,
+  Q^2 = shat y.
+
+Two EFT-domain prescriptions were kept separate:
+
+  PRIMARY / conservative: sqrt(shat) < Lambda_UV,
+  AGGRESSIVE envelope:    Q < Lambda_UV.
+
+The aggressive Q cut is not accepted as the primary prediction because small
+y can keep Q below Lambda while sqrt(shat) is already outside the EFT domain.
+
+The Mac Studio validation gave
+
+  no-cut sigma_NP/sigma_SM = 5.34e-4 at 0.1 PeV,
+                            = 1.38e-2 at 1 PeV.
+
+For the conservative sqrt(shat)<Lambda cut, the important ratios at
+E_nu=(1,10,100,300) PeV are:
+
+  Lambda=1.5 TeV: (0.0138, 0.0909, 0.148, 0.177)
+  Lambda=2.0 TeV: (0.0138, 0.194,  0.351, 0.434)
+  Lambda=2.44TeV: (0.0138, 0.302,  0.569, 0.719)
+  Lambda=3.0 TeV: (0.0138, 0.404,  1.03,  1.33)
+
+With c4=C4 Lambda^3, c4/(4pi)=0.231, 0.547, 0.994, 1.848 for
+Lambda=1.5,2.0,2.44,3.0 TeV.  Thus 2.44 TeV is already near the nominal 4pi
+coefficient diagnostic and 3 TeV is beyond it.
+
+PHYSICS CONCLUSION FROM v0.7
+----------------------------
+Momentum growth works.  The earlier conclusion obtained from smooth
+interactions is not robust against a genuinely momentum-growing operator.
+The project therefore moved from the question "can the propagation effect be
+made large?" to the question "can the required momentum growth survive UHE
+neutrino observations and EFT/laboratory consistency?"
+
+v0.8 UHE / COSMOGENIC OBSERVATIONAL STRESS TEST
+-----------------------------------------------
+The saved Case-6 cross-section curves were folded against:
+
+  * the official IceCube 12.6-year EHE effective area;
+  * the official KM3NeT KM3-230213A bright-track effective area;
+  * the public Ehlert cosmogenic-neutrino spectral shape as a fixed benchmark
+    shape for this stress test.
+
+The Ehlert spectrum is used here only to expose the UHE observational tension.
+This does not turn nutau-prop into the separate cosmogenic proton-fraction
+project.
+
+KM3NeT validation was excellent:
+
+  calculated full 335-d expectation = 0.242754,
+  official notebook benchmark       = 0.242767,
+
+and in the published central-90% parent-energy range:
+
+  calculated = 0.211081,
+  official   = 0.211117.
+
+ICECUBE UNIT BUG AND CORRECTION
+-------------------------------
+The first v0.8 IceCube parser treated the headerless first numerical row as
+column names and therefore missed the conversion of the official effective
+area from m^2 to cm^2.  This produced the false SM result 0.001767 events.
+An attempted in-place NumPy conversion then failed because the returned array
+was read-only.  The corrected copy()*1e4 conversion gives
+
+  IceCube EHE Ehlert SM, 12.6 yr = 17.674595 events.
+
+This bug is part of the project history and must not be hidden.
+
+CORRECTED v0.8 PRIMARY EVENT-PROXY TABLE
+---------------------------------------
+Using the conservative sqrt(shat)<Lambda cross-section enhancement in the
+inclusive IceCube response proxy:
+
+  Lambda [TeV]   N_IC(SM)   N_IC(SM+NP proxy)   fractional increase
+  -----------------------------------------------------------------
+     1.50         17.67          20.73                0.173
+     2.00         17.67          25.05                0.417
+     2.44         17.67          31.15                0.763
+     3.00         17.67          42.54                1.407
+
+The corresponding aggressive Q<Lambda proxy gives 37.73, 61.93, 92.85 and
+145.9 events and is retained only as an upper-envelope diagnostic.
+
+The important physical result is that the same momentum enhancement that
+makes the propagation effect interesting also strongly enhances the UHE
+response where IceCube has very restrictive observations.
+
+COMMON-FLUX SCREEN USED AT v0.8
+-------------------------------
+At this stage a deliberately crude zero-count Poisson scale
+
+  kappa_90 = 2.302585 / N_IC
+
+was used only as a screening diagnostic.  It is NOT the published IceCube EHE
+likelihood and it is NOT a model-specific 90% confidence limit.
+
+After applying this common-flux screening normalization, the KM3NeT
+NC-equivalent response proxy becomes almost independent of Lambda:
+
+  N_KM3^(screen) ~= 0.0315, 0.0314, 0.0312, 0.0310
+
+for Lambda=1.5,2.0,2.44,3.0 TeV.
+
+This near-cancellation is understood analytically.  For a common flux
+normalization kappa,
+
+  N_IC = kappa I,     N_KM3 = kappa K,
+
+so a constraint kappa <= U/I implies
+
+  N_KM3 <= U K/I.
+
+If the same interaction enhances both UHE acceptances similarly, the ratio
+K/I changes much less than either absolute yield.
+
+TOPOLOGY CAVEAT: CASE 6 IS NC-LIKE
+----------------------------------
+The Case-6 hard final state is neutrino-sector plus hadrons.  It does not
+produce the charged muon required for a direct bright-track event.  Therefore
+multiplying the KM3NeT bright-track effective area by (1+r) is only an
+NC-equivalent acceptance proxy and must never be called a direct track
+prediction.
+
+At the screened common-flux scales, the unchanged direct bright-track
+expectation is approximately
+
+  0.027, 0.022, 0.018, 0.013
+
+for Lambda=1.5,2.0,2.44,3.0 TeV, respectively, in the original v0.8
+screening estimate.
+
+CANONICAL v0.8 INTERPRETATION
+-----------------------------
+The correct statement at this checkpoint is:
+
+  Momentum growth survives at the cross-section / propagation level, but the
+  same growth clashes with the UHE/cosmogenic observational constraint when
+  folded through IceCube and KM3NeT response proxies.
+
+This is NOT a no-go theorem.  It is the identification of the central tension
+for the momentum-enhanced nutau-propagation idea.
+
+WHAT v0.8 DID NOT ESTABLISH
+---------------------------
+1. The 2.3026-event normalization is only a screen.  IceCube's 12.6-year EHE
+   analysis uses reconstructed energy and direction, background/nuisance
+   components and pseudoexperiment calibration.
+2. The public all-flavor IceCube effective area is a Standard-Model detector
+   response.  Multiplying it by an inclusive cross-section ratio is a proxy,
+   not a complete BSM detector simulation.
+3. The KM3NeT bright-track response cannot be used as the acceptance for the
+   Case-6 NC hard interaction.
+4. A tau-specific interaction cannot automatically rescale every flavor in the
+   published IceCube all-flavor area.
+5. No exact EHE binned likelihood was available from the public release
+   inspected in this project.
+
+NEXT STEP IDENTIFIED AT THIS CHECKPOINT
+---------------------------------------
+The next calculation was therefore fixed: replace the crude 2.3026-event
+screen by IceCube's published energy-dependent EHE information as faithfully
+as the public release allows, while keeping the limitations explicit.  This
+became the subsequent v0.9 public-data diagnostic.  The v0.9 refinement is a
+later stage; it does not erase or change the v0.8 discovery of the central
+momentum-growth versus UHE-observation tension.
+
+SCOPE LOCK FOR FUTURE WORK
+--------------------------
+Future work in this repository must preserve the project identity:
+
+  * primary subject: tau-neutrino propagation through Earth with BSM
+    interactions;
+  * current successful mechanism: genuine momentum enhancement;
+  * current obstacle: UHE/cosmogenic observational consistency of that
+    enhancement;
+  * KM3NeT/IceCube are observational constraints/diagnostics, not a change of
+    the project into a KM3-event-explanation paper;
+  * the separate cosmogenic-neutrino/UHECR proton-fraction project must not be
+    imported into this repository's scientific goal.
+
+No new numerical computation is claimed in this checkpoint file.  It records
+and reconciles the already executed v0.7/v0.8 results from the chat and the
+repository history.
