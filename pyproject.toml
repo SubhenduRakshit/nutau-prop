@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nutau-prop"
-version = "0.12.0"
-description = "Tau-neutrino transport with momentum-growing Case-6 detector and Earth-propagation consistency gates"
+version = "0.13.0"
+description = "Tau-neutrino transport with end-to-end momentum-growing Case-6 propagation and detector-response fold"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.26",
