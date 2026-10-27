@@ -6,7 +6,7 @@ Date: 2026-10-27
 
 The v0.11 detector-NSI stage and v0.12 flavor-aware Earth-transport stage have completed successfully on the Mac Studio. The ordered runner uses `set -euo pipefail`; therefore completion implies the historical Rakshit–Reya / Dutta–Reno–Sarcevic gate and the v0.11 differential-kernel regression gate both passed before v0.12 ran.
 
-The new v0.12 result changes the interpretation of the earlier v0.8/v0.9 effective-area proxy. Case 6 produces very strong zenith-dependent opacity at UHE. At 220 PeV, the propagated tau-neutrino ratio is approximately 0.152, 8.97e-3, 1.45e-4, 5.43e-8 for |cos z|=0.5 and Lambda=1.5,2.0,2.44,3.0 TeV respectively, and is much smaller for a vertical chord. Hence a detector-only `(1+r)` rescaling is not a faithful UHE prediction.
+The v0.13 joint propagation+detector fold has also passed its numerical bookkeeping gate. The full calculation confirms that Earth opacity does not rescue the contact Case-6 benchmark from the public IceCube UHE screen. Even the most favorable public-response envelope allows only about 0.30–0.31 of the Ehlert benchmark normalization, while the corresponding KM3NeT bright-track expectation remains only about 0.07 events. Thus the old v0.8/v0.9 tension survives the self-consistent propagation calculation, although the physical reason is now clearer: detector-vertex enhancement competes with strong zenith-dependent depletion of the incident tau-neutrino flux.
 
 ## Momentum-growing operators in Pandey–Karmakar–Rakshit, JHEP 11 (2019) 046
 
@@ -25,10 +25,47 @@ Physics priority: VERY HIGH. It has genuine momentum enhancement but a different
 
 L_eff = (c4/Lambda^3) (bar(nu^c) i<->d_mu nu) (bar q gamma^mu q).
 
-Published LHC benchmark bound used in v0.7–v0.12:
+Published LHC benchmark bound used in v0.7–v0.13:
 - c4/Lambda^3 <~ 8.6e-10 GeV^-3.
 
-Physics status: FULL differential Case-6 kernel, detector-only channel fold, and flavor-aware Earth transport now implemented. Remaining detector task is the combined propagation + detector response, because the v0.12 opacity is too large for the old factorized A_eff proxy.
+Physics status: COMPLETE for the present public-response study. The differential Case-6 kernel, detector-only topology treatment, flavor-aware Earth transport, secondary-nu_mu production, and the joint propagation+detector fold have all been implemented. The joint v0.13 result shows that the contact interaction gives a modest regeneration excess near the PeV scale but develops severe zenith-dependent opacity at tens to hundreds of PeV. The old detector-only `(1+r)` picture is therefore not physically adequate, but the corrected treatment still leaves a strong UHE constraint.
+
+#### What the cutoff scale means in the Case-6 calculation
+
+There are two distinct quantities that should not be conflated.
+
+First, the interaction strength used in the numerical scan is the dimensionful coefficient
+
+C4 = 8.6e-10 GeV^-3,
+
+which is held fixed. With that choice the partonic matrix element grows as
+
+|M|^2 = 64 C4^2 shat^3 y(1-y),
+
+so the new contribution rises rapidly with partonic energy. This momentum growth is the physical feature being tested.
+
+Second, the scan parameter Lambda_UV is an EFT-validity boundary, imposed primarily as
+
+sqrt(shat) < Lambda_UV.
+
+It does not represent a physical suppression mechanism and it does not make the interaction turn over. Phase-space points with sqrt(shat) above Lambda_UV are simply discarded because the contact description is no longer trusted there. Since shat = x s ~ 2 m_N E_nu x, the cut corresponds at fixed neutrino energy to
+
+x < Lambda_UV^2 / (2 m_N E_nu).
+
+As E_nu increases, more of the high-x, high-shat phase space lies outside the EFT domain. Conversely, increasing Lambda_UV admits more of that rapidly growing phase space and therefore produces a larger cross section and stronger Earth opacity. This explains why the 1.5, 2.0, 2.44 and 3.0 TeV scans become progressively more absorptive even though C4 itself is unchanged.
+
+The notation C4 = c4 / Lambda^3 is useful for judging the size of an underlying dimensionless coefficient, but it must not be misread as the way the numerical scan is performed. In the present scan C4 is fixed and
+
+c4 = C4 Lambda_UV^3
+
+therefore changes with Lambda_UV. The corresponding c4/(4 pi) values are 0.231, 0.547, 0.994 and 1.848 for Lambda_UV = 1.5, 2.0, 2.44 and 3.0 TeV. Thus 2.44 TeV is already near the nominal 4 pi coefficient diagnostic and 3 TeV is beyond it. This is only a perturbativity diagnostic, not a proof of unitarity or UV consistency.
+
+The conceptual distinction is therefore:
+
+- contact Case 6 + hard sqrt(shat) cut = rapidly growing EFT interaction with an imposed boundary of calculational validity;
+- resolved mediator = a physical amplitude whose propagator changes the high-momentum behavior and can produce a genuine turnover or saturation.
+
+The hard EFT cut by itself cannot be advertised as the mechanism that keeps the interaction large in the PeV propagation window while making it safe at hundreds of PeV or EeV. That requires an explicit UV completion or resolved mediator.
 
 ### Case 7: neutrino–gluon contact operator
 
@@ -50,7 +87,7 @@ The same 2019 paper also studied two dimension-5 neutrino-Z' vertices:
 
 Both have additional momentum dependence, but unlike the contact operators their high-Q behavior is softened by the mediator propagator. The paper explicitly notes that the contact interactions rise faster with energy while the Z'-mediated cases are relaxed by propagator suppression.
 
-These resolved-mediator structures are therefore not merely additional operator variants: they are direct candidates for the later physical-turnover step requested after the contact-operator survey.
+These resolved-mediator structures are therefore not merely additional operator variants: they are direct candidates for the later physical-turnover step requested after the contact-operator survey. In particular, they provide the correct language for replacing the present hard EFT-validity cut by a physical high-momentum modification of the amplitude.
 
 ## Ordered next calculation
 
@@ -60,6 +97,8 @@ These resolved-mediator structures are therefore not merely additional operator 
 4. Compare Cases 5,6,7 at fixed currently allowed coefficient using: total r(E), <y>(E), zenith-dependent propagated spectra by flavor, secondary muon-neutrino spectrum, and channel-resolved detector yields.
 5. Then move to the requested physical-turnover stage using an explicit resolved mediator rather than an ad hoc hard cutoff.
 
-## Submission-gate implication after v0.12
+## Submission-gate implication after v0.13
 
-The project is scientifically closer to submission because the historical transport, detector NSI topology, and full Case-6 Earth transport are now internally consistent. However, it is not yet submission-ready. The decisive remaining calculation is a joint propagation+detector fold with the same kernel. The v0.12 opacity is large enough that the old IceCube/KM3NeT common-flux screen may be quantitatively altered, so the earlier UHE 'clash' must not be quoted as final until that joint fold is performed.
+The Case-6 calculation itself is now essentially complete at the level possible with public detector responses: historical transport validation, differential cross section, topology-aware detector treatment, Earth propagation and regeneration, secondary-flavor production, and the joint propagation+detector fold are all in place. The conclusion is that contact Case 6 can generate a distinctive regeneration-to-opacity transition but does not provide the desired viable UHE enhancement once the IceCube public constraint is imposed.
+
+This is not a general no-go theorem for momentum-growing tau-neutrino interactions. Case 5 is qualitatively different because it is flavor changing, and a resolved mediator is qualitatively different because it can physically soften the high-momentum growth. Those two mechanisms are therefore the decisive remaining tests before the project-level submission decision.
