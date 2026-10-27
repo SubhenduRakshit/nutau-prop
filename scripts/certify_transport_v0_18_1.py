@@ -23,10 +23,18 @@ def readj(p):
     if not p.exists(): raise SystemExit(f"Missing certification input: {p}")
     return json.loads(p.read_text())
 
+def as_bool(x):
+    if isinstance(x,bool): return x
+    if isinstance(x,(int,float)): return bool(x)
+    s=str(x).strip().lower()
+    if s in ("true","1","yes"): return True
+    if s in ("false","0","no"): return False
+    raise SystemExit(f"Unrecognized PASS value {x!r}")
+
 checks={}
 rr=readj(H/"rr_gate.json"); drs=readj(H/"drs_gate.json")
-checks["historical_RR_PASS"]=bool(rr.get("PASS",False))
-checks["historical_DRS_PASS"]=bool(drs.get("PASS",False))
+checks["historical_RR_PASS"]=as_bool(rr.get("PASS",False))
+checks["historical_DRS_PASS"]=as_bool(drs.get("PASS",False))
 
 p=V17/"tau_validation_gates_v0_17.csv"
 if not p.exists(): raise SystemExit(f"Missing certification input: {p}")
@@ -34,15 +42,16 @@ G=pd.read_csv(p)
 if "PASS" not in G or "test" not in G: raise SystemExit("Malformed v0.17 gate CSV")
 # refinement_trend_tau was replaced by the explicit v0.17.1 floor-aware reassessment.
 sub=G[G.test!="refinement_trend_tau"].copy()
-checks["v0.17_all_substantive_gates_PASS"]=bool(sub.PASS.astype(bool).all())
+pvals=sub.PASS.map(as_bool)
+checks["v0.17_all_substantive_gates_PASS"]=bool(pvals.all())
 checks["v0.17_substantive_gate_count"]=int(len(sub))
-checks["v0.17_substantive_failed"]=int((~sub.PASS.astype(bool)).sum())
+checks["v0.17_substantive_failed"]=int((~pvals).sum())
 
 r=readj(V17/"tau_refinement_reassessment_status_v0_17_1.json")
-checks["v0.17.1_refinement_PASS"]=bool(r.get("all_refinement_gates_PASS",False))
+checks["v0.17.1_refinement_PASS"]=as_bool(r.get("all_refinement_gates_PASS",False))
 
 c=readj(V181/"chirality_validation_status_v0_18_1.json")
-checks["v0.18.1_chirality_solver_PASS"]=bool(c.get("all_gates_PASS",False))
+checks["v0.18.1_chirality_solver_PASS"]=as_bool(c.get("all_gates_PASS",False))
 
 allpass=(checks["historical_RR_PASS"] and checks["historical_DRS_PASS"] and
          checks["v0.17_all_substantive_gates_PASS"] and checks["v0.17.1_refinement_PASS"] and
