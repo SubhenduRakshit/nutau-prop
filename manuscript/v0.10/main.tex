@@ -1,0 +1,416 @@
+\documentclass[11pt,a4paper]{article}
+\makeatletter
+\def\input@path{{../v0.9/}}
+\makeatother
+\usepackage{jheppub}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\hypersetup{pdftitle={Momentum-enhanced tau-neutrino propagation through the Earth and the UHE constraint},pdfauthor={Subhendu Rakshit}}
+
+\title{Momentum-enhanced $\nu_\tau$ propagation through the Earth\\
+and the ultra-high-energy constraint}
+\author{Subhendu Rakshit}
+
+\abstract{We study whether non-standard neutrino interactions can produce an
+observable modification of ultra-high-energy $\nu_\tau$ propagation through
+the Earth.  After validating the coupled $\nu_\tau$--$\tau$ transport machinery
+against classic regeneration calculations, we first examined smooth
+charge-radius and derivative interaction benchmarks and found their detector-
+level distortions too small or too degenerate with astrophysical normalization
+and slope.  We then turned to a genuinely momentum-growing dimension-seven
+neutrino--quark operator.  A PDF-level calculation with CT10nlo and the
+conservative pointwise EFT-domain restriction $\sqrt{\hat s}<\Lambda$ gives
+$\sigma_{\rm NP}/\sigma_{\rm SM}=0.35$--$0.72$ at $100$--$300$ PeV for
+representative $\Lambda=2.0$--$2.44$ TeV, demonstrating that momentum growth
+can overcome the earlier smooth-model suppression.  The same enhancement,
+however, persists into the ultra-high-energy regime constrained by IceCube.
+Using the official 12.6-year IceCube EHE effective area and the public
+KM3NeT bright-track response, we validate the KM3NeT Ehlert-spectrum benchmark
+to better than $10^{-4}$ relative accuracy and obtain a corrected IceCube
+Standard-Model fold of $17.67$ events for the unscaled benchmark spectrum.
+A deliberately crude common-flux screen then drives the KM3NeT NC-equivalent
+response proxy to approximately $0.031$ events almost independently of the
+EFT cutoff.  Because the operator is neutral-current-like, this proxy is not a
+direct muon-track prediction.  The central result of this checkpoint is
+therefore not a no-go theorem: momentum enhancement succeeds at the
+cross-section and propagation level, but it creates a new tension with the
+UHE/cosmogenic-neutrino observations.  The public IceCube release does not
+contain the reconstructed-bin response needed for an exact BSM EHE likelihood,
+so the event-level conclusion remains a controlled screening result.}
+
+\keywords{Tau neutrinos, neutrino propagation, neutrino deep-inelastic
+scattering, effective field theory, IceCube, KM3NeT}
+
+\begin{document}
+\maketitle
+\flushbottom
+\tableofcontents
+
+\section{Introduction and scientific goal}
+High-energy tau neutrinos propagating through the Earth are qualitatively
+different from a simply absorbed beam.  Charged-current production of taus,
+followed by tau decay, regenerates $\nu_\tau$ at lower energy; neutral-current
+scattering redistributes the spectrum; secondary neutrinos from tau decay can
+feed other flavors.  The resulting energy--zenith structure is a sensitive
+probe of the neutrino interaction kernel rather than merely its total
+normalization.
+
+The aim of this project is to determine whether a physically allowed
+non-standard $\nu_\tau$ interaction can generate an observable Earth-
+propagation distortion.  This is not a search for a no-go theorem, and it is
+not the separate problem of inferring the UHECR proton fraction from a
+cosmogenic-neutrino flux.  Cosmogenic/UHE neutrino data enter here because any
+interaction that grows rapidly with momentum must remain consistent with the
+same neutrinos at still higher energies.
+
+The work proceeded in stages.  The transport machinery was first validated
+against historical $\nu_\tau$ regeneration calculations.  Smooth
+charge-radius and forward-blind derivative interactions were then propagated
+through IceCube- and ARCA-like response models; their observable distortions
+were too weak or too degenerate with flux normalization and slope.  That
+failure motivated the present momentum-growing operator.  The momentum-
+enhanced calculation succeeds in producing a large enough high-energy cross-
+section modification.  The new issue is therefore not whether the interaction
+can grow strongly enough, but whether that growth can coexist with the UHE
+neutrino observations.
+
+This manuscript version records the canonical physics checkpoint reached in
+v0.7--v0.8.  A later v0.9 public-data diagnostic uses IceCube's released
+energy-dependent differential limits, but it does not alter the meaning of the
+v0.8 result documented here.
+
+\section{Literature and context}
+\subsection{$\nu_\tau$ regeneration and coupled transport}
+The classic treatment of high-energy $\nu_\tau$ propagation through the Earth
+was developed by Dutta, Reno and Sarcevic, who emphasized that tau production
+and decay regenerate the incident flavor and can substantially reshape hard
+spectra \cite{Dutta:2000}.  They subsequently studied secondary neutrinos from
+tau decay and showed that the induced $\nu_\mu$ component can matter for
+upward-muon observables in sufficiently hard spectra \cite{Dutta:2002}.
+Rakshit and Reya formulated and tested iterative solutions of the coupled
+$\nu_\tau$--$\tau$ transport equations, including secondary-flavor production
+and convergence properties \cite{Rakshit:2006}.  These works provide the
+historical benchmarks used to validate the numerical transport basis of the
+present project.
+
+The essential physical lesson is that a BSM interaction must be inserted at
+the level of the differential transport kernel, not only as a rescaling of a
+final event rate.  Changes in total interaction probability, inelasticity,
+regeneration, and flavor/topology can compete.  The early stages of this
+project therefore separated propagation effects from detector-response
+proxies and treated them as distinct diagnostics.
+
+\subsection{Neutrino DIS at ultra-high energy}
+At TeV--EeV energies neutrino propagation depends on deep-inelastic scattering
+at increasingly small Bjorken $x$.  Modern Standard-Model calculations include
+higher-order QCD, modern PDFs, small-$x$ extrapolation and nuclear effects; a
+recent CT18-based analysis gives a useful summary of the associated UHE
+uncertainties \cite{Xie:2024}.  The present Case-6 calculation uses CT10nlo at
+leading order because the immediate goal is a controlled ratio benchmark for
+the new operator and a direct connection to the earlier phenomenological
+study.  It is not presented as a precision Standard-Model cross-section
+prediction.
+
+\subsection{Momentum-growing neutrino--quark interactions}
+Pandey, Karmakar and Rakshit analyzed several higher-dimensional neutrino
+interactions and compared collider and IceCube constraints \cite{Pandey:2019}.
+Their Case 6 contains the derivative dimension-seven structure used here,
+\begin{equation}
+ {\cal L}_{\rm C6}=C_4
+ (\bar\nu_i^c\overleftrightarrow{\partial}_\mu\nu_j)
+ (\bar q\gamma^\mu q)+{\rm h.c.},
+ \qquad [C_4]=-3.
+ \label{eq:C6}
+\end{equation}
+The benchmark coefficient is
+\begin{equation}
+ |C_4|=8.6\times10^{-10}\;{\rm GeV}^{-3},
+ \label{eq:C4}
+\end{equation}
+corresponding to the monojet bound quoted in that work.  Here this number is
+used as a benchmark rather than as a claim that a contact EFT can be
+extrapolated without qualification to every partonic energy.
+
+The distinctive feature is the positive power of the partonic invariant
+energy.  This is precisely what was missing from the smoother interactions
+examined earlier in the project.  It also creates the central tension of the
+present paper: the growth that makes Earth propagation observable does not
+stop automatically when the neutrino energy reaches the cosmogenic/UHE
+regime.
+
+\subsection{IceCube, KM3NeT and UHE neutrinos as constraints}
+IceCube's 12.6-year EHE search constrains neutrino fluxes above the PeV scale
+and provides a public true-energy effective area and an energy-dependent
+quasi-differential limit \cite{IceCube:2025EHE,IceCube:2025Data}.  The public
+release is sufficient for controlled true-energy folds, but not for a new-
+physics reconstruction of the collaboration's full likelihood because the
+reconstructed-energy/direction response, background templates and nuisance
+model are not released in the form required for that task.
+
+KM3NeT's ultra-high-energy event KM3-230213A motivates a complementary
+response check because the collaboration released a sky-averaged bright-track
+effective area and a public notebook that can be reproduced directly
+\cite{KM3NeT:2025Nature,KM3NeT:2025Data}.  The broader ARCA performance study
+keeps track and shower channels distinct \cite{KM3NeT:2024ARCA}.  This
+separation is crucial here because Case 6 is neutral-current-like: the hard
+interaction itself does not create the charged muon selected by the published
+bright-track response.
+
+For the UHE stress test we use one public Ehlert cosmogenic-neutrino spectrum
+as a fixed spectral shape \cite{Ehlert:2024}.  This is a convenient benchmark
+for exposing the observational clash.  It does not change the scientific goal
+of the project into a cosmic-ray-composition inference problem.
+
+\section{Momentum-growing Case-6 calculation}
+\subsection{Partonic kinematics and matrix element}
+For a nucleon at rest, Bjorken $x,y$ give
+\begin{equation}
+ s\simeq2m_NE_\nu,\qquad \hat s=xs,
+ \qquad Q^2=xys=\hat s y.
+ \label{eq:kin}
+\end{equation}
+For the Case-6 normalization used in the v0.7 implementation,
+\begin{equation}
+ \overline{|{\cal M}_{\rm C6}|^2}
+ =64 |C_4|^2\hat s^3 y(1-y),
+ \label{eq:M2}
+\end{equation}
+and the DIS fold is performed explicitly over $x$ and $y$ with the CT10nlo
+PDFs.  The factor $y(1-y)$ vanishes at the endpoints, while the $\hat s^3$
+growth drives a rapid rise before the EFT-domain restriction is applied.
+
+Two cut prescriptions were retained deliberately:
+\begin{align}
+ \sqrt{\hat s}<\Lambda &\qquad {\rm(primary)},
+ \label{eq:shatcut}\\
+ Q<\Lambda &\qquad {\rm(aggressive\ envelope)}.
+ \label{eq:Qcut}
+\end{align}
+The second is weaker because small $y$ can keep $Q$ below $\Lambda$ even when
+$\sqrt{\hat s}$ has already exceeded it.  We therefore use
+Eq.~\eqref{eq:shatcut} for the primary interpretation.
+
+Defining $c_4=C_4\Lambda^3$, the four benchmark cutoffs give
+\begin{equation}
+ {c_4\over4\pi}=0.231,\ 0.547,\ 0.994,\ 1.848
+ \quad {\rm for}\quad
+ \Lambda=1.5,\ 2.0,\ 2.44,\ 3.0\ {\rm TeV}.
+ \label{eq:c4pert}
+\end{equation}
+Thus $2.44$ TeV is already near the nominal $4\pi$ coefficient diagnostic and
+$3$ TeV is beyond it.  This is only a perturbativity diagnostic, not a full
+partial-wave unitarity analysis.
+
+\subsection{Cross-section result}
+The no-cut validation ratios are
+\begin{equation}
+ {\sigma_{\rm NP}\over\sigma_{\rm SM}}
+ =5.34\times10^{-4}\quad(0.1\ {\rm PeV}),
+ \qquad
+ =1.38\times10^{-2}\quad(1\ {\rm PeV}).
+ \label{eq:nocut}
+\end{equation}
+The conservative $\sqrt{\hat s}<\Lambda$ results are summarized in
+Table~\ref{tab:crosssection}.
+
+\begin{table}[t]
+\centering
+\caption{Case-6 cross-section ratio
+$r=\sigma_{\rm NP}/\sigma_{\rm SM}$ with the conservative
+$\sqrt{\hat s}<\Lambda$ restriction.}
+\label{tab:crosssection}
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$\Lambda$ [TeV] & $c_4/4\pi$ & $r(1\,{\rm PeV})$ &
+$r(10\,{\rm PeV})$ & $r(100\,{\rm PeV})$ & $r(300\,{\rm PeV})$\\
+\midrule
+1.50 & 0.231 & 0.0138 & 0.0909 & 0.148 & 0.177\\
+2.00 & 0.547 & 0.0138 & 0.194  & 0.351 & 0.434\\
+2.44 & 0.994 & 0.0138 & 0.302  & 0.569 & 0.719\\
+3.00 & 1.848 & 0.0138 & 0.404  & 1.03  & 1.33\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This table establishes the first major physics conclusion.  A genuinely
+momentum-growing interaction can evade the qualitative failure of the smooth
+benchmarks: it is negligible around a PeV but becomes tens of percent to
+order unity by $100$--$300$ PeV.  The earlier smooth-interaction conclusion is
+therefore not a robust statement about all BSM $\nu_\tau$ interactions.
+
+\section{The UHE/cosmogenic observational tension}
+\subsection{Public-response validation}
+The v0.8 stage folded the saved Case-6 curves through the official IceCube EHE
+and KM3NeT bright-track public responses.  The KM3NeT calculation reproduces
+the collaboration's Ehlert-spectrum benchmark:
+\begin{align}
+ N_{\rm KM3}^{335\,d}&=0.242754
+ \quad {\rm versus}\quad 0.242767\ {\rm(public\ notebook)},\\
+ N_{\rm KM3}^{\rm central\ 90\%}&=0.211081
+ \quad {\rm versus}\quad 0.211117.
+ \label{eq:kmvalidation}
+\end{align}
+This agreement is an important validation of the interpolation, flux
+convention and livetime normalization.
+
+The first IceCube v0.8 fold contained a parser error.  The official response
+file is headerless and its area is given in ${\rm m}^2$.  Treating the first
+numerical line as column names caused the ${\rm m}^2\to{\rm cm}^2$ conversion
+to be skipped, yielding the false value $0.001767$ events.  After the parser
+and NumPy read-only-array issue were corrected, the Standard-Model Ehlert fold
+became
+\begin{equation}
+ N_{\rm IC}^{\rm SM}=17.674595
+ \qquad(12.6\ {m yr}).
+ \label{eq:icsm}
+\end{equation}
+The failed value and its correction are retained in the project history.
+
+\subsection{Corrected v0.8 event-proxy result}
+Using the conservative cross-section enhancement as an inclusive IceCube
+response proxy gives Table~\ref{tab:uheproxy}.
+
+\begin{table}[t]
+\centering
+\caption{Corrected v0.8 IceCube EHE response proxy for the unscaled Ehlert
+benchmark.  These are not collaboration-level BSM detector predictions.}
+\label{tab:uheproxy}
+\begin{tabular}{@{}rrrr@{}}
+\toprule
+$\Lambda$ [TeV] & $N_{\rm IC}^{\rm SM}$ &
+$N_{\rm IC}^{\rm SM+NP,proxy}$ & fractional increase\\
+\midrule
+1.50 & 17.67 & 20.73 & 0.173\\
+2.00 & 17.67 & 25.05 & 0.417\\
+2.44 & 17.67 & 31.15 & 0.763\\
+3.00 & 17.67 & 42.54 & 1.407\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The aggressive $Q<\Lambda$ envelope would instead give approximately
+$37.73$, $61.93$, $92.85$ and $145.9$ events and is therefore even more
+strongly in tension with the UHE response.  The important point is not the
+precise proxy count but the direction of the effect: the same momentum growth
+that makes the Earth-propagation signal interesting continues into the UHE
+regime where the experimental constraint is severe.
+
+\subsection{Why a common-flux normalization largely cancels the enhancement}
+Let $I$ and $K$ denote the IceCube and KM3NeT yields per unit common flux
+normalization, including whatever response model is being tested.  Then
+\begin{equation}
+ N_{\rm IC}=\kappa I,\qquad
+ N_{\rm KM3}=\kappa K.
+ \label{eq:commonflux}
+\end{equation}
+Any upper bound of the form $\kappa\le U/I$ implies
+\begin{equation}
+ N_{\rm KM3}\le U{K\over I}.
+ \label{eq:ratioidentity}
+\end{equation}
+If the same momentum-growing interaction raises $I$ and $K$ by comparable
+factors, the ratio $K/I$ changes much less than either absolute yield.
+
+At the v0.8 checkpoint we used only a deliberately crude zero-count Poisson
+screen,
+\begin{equation}
+ \kappa_{90}^{\rm screen}={2.302585\over N_{\rm IC}^{\rm proxy}},
+ \label{eq:crudescreen}
+\end{equation}
+not the published IceCube likelihood.  Under that common normalization, the
+KM3NeT \emph{NC-equivalent} response proxy becomes
+\begin{equation}
+ N_{\rm KM3}^{\rm NC\mbox{-}equiv}
+ \simeq 0.0315,\ 0.0314,\ 0.0312,\ 0.0310
+ \label{eq:kmproxy}
+\end{equation}
+for $\Lambda=1.5,2.0,2.44,3.0$ TeV.  The near-independence of the cutoff is
+therefore not accidental; it follows from the common-flux structure.
+
+\subsection{Topology: the Case-6 operator is not a direct bright-track channel}
+Equation~\eqref{eq:C6} has a neutral-current-like hard final state: neutrino
+sector plus hadrons.  It does not directly produce the charged muon selected
+by the public KM3NeT bright-track response.  Consequently
+$A_{\rm track}^{\rm SM}(1+r)$ is only an acceptance proxy and must not be
+called a physical track prediction.
+
+At the crude v0.8 screening scales, the unchanged direct bright-track
+expectation was approximately
+\begin{equation}
+ 0.027,\ 0.022,\ 0.018,\ 0.013
+ \label{eq:directtrack}
+\end{equation}
+for the same four cutoffs.  A genuine Case-6 track effect would have to arise
+indirectly through modified propagation, flavor structure, or secondary
+neutrinos and therefore requires the coupled transport calculation rather
+than a multiplicative track-area rescaling.
+
+\section{What the v0.8 checkpoint establishes}
+The physics conclusion at this stage is deliberately narrow:
+\begin{quote}
+A genuinely momentum-growing interaction can produce the large high-energy
+cross-section modification needed to make $\nu_\tau$ propagation interesting,
+but the same growth creates a serious UHE/cosmogenic observational tension
+when folded through the public IceCube and KM3NeT responses.
+\end{quote}
+This is not a no-go theorem.  It is the identification of the central tension
+that any viable momentum-enhanced $\nu_\tau$ propagation model must resolve.
+
+Several limitations prevent a stronger event-level statement.  First,
+Eq.~\eqref{eq:crudescreen} ignores the three PeV-scale IceCube events and the
+energy/direction information used by the collaboration.  Second, the released
+IceCube effective area already contains Standard-Model propagation and
+selection effects; multiplying it by an inclusive cross-section ratio does
+not reproduce a detector simulation with altered NC visible energy,
+attenuation or regeneration.  Third, a tau-specific operator cannot simply
+rescale the full all-flavor IceCube area.  Fourth, the KM3NeT bright-track area
+is not the acceptance for the Case-6 NC final state.
+
+The next step fixed at this checkpoint is therefore to replace the crude
+$2.3026$-event screen with the published energy-dependent IceCube EHE
+information as faithfully as the public data allow, while refusing to call a
+true-energy effective-area fold the collaboration's exact binned likelihood.
+That calculation became the subsequent v0.9 public-data diagnostic.
+
+\section{Reproducibility and version history}
+The historical transport, smooth-interaction scans, Case-6 PDF integration,
+and UHE response stages are versioned in the repository.  The failed IceCube
+unit conversion and its correction are retained explicitly rather than being
+silently removed.  The canonical numerical inputs for this manuscript are the
+saved v0.7/v0.8 Case-6 cross-section table and the public IceCube/KM3NeT
+responses.  Recomputing the LHAPDF grid is unnecessary for the v0.8 event fold.
+
+The project log must preserve the distinction between three objects:
+(i) the physical Earth-propagation calculation, (ii) detector-response proxies,
+and (iii) collaboration likelihoods.  No statement based on (ii) is promoted
+to (iii).  Likewise, the use of a cosmogenic spectral benchmark as a UHE
+stress test is not a change of project scope.
+
+\section{Conclusions}
+The momentum-growing Case-6 operator changes the trajectory of the
+$\nu_\tau$-propagation project.  Smooth benchmark interactions had suggested
+that observable distortions might remain too weak after nuisance profiling.
+The full PDF-level Case-6 calculation shows that this is not a general
+conclusion: within the conservative EFT-domain cut, the new contribution can
+reach tens of percent to order unity at $100$--$300$ PeV while remaining small
+near a PeV.
+
+The price is a new and more stringent problem.  The same momentum growth
+extends into the UHE regime probed by IceCube, and the corrected public-response
+fold exposes a strong observational tension.  At the v0.8 level this is only a
+screening result, because neither the full BSM detector response nor the exact
+IceCube reconstructed-bin likelihood is publicly reproducible from the
+released tables.  Nevertheless, it identifies the correct next physics task:
+retain the momentum-enhanced $\nu_\tau$ propagation effect while satisfying
+the UHE observational constraint in a model whose differential transport and
+detector topology are treated consistently.
+
+\section*{AI-assisted drafting disclosure}
+This working manuscript and its reproducibility notes were prepared with AI
+assistance under the author's direction.  The author should independently
+verify every numerical and bibliographic statement before submission.
+
+\bibliographystyle{../v0.9/JHEP}
+\bibliography{../v0.9/references}
+\end{document}
