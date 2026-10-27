@@ -12,6 +12,16 @@ Implemented brackets:
     antinu_tau <-> nu_mu, including the reverse transitions required by the
     Hermitian flavor-off-diagonal coupling.
 
+v0.15.1 numerical-audit corrections:
+  * SM and BSM comparison runs use the same substep schedule.  The schedule is
+    set by the full SM+NP interaction rate even when use_np=False.  This removes
+    the spurious possibility that a pure Dirac sink appears above the matched
+    SM solution solely because the two runs used different numerical
+    resolutions.
+  * secondary nu_mu/antinu_mu produced by tau decay in the helicity-flip solver
+    are subsequently propagated with SM CC/NC interactions instead of merely
+    being accumulated.
+
 SM CC/NC transport and tau decay/regeneration use the already validated
 PREM/DRS machinery conventions of the project.
 """
@@ -52,6 +62,10 @@ class _Species:
         cc_parent = inter * fcc
         np_daughter = (inter * fnp) @ self.Knp if use_np else np.zeros_like(phi)
         return same, cc_parent, np_daughter
+
+    def matched_step_rate(self, rho):
+        """Rate used to define a common SM/BSM numerical substep schedule."""
+        return float(np.max(NA * rho * (self.scc + self.snc + self.snp)))
 
 
 class _TauDecayMixin:
@@ -104,20 +118,29 @@ class TauHelicityFlipTransport(_TauDecayMixin):
         prof = chord_profile(cosz_abs, max_step_km=max_step_km)
         for ds_km, rho in zip(prof["ds_km"], prof["rho"]):
             ds_cm = ds_km * 1e5
-            maxrate = max(
-                float(np.max(NA*rho*(self.nu.scc+self.nu.snc+(self.nu.snp if use_np else 0)))),
-                float(np.max(NA*rho*(self.anu.scc+self.anu.snc+(self.anu.snp if use_np else 0)))),
-            )
+            # IMPORTANT: use the full SM+NP rate for the substep schedule even
+            # when use_np=False, so SM and BSM runs are compared at identical
+            # numerical resolution.
+            maxrate = max(self.nu.matched_step_rate(rho), self.anu.matched_step_rate(rho))
             nsub = max(1, int(np.ceil(maxrate * ds_cm / max_p)))
             h = ds_cm / nsub
             for _ in range(nsub):
                 n0, ccn, npn = self.nu.step(n, rho, h, use_np=use_np)
                 a0, cca, npa = self.anu.step(a, rho, h, use_np=use_np)
+
+                # Existing secondary muon-neutrino flux propagates through SM
+                # CC/NC interactions.  The NP operator in this class is tau
+                # flavor only, so secondary muon neutrinos use use_np=False.
+                if track_secondary_numu:
+                    mn, _ccmn, _ = self.nu.step(mn, rho, h, use_np=False)
+                    ma, _ccma, _ = self.anu.step(ma, rho, h, use_np=False)
+
                 if use_np and mode == "majorana_flip":
                     n = n0 + npa
                     a = a0 + npn
                 else:
                     n, a = n0, a0
+
                 tm += ccn @ self.nu.Kcc
                 tp += cca @ self.anu.Kcc
                 tm = self._tau_loss(tm, rho, h)
@@ -161,10 +184,8 @@ class TauMuonTransitionTransport(_TauDecayMixin):
         prof = chord_profile(cosz_abs, max_step_km=max_step_km)
         for ds_km, rho in zip(prof["ds_km"], prof["rho"]):
             ds_cm = ds_km * 1e5
-            maxrate = max(
-                float(np.max(NA*rho*(self.nu.scc+self.nu.snc+(self.nu.snp if use_np else 0)))),
-                float(np.max(NA*rho*(self.anu.scc+self.anu.snc+(self.anu.snp if use_np else 0)))),
-            )
+            # Matched SM/BSM numerical resolution, as above.
+            maxrate = max(self.nu.matched_step_rate(rho), self.anu.matched_step_rate(rho))
             nsub = max(1, int(np.ceil(maxrate * ds_cm / max_p)))
             h = ds_cm / nsub
             for _ in range(nsub):
@@ -186,7 +207,8 @@ class TauMuonTransitionTransport(_TauDecayMixin):
                 tm, tp, dm, dp = self._decay(tm, tp, h)
                 tn += dm @ self.Kdec_minus
                 ta += dp @ self.Kdec_plus
-                # tau- -> anti-nu_mu; tau+ -> nu_mu
+                # tau- -> anti-nu_mu; tau+ -> nu_mu.  These daughters enter the
+                # propagated muon-neutrino pools and are evolved on later steps.
                 ma += dm @ self.Ksec_minus
                 mn += dp @ self.Ksec_plus
         return dict(nu_tau=tn, antinu_tau=ta, nu_mu=mn, antinu_mu=ma,
