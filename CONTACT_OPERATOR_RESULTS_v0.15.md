@@ -1,5 +1,7 @@
 # nutau-prop v0.15 — contact-operator transport findings
 
+> **AUDIT STATUS — PROVISIONAL / SUPERSEDED FOR INTERPRETATION.**  The first v0.15 transport run used different numerical substep schedules for the matched SM and BSM solutions, and the helicity solver accumulated tau-decay secondary muon neutrinos without propagating their subsequent SM interactions.  Several saved Dirac-sink ratios above unity are therefore a hard numerical warning.  Do not use the transport conclusions below in the manuscript or as a physics decision gate until the corrected v0.15.1 rerun passes.  See `AUDIT_CORRECTION_v0.15.1.md`.  The v0.14 exact-PDF hard-kernel results remain valid.
+
 Date: 2026-10-27
 
 This file records the quantitative findings from the completed Cases 5, 6, and 7 momentum-enhanced contact-operator study. It supplements `OPERATOR_SURVEY_v0.15.md`, which contains the operator definitions, exact-PDF prescreen, external-state/chirality interpretation, and decision rule.
@@ -39,6 +41,8 @@ The Majorana case is therefore not treated as an artificial one-way `tau -> mu` 
 
 ### Transport findings
 
+**The numbers in this subsection are retained only as the historical first v0.15 output and are not validated physics results.**
+
 At `Lambda_UV = 3 TeV`, vertical propagation (`|cos z|=1`) gives approximately:
 
 - Dirac sink tau ratios at `1, 10, 100, 220, 300 PeV`: `0.983, 0.808, 0.317, 0.164, 0.116`;
@@ -51,33 +55,29 @@ At the perturbative endpoint `Lambda_UV = 4.1176 TeV`, vertical propagation give
 - Majorana tau-mu tau ratios: `1.057, 0.855, 0.0965, 0.0182, 0.00743`;
 - Majorana active-pair ratios: `1.056, 0.901, 0.0985, 0.0183, 0.00744`.
 
-Thus active flavor conversion helps modestly relative to the Dirac sink, especially at intermediate energy, but it does not prevent severe UHE attenuation. At 220 PeV for a vertical chord, even the track-favorable Majorana active-pair bracket retains only about `1.8%` of the matched SM active tau-plus-muon flux.
-
-### Case-5 conclusion
-
-Case 5 does not rescue the contact-operator route. Its special flavor-conversion structure softens the suppression somewhat, but repeated propagation plus energy degradation still wins over any detector-side benefit at UHE.
+The original interpretation that active flavor conversion helps modestly but does not prevent severe UHE attenuation is **withdrawn pending the corrected v0.15.1 rerun and detector weighting**.
 
 ## Case 6 — derivative vector quark operator
 
-Case 6 remains the strongest contact benchmark and already passed the full v0.11-v0.13 differential transport and detector-response program.
+Case 6 remains the strongest contact benchmark and already passed the separate v0.11-v0.13 differential transport and detector-response program.
 
-The v0.15 external-state audit tested:
+The first v0.15 external-state audit tested:
 
 1. Dirac active-to-right-handed sink;
 2. Majorana `nu_tau <-> antinu_tau` helicity flip.
 
-The Majorana-flip results reproduce the previous same-active-species transport to very high accuracy, while the Dirac-sink interpretation is even more suppressive.
+**The v0.15 chirality-audit ratios below are provisional because of the matched-step failure.**
 
-Representative vertical ratios at `220 PeV` are:
+Representative vertical ratios at `220 PeV` from that first run were:
 
 - `Lambda=1.5 TeV`: Dirac `2.93e-5`, Majorana `6.84e-5`;
 - `Lambda=2.0 TeV`: Dirac `1.68e-11`, Majorana `9.03e-11`;
 - `Lambda=2.44 TeV`: Dirac `5.15e-20`, Majorana `6.23e-19`;
 - `Lambda=3.0 TeV`: Dirac `1.31e-35`, Majorana `4.79e-34`.
 
-For `|cos z|=0.5`, the corresponding Majorana 220-PeV ratios are `0.152, 8.97e-3, 1.45e-4, 5.43e-8` for `Lambda=1.5, 2.0, 2.44, 3.0 TeV`.
+For `|cos z|=0.5`, the corresponding first-run Majorana 220-PeV ratios were `0.152, 8.97e-3, 1.45e-4, 5.43e-8` for `Lambda=1.5, 2.0, 2.44, 3.0 TeV`.
 
-Therefore the Case-6 conclusion is robust to the external-state interpretation: the interaction becomes strong enough to be distinctive, but Earth opacity and energy degradation become overwhelming at UHE. The Dirac interpretation strengthens, rather than weakens, this conclusion.
+The older v0.12/v0.13 Case-6 transport/detector calculation uses separate machinery and is not automatically invalidated by this v0.15 solver bug.  However, the claim that the new chirality audit strengthens the Case-6 conclusion must be revalidated with matched steps.
 
 ## Case 7 — neutrino-gluon Rayleigh operator
 
@@ -99,7 +99,9 @@ Two transport interpretations were tested:
 
 ### Transport findings
 
-At `Lambda_UV = 3 TeV`, vertical tau ratios at `1, 10, 100, 220, 300 PeV` are approximately:
+**The numbers in this subsection are retained only as historical first-run output.  The secondary-muon ratios are specifically invalid because the daughters were not propagated after production.**
+
+At `Lambda_UV = 3 TeV`, vertical tau ratios at `1, 10, 100, 220, 300 PeV` were approximately:
 
 - Dirac sink: `1.016, 0.947, 0.433, 0.196, 0.126`;
 - Majorana flip: `1.041, 0.980, 0.451, 0.201, 0.129`.
@@ -109,25 +111,19 @@ At the perturbative endpoint `Lambda_UV = 4.2825 TeV`:
 - Dirac sink: `1.062, 0.944, 0.196, 0.0274, 0.00872`;
 - Majorana flip: `1.115, 1.010, 0.214, 0.0291, 0.00916`.
 
-The secondary-muon ratios remain close to unity rather than developing a compensating enhancement. For example, at the endpoint and a vertical chord they are approximately `1.006, 0.973, 0.968, 0.981, 0.987` in the Dirac bracket and `1.053, 1.008, 0.979, 0.987, 0.993` in the Majorana bracket across `1, 10, 100, 220, 300 PeV`.
-
-### Case-7 conclusion
-
-Case 7 also fails as a positive contact-operator signal. Its high inelasticity makes an NP interaction especially effective at removing neutrinos from the UHE signal bin, while no large compensating secondary-track enhancement appears.
+The saved secondary-muon ratios from this first run must not be used.
 
 ## Combined contact-operator conclusion
 
-The three contact operators establish a common structural result:
+The previous combined conclusion that Cases 5/6/7 establish a robust negative result for momentum-enhanced contact operators is **withdrawn pending corrected transport and detector weighting**.
 
-- smooth interactions studied earlier were too weak or too nuisance-degenerate;
-- momentum-enhanced contact interactions can become large enough to be observable in principle;
-- once they become large enough, Earth propagation becomes self-defeating through absorption/energy degradation;
-- flavor conversion in Case 5 helps, but not nearly enough;
-- Case 7's hard inelasticity makes its propagation loss especially severe;
-- the Case-6 conclusion survives the Dirac/Majorana external-state audit.
+What is still established is narrower:
 
-This is not claimed as a theorem covering all BSM neutrino interactions. It is a robust negative result for the contact-operator classes explicitly tested.
+- the v0.14 Case-5/Case-7 hard kernels and PDF prescreen are internally consistent;
+- the operators can generate percent-level to large cross-section modifications in the target energy range;
+- the physical competition between detector interaction probability and Earth propagation loss must be evaluated with validated transport and detector weights;
+- ratios in already-opaque vertical bins are not by themselves a detector-level exclusion.
 
 ## Decision
 
-Stop broadening the contact-operator survey. The next physics target is a resolved mediator that preserves momentum enhancement in the interesting energy range while introducing a real propagator suppression at high Q. This is the motivation for v0.16.
+Pause phenomenological interpretation of v0.15 and any v0.16 transport run.  Complete the v0.15.1 correction gate in `AUDIT_CORRECTION_v0.15.1.md` first.  Resolved-mediator v0.16 cross-section tables may be retained as hard-kernel work, but no positive/negative model conclusion should be drawn from them until the corrected transport baseline is established.
