@@ -19,7 +19,7 @@ Published bounds in that paper:
 - LHC monojet: c3/Lambda^3 <~ 1.8e-10 GeV^-3
 - IceCube cascade-era bound: c3/Lambda^3 <~ 5.3e-8 GeV^-3
 
-Physics priority: HIGH. It has genuine momentum enhancement but a different Lorentz / inelasticity structure from Case 6. Because i != j, flavor conversion must be treated explicitly in Earth transport rather than as a diagonal opacity-only modification.
+Physics priority: VERY HIGH. It has genuine momentum enhancement but a different Lorentz / inelasticity structure from Case 6. Because i != j, the hard interaction is intrinsically flavor converting. For a tau-initiated coupling this means the daughter can emerge in another neutrino flavor and need not remain subject to the same tau-specific opacity. A tau->mu assignment can also feed a muon-track channel after propagation even though the hard vertex itself remains neutral-current-like. This is precisely the qualitative loophole that Case 6 does not possess, so Case 5 is the first alternative operator that should be computed fully.
 
 ### Case 6: derivative vector neutrino–quark contact operator
 
@@ -55,9 +55,9 @@ These resolved-mediator structures are therefore not merely additional operator 
 ## Ordered next calculation
 
 1. Derive and independently validate the partonic |M|^2 and d^2 sigma/(dx dy) for Case 5. Do not infer it by rescaling Case 6; the tensor structure can materially alter y weighting.
-2. Implement Case 5 in the same v0.11/v0.12 machinery, including flavor conversion i != j.
+2. Implement Case 5 in the same v0.11/v0.12 machinery, including explicit flavor conversion i != j and tau->mu / tau->e assignments.
 3. Implement Case 7 only after the Case-5 result unless an analytic estimate shows a compelling gluon-enhanced window despite the stronger LHC bound and UV-completion suppression.
-4. Compare Cases 5,6,7 at fixed currently allowed coefficient using: total r(E), <y>(E), zenith-dependent propagated nu_tau spectrum, secondary nu_mu spectrum, and channel-resolved detector yields.
+4. Compare Cases 5,6,7 at fixed currently allowed coefficient using: total r(E), <y>(E), zenith-dependent propagated spectra by flavor, secondary muon-neutrino spectrum, and channel-resolved detector yields.
 5. Then move to the requested physical-turnover stage using an explicit resolved mediator rather than an ad hoc hard cutoff.
 
 ## Submission-gate implication after v0.12
