@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nutau-prop"
-version = "0.8.0"
-description = "Tau-neutrino transport with validated TeV-PeV gates and v0.8 UHE momentum-growing Case-6 event forecasts"
+version = "0.9.0"
+description = "Tau-neutrino transport and v0.9 public-data UHE Case-6 audit"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.26",

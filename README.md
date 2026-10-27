@@ -1,4 +1,9 @@
-# nutau-prop v0.6
+# nutau-prop v0.9
+
+The current public-data Case-6 audit is documented in `README_v0.9.md`,
+`STATUS_AUDIT_v0.9.md`, and `manuscript/v0.9/main.pdf`. The material below
+describes the preserved v0.6 transport baseline; v0.7/v0.8 inputs and
+their corrections remain in Git history and `PROGRESS.log`.
 
 Reproducible **tau-neutrino Earth transport** for the project
 

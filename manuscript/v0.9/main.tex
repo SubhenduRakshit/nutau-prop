@@ -1,0 +1,366 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{jheppub}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\hypersetup{pdftitle={Momentum-growing neutrino-quark interactions and the KM3NeT event: v0.9 audit},pdfauthor={Subhendu Rakshit}}
+
+\title{Momentum-growing neutrino--quark interactions and the KM3NeT event:\\
+an analytic and public-data audit (v0.9)}
+\author{Subhendu Rakshit}
+\abstract{We revisit a dimension-seven momentum-growing neutrino--quark
+interaction after the observation of KM3-230213A and the 12.6-year IceCube
+extremely-high-energy (EHE) search.  A leading-order parton calculation with
+the conservative partonic-energy requirement $\sqrt{\hat s}<\Lambda$ retains
+order-one cross-section changes at hundreds of PeV for a collider-bound
+coefficient.  We derive an exact common-flux normalization identity and
+audit the detector topology: the Case-6 operator has a neutral final state,
+whereas the published KM3NeT response selects a bright muon track.  We
+validate the released KM3NeT Ehlert-spectrum benchmark to 0.006\% and use
+IceCube's released differential-limit curve in its stated sliding one-decade
+$E^{-1}$ windows.  In an explicitly labelled all-flavor response proxy, the
+limiting common-flux scales are 0.155, 0.128, 0.102 and 0.0747 for
+$\Lambda=1.5,2.0,2.44,3.0$ TeV.  The corresponding unmodified direct
+bright-track expectations are 0.0376, 0.0311, 0.0249 and 0.0181 events.
+These are screening diagnostics, not frequentist 90\% limits: the public
+release lacks the reconstructed-bin information and beyond-Standard-Model
+response needed to reproduce the published likelihood.  We identify the
+required topology and transport calculations for a definitive test and
+state precise conditions under which alternative interactions could evade
+the common-flux suppression.}
+\keywords{Neutrino interactions, effective field theory, cosmic neutrinos,
+IceCube, KM3NeT}
+
+\begin{document}
+\maketitle
+\flushbottom
+\tableofcontents
+
+\section{Introduction and scope}
+The KM3NeT collaboration reported a very bright track, KM3-230213A, made
+by a muon traversing the partially built ARCA array.  For an $E_\nu^{-2}$
+incident spectrum its median parent-neutrino energy is about $220$ PeV and
+its stated central 90\% range is approximately $72$ PeV--$2.6$ EeV
+\cite{KM3NeT:2025Nature}.  The event invites a quantitative comparison with
+IceCube's search for neutrinos above a few PeV, which found three PeV-scale
+events in 12.6 years but no event well above $10$ PeV
+\cite{IceCube:2025EHE}.  The question here is narrower than explaining the
+origin of one event: can the momentum growth of a laboratory-constrained
+neutrino--quark operator increase an ARCA bright-track expectation after the
+same flux passes the IceCube test?
+
+We use an Ehlert-type cosmogenic spectrum as a fixed shape, with a single
+free normalization $\kappa$ \cite{Ehlert:2024}.  The leading-order
+cross-section table and the published detector effective areas are kept
+separate.  This makes the structural result independent of the numerical
+integral, while exposing the point where topology and response information
+are missing.  Version 0.9 is a reproducible public-data audit.  It does not
+claim to implement the collaboration's event-level EHE likelihood.
+
+\section{Literature and novelty}
+\subsection{Earth transport and neutrino deep-inelastic scattering}
+Tau-neutrino propagation differs from pure absorption because charged-current
+production of a tau followed by decay repopulates the neutrino flux at lower
+energies.  Dutta, Reno and Sarcevic developed the coupled propagation and
+decay treatment and quantified the dependence on the injected spectrum
+\cite{Dutta:2000}; their later study showed that secondary muon neutrinos from
+tau decay can contribute to upward-muon rates, with a particularly strong
+spectral-shape dependence \cite{Dutta:2002}.  Rakshit and Reya studied
+iterative solutions of coupled $\nu_\tau$--$\tau$ transport with secondary
+$\nu_\mu$ production and convergence checks \cite{Rakshit:2006}.  These
+works set the appropriate standard for a future topology-aware Case-6
+propagation calculation.  The inherited v0.3 transport implementation was
+checked against these historical benchmarks, but the present EHE fold does
+not rerun that transport with the new differential kernel.
+
+Modern Standard-Model neutrino DIS predictions include higher-order QCD,
+small-$x$ PDF extrapolation and nuclear uncertainties.  Xie \emph{et al.}
+provide CT18-based predictions over the UHE range and quantify those effects
+\cite{Xie:2024}.  Our CT10nlo-based leading-order parton integral is a
+controlled \emph{ratio} benchmark for the new operator; it is not a modern
+precision Standard-Model cross-section calculation.  PDF, perturbative and
+nuclear uncertainties must be revisited before a precision exclusion claim.
+
+\subsection{The operator, collider information and cosmic flux}
+Pandey, Karmakar and Rakshit studied monojet and neutrino constraints on a
+range of non-standard interactions, including their Case 6, a derivative
+dimension-seven neutrino--quark contact interaction.  Their quoted monojet
+bound for its coefficient is
+$|C_4|\lesssim 8.6\times10^{-10}\,\mathrm{GeV}^{-3}$
+\cite{Pandey:2019}.  The earlier work compared cross sections and collider
+limits, while the present audit combines its momentum-growing benchmark
+with the subsequently released 12.6-year EHE response, the observed
+energy-dependent limit and the specific ARCA bright-track topology.  We use
+the quoted coefficient as a benchmark, not as an EFT-valid recast of LHC
+events after partonic truncation.  A UV completion and a collider analysis
+with the same validity cut would be required to make that correspondence
+fully consistent.
+
+Ehlert \emph{et al.} constrained high-energy proton fractions using
+multimessenger cosmic-ray information and provided cosmogenic-neutrino
+spectra that depend on source evolution and acceleration assumptions
+\cite{Ehlert:2024}.  Choosing one of these shapes fixes the comparison, but
+does not remove the astrophysical uncertainty in its normalization or
+composition.  The KM3NeT open analysis notebook supplies a sky-averaged,
+all-flavor bright-track effective area and per-flavor $\nu+\bar\nu$ flux
+convention \cite{KM3NeT:2025Data}.  The full ARCA performance study treats
+track and shower selections separately \cite{KM3NeT:2024ARCA}, which is
+essential when the interaction has a neutral final state.
+
+\subsection{Recent IceCube and KM3NeT comparisons}
+IceCube's EHE analysis fits reconstructed energy and direction with a binned
+Poisson likelihood, profiles an astrophysical component, and calibrates
+tests with pseudoexperiments \cite{IceCube:2025EHE}.  Its release gives
+true-energy effective areas and the published quasi-differential limit,
+but not the full reconstructed-bin response \cite{IceCube:2025Data}.
+KM3NeT's broader comparison of its event with the global neutrino landscape
+uses joint flux fits \cite{KM3NeT:2025Landscape}.  A later analysis used
+the single KM3NeT event to constrain the neutrino--nucleon cross section,
+subject to its flux and detector hypotheses \cite{Bertolez:2026}; IceCube
+also searched for point-source emission in the event direction
+\cite{IceCube:2026PointSource}.  Those studies address complementary
+questions.  Our specific novelty is the joint analytic flux-ratio and
+topology audit of the Case-6 operator with both published public responses.
+The result is conditional on a stationary isotropic common flux and cannot
+exclude a transient or anisotropic source using this all-sky calculation.
+
+\section{Analytic structure of Case 6}
+The schematic low-energy interaction is
+\begin{equation}
+ {\cal L}_{\mathrm{C6}}= C_4\,
+ (\bar\nu_i^{c}\overleftrightarrow{\partial}_{\mu}\nu_j)
+ (\bar q\gamma^{\mu}q)+\mathrm{h.c.},\qquad [C_4]=-3.
+ \label{eq:operator}
+\end{equation}
+The flavor and charge-conjugation assignments in a concrete theory determine
+which incident species and regenerated species are affected.  The key
+topology selection rule is robust: the hard scattering in
+eq.~\eqref{eq:operator} produces a neutrino-sector final state and hadrons,
+not a charged muon.  It adds no direct $\nu_\mu N\to\mu X$ track channel.
+For an orthogonal neutral final state the new amplitude contributes a
+non-negative additive term rather than interference with the Standard Model
+charged-current track amplitude.
+
+For a nucleon at rest and Bjorken variables $x,y$,
+\begin{equation}
+ \hat s\simeq 2m_NE_\nu x,\qquad Q^2=\hat s y,
+ \qquad \overline{|{\cal M}_{\mathrm{C6}}|^2}
+ =64 C_4^2\hat s^3y(1-y).
+ \label{eq:kinematics}
+\end{equation}
+The polynomial vanishes at $y=0,1$ and peaks at $y=1/2$; the $\hat s^3$
+factor explains the strong energy growth before PDF convolution.  The
+primary EFT restriction is $\sqrt{\hat s}<\Lambda$, imposed point by
+point.  The weaker $Q<\Lambda$ restriction admits configurations with
+$Q^2=\hat s y<\Lambda^2$ while $\hat s>\Lambda^2$ and is reported only as an
+aggressive envelope.  The dimensionless coefficient
+$c_4=C_4\Lambda^3$ obeys $c_4/(4\pi)=0.231,0.547,0.994,1.848$ at the four
+cutoffs used below.  Thus $\Lambda=3$ TeV crosses the simple $4\pi$
+coefficient diagnostic, and $2.44$ TeV sits near it.  These diagnostics are
+not a complete partial-wave unitarity analysis.  The expansion parameter
+is $\hat s/\Lambda^2$; omitted higher-dimensional terms are uncontrolled
+near the imposed boundary, so even the primary cut should be interpreted
+as an EFT-domain envelope rather than a precision UV prediction.
+
+Let $I$ and $K$ denote the predicted IceCube and KM3NeT counts per unit
+common flux normalization, with the full energy, angle and topology
+response understood.  Then the exact identity
+\begin{equation}
+ N_{\mathrm{IC}}(\kappa)=\kappa I,
+ \quad N_{\mathrm{KM3}}(\kappa)=\kappa K,
+ \quad \kappa\leq\frac{U}{I}
+ \quad\Longrightarrow\quad
+ N_{\mathrm{KM3}}\leq U\frac{K}{I}
+ \label{eq:ratio}
+\end{equation}
+holds for any constraint of the indicated form.  If a proposed interaction
+enhances $I$ and $K$ by similar factors, $K/I$ barely changes.  This
+explains the near-cancellation seen in the initial v0.8 screen.  For an
+actual track sample, Case 6 changes $K$ only indirectly through
+propagation, flavor conversion or secondary-muon production; none is
+quantified by simply multiplying its published track area by $1+r$.
+
+\section{Public data and controlled screen}
+For equal incident per-flavor fluxes $\phi_{\rm pf}$ and the IceCube release's
+flavor-summed area, the Standard-Model event fold is
+\begin{equation}
+ N_{\rm IC}^{\rm SM}=4\pi T_{\rm IC}\int dE\,
+ \phi_{\rm pf}(E)A_{\rm tot}^{\rm SM}(E).
+ \label{eq:fold}
+\end{equation}
+The area is supplied in $\mathrm{m}^2$ and is multiplied by $10^4$ for use
+with a flux in $\mathrm{cm}^{-2}$.  Its columns satisfy
+$A_{\rm tot}\simeq A_e+A_\mu+A_\tau$ to tabulation precision.
+The analogous KM3NeT fold uses its released all-flavor bright-track area
+and $T_{\rm KM3}=335$ days.  We use $T_{\rm IC}=12.6$ Julian years.
+
+To expose the topology uncertainty we compute two IceCube response
+\emph{proxies}, never treating them as a re-simulation of the detector:
+\begin{align}
+ A_{\rm all}^{\rm proxy}(E)&=A_{\rm tot}^{\rm SM}(E)[1+r(E)],
+ \\
+ A_{\tau\text{-init}}^{\rm proxy}(E)&=
+ A_{\rm tot}^{\rm SM}(E)+A_\tau^{\rm SM}(E)r(E),
+ \qquad r=\sigma_{\rm C6}/\sigma_{\rm SM}.
+ \label{eq:responseproxy}
+\end{align}
+These bracket choices about the incident flavors being affected, but they
+do not bound the true detector response: neutral-current visible energy,
+Earth attenuation and regeneration may change the selection in either
+direction.  The published KM3NeT $A_{\rm eff}$ is for bright tracks.
+We therefore keep the direct Case-6 contribution to that response exactly
+zero.  Its hypothetical $A_{\rm KM3}^{\rm SM}(1+r)$ fold is retained in
+the machine-readable table solely to show the size of a \emph{wrong-topology}
+acceptance proxy.
+
+IceCube's released differential-limit ordinate $L_j$ is an all-flavor
+$E^2\Phi$ at central energy $E_j$.  The collaboration constructs each
+point using an $E^{-1}$ test spectrum across a sliding one-decade window
+\cite{IceCube:2025EHE}.  We reconstruct its true-energy reference flux as
+\begin{equation}
+ \phi_{j,{\rm pf}}^{\rm ref}(E)=
+ \frac{L_j}{3E_j E}\,
+ \Theta(E-E_j/\sqrt{10})\Theta(\sqrt{10}E_j-E),
+ \qquad
+ n_j^{\rm ref}=4\pi T_{\rm IC}\int dE\,
+ A_{\rm tot}^{\rm SM}\phi_{j,{\rm pf}}^{\rm ref}.
+ \label{eq:limitreference}
+\end{equation}
+For a chosen model response proxy, define $R_j=n_j^{\rm model}/n_j^{\rm ref}$
+using the same window, and the diagnostic scale
+\begin{equation}
+ \kappa_{\rm window}^{\rm proxy}
+ =\min_j R_j^{-1}.
+ \label{eq:windowscale}
+\end{equation}
+This uses the \emph{observed} limit rather than the no-signal sensitivity.
+Overlapping windows are correlated; the published limit is calibrated for
+its $E^{-1}$ reference and Standard-Model response.  Equations
+\eqref{eq:limitreference}--\eqref{eq:windowscale} do not inherit 90\%
+coverage for a broad Ehlert spectrum or modified cross section.  The
+published full likelihood would require event counts and signal/background
+templates in reconstructed energy and direction, a migration response and
+the nuisance treatment.  These are absent from the four-file public release.
+Thus a genuine likelihood replacement cannot be produced from the released
+tables alone.
+
+\section{Results and interpretation}
+The frozen v0.8 cross-section grid spans 0.1--20,000 PeV and uses CT10nlo
+with the pointwise $\sqrt{\hat s}<\Lambda$ cut.  Its no-cut ratio
+$r(0.1\,\mathrm{PeV})=5.34\times10^{-4}$ and
+$r(1\,\mathrm{PeV})=1.38\times10^{-2}$ is preserved as a historical
+regression.  The v0.9 numerical work only folds those saved curves with
+the public data.  The KM3NeT Ehlert expectation is 0.242754 events, versus
+0.242767 from its official notebook; in the published central 90\% energy
+range it is 0.211081 versus 0.211117.  The corrected IceCube area fold is
+17.6748 events at the unscaled Ehlert benchmark.  The difference from the
+v0.8 value 17.6746 is the first numerical row of its headerless area file,
+which the old parser silently skipped.  The original v0.8 unit error gave
+0.001767 before the $\mathrm{m}^2\to\mathrm{cm}^2$ repair.
+
+\begin{table}[t]
+\centering
+\caption{Version 0.9 public-data diagnostics.  $\kappa_{\rm all}$ and
+$\kappa_{\tau}$ are the window-screen scales of
+eq.~\eqref{eq:windowscale}, not confidence limits.  The last two columns
+are the \emph{unchanged direct} bright-track expectation at those scales;
+propagation effects have not been evaluated.}
+\label{tab:results}
+\begin{tabular}{@{}rrrrrrr@{}}
+\toprule
+$\Lambda$ [TeV] & $c_4/4\pi$ & $N_{\rm IC}^{\rm all}$ &
+$N_{\rm IC}^{\tau}$ & $\kappa_{\rm all}$ &
+$N_{\rm KM3}^{\rm tr}(\kappa_{\rm all})$ &
+$N_{\rm KM3}^{\rm tr}(\kappa_{\tau})$\\
+\midrule
+1.50 & 0.231 & 20.734 & 18.885 & 0.1549 & 0.0376 & 0.0413\\
+2.00 & 0.547 & 25.051 & 20.608 & 0.1280 & 0.0311 & 0.0378\\
+2.44 & 0.994 & 31.151 & 23.049 & 0.1025 & 0.0249 & 0.0338\\
+3.00 & 1.848 & 42.537 & 27.637 & 0.0747 & 0.0181 & 0.0281\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For all four benchmarks the most constraining released window is centered
+at $E_j=3.162\times10^8$ GeV, or about $316$ PeV.  The all-flavor window
+ratios there are 6.46, 7.81, 9.76 and 13.38, respectively.  The published
+reference yield in that window is approximately 2.42 events when folded
+with the released true-energy area.  These numbers show why the unscaled
+cosmogenic benchmark is strongly disfavored by the public energy-dependent
+screen.  They do not measure a frequentist model-rejection probability.
+
+The reported $N_{\rm IC}^{\rm all}$ in table~\ref{tab:results} uses an
+all-flavor $1+r$ acceptance proxy.  If only tau incident states are affected,
+using $A_\tau$ reduces the effect as shown by $N_{\rm IC}^{\tau}$; the
+corresponding $\kappa_\tau$ values are 0.1703, 0.1559, 0.1391 and 0.1157.
+This flavor dependence is another reason that the v0.8 single-column proxy
+cannot be interpreted as a physical event prediction.  In particular, the
+v0.8 $N_{\rm KM3}^{\rm NC\ equivalent}$ enhancement is a diagnostic of
+what happens if an NC cross section is assigned a track acceptance, not a
+mechanism for the observed muon.  The direct track count at fixed incident
+flux is the Standard-Model count in this calculation.
+
+\section{Which alternatives remain viable?}
+Equation~\eqref{eq:ratio} gives a necessary quantitative target for variants.
+At $\Lambda=2$ TeV, the all-flavor screen leaves about 0.031 direct track
+events, so a model seeking one expected bright track at the same screened
+common flux must raise the \emph{track-to-IceCube yield ratio} by roughly
+$1/0.031\simeq32$.  This is a necessary-condition diagnostic, not a
+model-independent exclusion: the IceCube constraint and propagation must
+be recomputed for each model.  The following distinctions matter.
+
+An interaction with a charged-current muon final state can create tracks
+directly, but the same interaction changes Earth opacity and IceCube's
+tracks.  Its laboratory bounds, gauge embedding and EFT validity must be
+derived before any detector comparison.  A neutral-current operator
+coupled only to tau neutrinos can change tau regeneration or generate
+secondary muon neutrinos through subsequent tau decays; this requires the
+coupled transport kernels of \cite{Rakshit:2006,Dutta:2002} with the actual
+Case-6 differential inelasticity distribution and flavor assignment.
+Directional or time-dependent sources can break the common isotropic
+exposure ratio; the present sky-averaged areas are inadequate for such
+models.  Energy-localized or resonant new physics can also change the
+IceCube/ARCA response ratio, but a contact EFT cannot be extrapolated
+through its resonance, and the UV completion must obey laboratory and
+unitarity constraints.  These variants are research paths, not positive
+solutions demonstrated here.
+
+\section{Reproducibility and limitations}
+The project records v0.7 and v0.8 failed and corrected stages in
+\texttt{PROGRESS.log}; v0.9 inputs and outputs are under versioned
+\texttt{data/uhe\_official} and \texttt{results/v0.9}.  The one-dimensional
+quadrature uses 6001 logarithmic energy points between $10^5$ and
+$10^{11}$ GeV.  The released effective areas are linearly interpolated as
+in the collaboration's benchmark notebook, and the tabulated Ehlert
+$E^2\phi$ is interpolated in its provided logarithm.  The quadrature is
+cheap; parallelizing it over 14 cores would add overhead and risk
+oversubscription.  The expensive LHAPDF grid is reused rather than
+recomputed.  Automated checks enforce area units, flavor-column sums,
+and the two KM3NeT benchmark integrals.
+
+The largest limitation is detector response under new physics.  The
+published effective areas include selection and Standard-Model Earth
+effects.  Multiplication by a cross-section ratio does not account for
+neutral-current visible energy, energy migration, track/cascade
+classification, flavor-changing propagation or angle dependence.  The
+second limitation is statistical: the released differential limits are
+not the model-specific binned likelihood.  Third, CT10nlo and leading-order
+DIS are not precision inputs at all energies, and the $4\pi$ check is
+only a perturbative diagnostic.  A definitive Case-6 test needs
+collaboration-level response matrices or event simulation, a validated
+modified Earth-transport calculation, and a consistently truncated
+collider/UV interpretation.  Until then the v0.9 conclusion is that
+momentum growth survives in the cross-section calculation, while its
+naive bright-track explanation is unsupported and the common-flux
+event-yield proxies are strongly constrained by IceCube.
+
+\section*{AI-assisted drafting disclosure}
+This working manuscript and its reproducibility scripts were prepared with
+AI assistance under the author's direction.  Bibliographic records and
+quoted public-data conventions were checked against the primary papers and
+collaboration releases listed above.  The author should independently
+verify every numerical and scientific claim before journal submission.
+
+\bibliographystyle{JHEP}
+\bibliography{references}
+\end{document}

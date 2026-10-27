@@ -366,3 +366,95 @@ unchanged.
 
 [v0.7] Added Case-6 momentum-growing dimension-7 DIS calculation with CT10nlo and explicit Q/Lambda and sqrt(shat)/Lambda EFT cuts. Mac Studio validation: no-cut rNP/SM = 5.34e-4 at 0.1 PeV and 1.38e-2 at 1 PeV; conservative sqrt(shat)<Lambda retains O(0.3-0.7) effects at 10-300 PeV for Lambda~2.44 TeV.
 [v0.8] Added UHE cosmogenic event fold using official IceCube 12.6-y EHE effective area and KM3NeT KM3-230213A bright-track response. Primary prediction uses sqrt(shat)<Lambda; Q<Lambda retained only as aggressive envelope. Case-6 NC topology caveat made explicit.
+
+2026-10-27 — v0.9 ANALYTIC AUDIT AND PUBLIC-DATA PLAN (before new computation)
+==========================================================================
+Source state: the requested /Users/subhendurakshit/Research/nutau-prop directory
+was empty. Preserved the supplied v0.8 files there as Git checkpoint 08500a2.
+The remote SubhenduRakshit/nutau-prop repository existed but had no commits.
+
+v0.7 Case-6 coefficient C4 = 8.6e-10 GeV^-3 is the LHC monojet bound quoted
+for eq. (4.7) of Pandey, Karmakar and Rakshit, JHEP 11 (2019) 046.
+The operator (bar nu_i^c <->partial_mu nu_j)(bar q gamma^mu q) is NC-like;
+flavor indices/charge conjugation must be handled explicitly in transport.
+The v0.7 primary sqrt(shat)<Lambda cut is an EFT-domain diagnostic. With
+c4=C4 Lambda^3, c4/(4pi)=0.231, 0.547, 0.994, 1.848 at Lambda=1.5, 2,
+2.44, 3 TeV. The 3-TeV point exceeds the nominal 4pi coefficient check.
+The Q<Lambda result is an aggressive envelope because Q can be small while
+sqrt(shat) exceeds Lambda. No positive UV-complete conclusion follows from it.
+
+v0.8 IceCube parser failure: the official response is headerless and reports
+area in m^2. Treating the first numerical line as a header and failing to
+convert m^2 to cm^2 produced 0.001767 rather than ~17.6746 SM events.
+The attempted in-place conversion also failed because NumPy supplied a
+read-only array. The corrected copy*1e4 produced 17.674595. KM3NeT's
+published Ehlert bright-track benchmark is 0.242767/335 d; the v0.8
+calculation gave 0.242754, and central-90% 0.211081 vs 0.211117.
+
+Analytic identities: for a common flux amplitude kappa, N_I=kappa I and
+N_K=kappa K, so a limit kappa<=U/I implies N_K<=U K/I. If a common
+interaction multiplies both detector acceptances similarly, the ratio K/I
+changes little even if each cross section grows. For Case 6 specifically,
+its NC final state does not create the charged muon required by the published
+KM3NeT bright-track selection. The old K*(1+r) column is not a physical
+bright-track prediction. A tau-only interaction also cannot multiply the
+entire all-flavor IceCube effective area by 1+r; only the tau component is
+eligible even before acceptance/propagation corrections.
+
+IceCube's published 12.6-y EHE likelihood is a binned Poisson product in
+reconstructed energy and direction, with an astrophysical nuisance flux and
+pseudoexperiment calibration. The public DOI:10.7910/DVN/JHK49D release has
+only total/per-flavor true-energy effective areas, a 10-point observed
+differential-limit table and a demo; it does not supply the binned observed
+counts, migration matrices, background templates or nuisance priors needed
+to evaluate the exact likelihood for a new cross section. We will not call
+an effective-area fold the published likelihood or claim an exact 90% CL.
+
+v0.9 controlled public-data calculation: compare a model's exposure-weighted
+true-energy yield in each published sliding one-decade E^-1 window to the
+yield obtained from that window's reported 90%-CL differential limit. This
+is an energy-dependent constraint proxy; overlapping windows and the changed
+BSM response prevent a global coverage claim. Report both all-flavor and
+tau-only upper-response proxies, and the unchanged direct track rate.
+Numerical question: reproduce the v0.8 IceCube and KM3 SM folds to 0.5%,
+then measure window ratios and the implied limiting common-flux scale for
+the four benchmark cutoffs. Minimum calculation: read frozen CSV/JSON and
+v0.8 cross-section table; one-dimensional quadrature only. Pass criteria:
+unit-conversion assertion, sum-of-flavors area check, KM benchmark within
+0.5%, no positive direct Case-6 muon-track increment, and finite positive
+window ratios. No LHAPDF recomputation is needed; 14-core parallelism would
+oversubscribe this small post-processing task.
+
+2026-10-27 — v0.9 EXECUTION AND RESULT
+=====================================
+The official differential-limit data file was added with values from
+Dataverse DOI:10.7910/DVN/JHK49D. The KM3NeT notebook explicitly describes
+its area as all-flavor and its input flux as per-flavor nu+nubar; the IceCube
+release describes its total area as the sum over flavors, averaged over
+nu/nubar. Those conventions justify phi_per_flavor * A_total.
+
+The v0.9 standalone script reproduces KM3NeT full 0.242754 vs 0.242767
+and central90 0.211081 vs 0.211117. IceCube SM is 17.674789, slightly
+above the v0.8 fixed 17.674595 because its headerless first row is now read.
+The strongest published E^-1 differential-limit window for this spectrum
+is centered on 3.162e8 GeV for all four cutoffs. In the all-flavor BSM
+response proxy the window ratios are 6.455, 7.814, 9.760, 13.383 and the
+corresponding limiting common-flux scale proxies are 0.1549, 0.1280,
+0.1025, 0.0747. Tau-initial response proxies yield scale proxies 0.1703,
+0.1559, 0.1391, 0.1157. The direct bright-track expectation is unchanged
+at fixed flux and becomes 0.0376, 0.0311, 0.0249, 0.0181 under the
+all-flavor screening scales. These are not confidence limits.
+
+Retained/rejected: v0.8's 2.3026-event zero-count screening was too crude
+for the three PeV events and their energy information; it is superseded by
+the published energy-dependent window diagnostic, not silently erased.
+The v0.8 all-flavor and KM3 NC-equivalent 1+r rescalings remain archived
+as response proxies, not detector predictions. A full IceCube EHE
+likelihood cannot be evaluated from the released four files: reconstructed
+energy/direction counts, signal migration and nuisance/background templates
+are absent. No invented binned likelihood was fitted.
+
+Reproducibility: focused v0.9 tests passed (3/3), complete suite passed
+(21/21). JHEP-style v0.9 manuscript compiled to an 8-page PDF; all pages
+rendered and inspected. Current author affiliation/email remain unknown and
+are required before journal submission.

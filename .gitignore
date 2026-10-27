@@ -11,3 +11,4 @@ cache/
 !PROGRESS.log
 *.out
 *.synctex.gz
+*.toc
