@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 import multiprocessing as mp
 import os
 from pathlib import Path
@@ -37,11 +36,10 @@ def _init_worker(cfg_dict, lambdas, cut):
 def _worker(task):
     E, antinu = task
     s = _CALC.spectra(E, _LAMBDAS, antinu=antinu, cut=_CUT)
-    payload = {
+    return {
         "E": float(E), "antinu": bool(antinu), "y": s["y"], "dy": s["dy"],
         "sm_cc": s["sm_cc"], "sm_nc": s["sm_nc"], "np": s["np"],
     }
-    return payload
 
 
 def tag(lam):
@@ -54,18 +52,18 @@ def build_table(records, lam, antinu):
     y = np.asarray(q[0]["y"], float)
     dy = np.asarray(q[0]["dy"], float)
     sigma_cc, sigma_nc_sm, sigma_np = [], [], []
-    p_cc, p_nc, p_np = [], [], []
+    p_cc, p_nc_sm, p_nc, p_np = [], [], [], []
     mean_np, mean_nc = [], []
     for r in q:
         cc = np.asarray(r["sm_cc"], float)
         ncsm = np.asarray(r["sm_nc"], float)
         npds = np.asarray(r["np"][float(lam)], float)
         scc, pcc = probability_from_dsdy(cc, dy)
-        sncsm, _ = probability_from_dsdy(ncsm, dy)
+        sncsm, pncsm = probability_from_dsdy(ncsm, dy)
         snp, pnp = probability_from_dsdy(npds, dy)
         snc, pnc = probability_from_dsdy(ncsm + npds, dy)
         sigma_cc.append(scc); sigma_nc_sm.append(sncsm); sigma_np.append(snp)
-        p_cc.append(pcc); p_nc.append(pnc); p_np.append(pnp)
+        p_cc.append(pcc); p_nc_sm.append(pncsm); p_nc.append(pnc); p_np.append(pnp)
         mean_np.append(mean_y(npds, y, dy))
         mean_nc.append(mean_y(ncsm + npds, y, dy))
     return dict(
@@ -74,7 +72,8 @@ def build_table(records, lam, antinu):
         sigma_nc=np.asarray(sigma_nc_sm) + np.asarray(sigma_np),
         sigma_nc_sm=np.asarray(sigma_nc_sm),
         sigma_np=np.asarray(sigma_np),
-        p_cc=np.asarray(p_cc), p_nc=np.asarray(p_nc), p_np=np.asarray(p_np),
+        p_cc=np.asarray(p_cc), p_nc_sm=np.asarray(p_nc_sm),
+        p_nc=np.asarray(p_nc), p_np=np.asarray(p_np),
         mean_y_np=np.asarray(mean_np), mean_y_nc_total=np.asarray(mean_nc),
     )
 
@@ -120,7 +119,7 @@ def main():
                 "version": "v0.11", "operator": "Case-6 dimension-7 momentum-growing NC-like",
                 "C4_GeV^-3": cfg.c4_gev_m3, "Lambda_TeV": lam,
                 "cut": a.cut, "pdf": cfg.pdf_set, "antinu": antinu,
-                "note": "CC is SM; Case-6 is added only to NC. p_nc is rebuilt from dσ/dy.",
+                "note": "CC is SM; Case-6 is added only to NC. Both matched SM p_nc_sm and combined p_nc are stored.",
             }
             path.with_suffix(".json").write_text(json.dumps(meta, indent=2))
             sm_total = table["sigma_cc"] + table["sigma_nc_sm"]
