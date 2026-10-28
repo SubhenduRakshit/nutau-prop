@@ -1,11 +1,10 @@
-"""v0.20.4 candidate: mixed-grid combined-generator transport.
+"""v0.20.7 candidate: mixed-grid combined-generator transport.
 
 Neutrinos remain on the existing DIS table energy grid while taus use a finer
 nested log-energy grid.  A single sparse generator per constant-density slab
 contains neutrino interactions, CC tau production, tau energy loss, tau decay,
-and regenerated daughter neutrinos.  This preserves the exact discrete
-semigroup property while reducing tau-advection diffusion without rebuilding
-DIS tables.
+and regenerated daughter neutrinos.  Tau-decay daughter projection is analytic
+on the represented neutrino log-energy grid (no inner z quadrature).
 
 State order for TauHelicityFlipTransportMixedExpm:
     nu_tau[Nn], antinu_tau[Nn], nu_mu[Nn], antinu_mu[Nn],
@@ -20,9 +19,8 @@ from scipy.sparse.linalg import expm_multiply
 
 from .constants import NA, M_TAU, C_TAU_CM
 from .prem import chord_profile
-from .kernels import (tau_nutau_pdf, tau_secondary_numu_pdf,
-                      normalized_trapezoid_weights)
 from .chirality_transport_expm import _SpeciesOp
+from .analytic_decay_projection import projected_decay_kernel
 
 
 def _refined_log_grid(E, factor):
@@ -66,24 +64,6 @@ def _rect_interaction_kernel(E_parent, y, p_y, E_daughter):
     return K
 
 
-def _decay_kernel_rect(E_tau, E_nu, polarization, secondary=False,
-                       branching=0.18, nz=800):
-    z = np.linspace(1e-6, 1.0-1e-6, int(nz))
-    if secondary:
-        f = tau_secondary_numu_pdf(z, polarization, branching)
-        w = normalized_trapezoid_weights(z, f, float(branching))
-    else:
-        f = tau_nutau_pdf(z, polarization)
-        w = normalized_trapezoid_weights(z, f, 1.0)
-    ln = np.log(np.asarray(E_nu, float))
-    K = np.zeros((len(E_tau), len(E_nu)), float)
-    for j, E in enumerate(E_tau):
-        row = K[j]
-        for zz, ww in zip(z, w):
-            _deposit_row(row, ln, E*float(zz), float(ww))
-    return csr_matrix(K)
-
-
 class TauHelicityFlipTransportMixedExpm:
     """Mixed-grid combined-generator transport for Case 6/7/resolved models."""
 
@@ -100,7 +80,9 @@ class TauHelicityFlipTransportMixedExpm:
         self.Nt = len(self.Etau)
         self.beta = float(beta_tau)
         self.secondary_branching = float(secondary_branching)
+        self.decay_projection = "analytic"
 
+        # Rectangular CC production: neutrino grid -> tau grid.
         Kcc_n = _rect_interaction_kernel(self.E, table_nu["y"],
                                           table_nu["p_cc"], self.Etau)
         Kcc_a = _rect_interaction_kernel(self.E, table_antinu["y"],
@@ -108,12 +90,15 @@ class TauHelicityFlipTransportMixedExpm:
         self.Tn = csr_matrix(self.nu.scc[:, None] * Kcc_n)
         self.Ta = csr_matrix(self.anu.scc[:, None] * Kcc_a)
 
-        self.Kdec_minus = _decay_kernel_rect(self.Etau, self.E, -1.0, False)
-        self.Kdec_plus  = _decay_kernel_rect(self.Etau, self.E, +1.0, False)
-        self.Ksec_minus = _decay_kernel_rect(self.Etau, self.E, -1.0, True,
-                                              self.secondary_branching)
-        self.Ksec_plus  = _decay_kernel_rect(self.Etau, self.E, +1.0, True,
-                                              self.secondary_branching)
+        # Exact projected tau-decay kernels on the represented neutrino grid.
+        self.Kdec_minus = projected_decay_kernel(self.Etau, self.E, -1.0, False,
+                                                  self.secondary_branching)
+        self.Kdec_plus  = projected_decay_kernel(self.Etau, self.E, +1.0, False,
+                                                  self.secondary_branching)
+        self.Ksec_minus = projected_decay_kernel(self.Etau, self.E, -1.0, True,
+                                                  self.secondary_branching)
+        self.Ksec_plus  = projected_decay_kernel(self.Etau, self.E, +1.0, True,
+                                                  self.secondary_branching)
         self._cache = {}
 
     def _interaction_sigma(self, mode, use_np):
