@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""v0.20.7 bounded coupled-transport gate.
+"""v0.20.7 bounded coupled-transport gate, multicore.
 
 Purpose: close the transport prerequisite and stop numerical-method expansion.
 Uses the analytic tau-decay projection already wired into the mixed-grid solver.
@@ -10,14 +10,16 @@ Checks:
   * vertical |cos z|=1.0: interface-aligned 12 -> 6 km
   * tau grid factor 16 -> 32 on each fine spatial profile
 
-Only neutrino observables entering later detector folds are gated:
-nu_tau, antinu_tau, secondary nu_mu, secondary antinu_mu.
-Each configuration is resumably checkpointed every 100 PREM segments.
+The six independent configurations are run in separate worker processes.
+Each worker remains single-threaded internally to avoid BLAS/OpenMP
+oversubscription.  Existing final and partial checkpoints are reused.
 """
 from __future__ import annotations
 
-import json, math, time
+import json, math, os, time, multiprocessing as mp
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
@@ -94,7 +96,8 @@ def run_config(tn,ta,inc,name,mu,coarse_km,refine,tau_refine):
     tag=f'{name}_r{refine}_tau{tau_refine}'
     npz=CK/f'{tag}.npz'; meta=CK/f'{tag}.json'; partial=CK/f'{tag}_partial.npz'
     if npz.exists() and meta.exists():
-        z=np.load(npz); return {k:z[k] for k in z.files},json.loads(meta.read_text())
+        z=np.load(npz)
+        return {k:z[k] for k in z.files},json.loads(meta.read_text())
     tr=TauHelicityFlipTransportMixedExpm(tn,ta,tau_refine=tau_refine)
     prof=profile(mu,coarse_km,refine)
     Nn,Nt=tr.Nn,tr.Nt
@@ -115,7 +118,7 @@ def run_config(tn,ta,inc,name,mu,coarse_km,refine,tau_refine):
         raise RuntimeError(f'nonfinite result in {tag}')
     neg=sum(float(np.sum(np.abs(v[v<0]))) for v in out.values())
     pos=sum(float(np.sum(np.abs(v[v>0]))) for v in out.values())
-    rec=dict(name=name,mu=mu,coarse_km=coarse_km,refine=refine,
+    rec=dict(tag=tag,name=name,mu=mu,coarse_km=coarse_km,refine=refine,
              nominal_max_step_km=coarse_km/refine,tau_refine=tau_refine,
              segments=len(prof['ds_km']),seconds=sec,
              negative_mass_fraction=neg/max(pos,1e-300))
@@ -123,6 +126,14 @@ def run_config(tn,ta,inc,name,mu,coarse_km,refine,tau_refine):
     meta.write_text(json.dumps(rec,indent=2))
     if partial.exists(): partial.unlink()
     return out,rec
+
+
+def worker(task):
+    # Load inside each spawned process: avoids pickling solver/input state.
+    tn,ta=load('nu'),load('antinu')
+    E=np.asarray(tn['energies'],float); inc=flux(E)
+    out,rec=run_config(tn,ta,inc,**task)
+    return task['name'],int(task['refine']),int(task['tau_refine']),rec
 
 
 def interp(E,y,e):
@@ -155,24 +166,55 @@ def metrics(E,inc,a,b):
     return dict(maxima=maxima,L1=l1,pointwise=rows,worst_primary=primary,worst_secondary=secondary)
 
 
+def load_completed(name,refine,tau_refine):
+    tag=f'{name}_r{refine}_tau{tau_refine}'
+    npz=CK/f'{tag}.npz'; meta=CK/f'{tag}.json'
+    if not (npz.exists() and meta.exists()):
+        raise RuntimeError(f'missing completed checkpoint {tag}')
+    z=np.load(npz)
+    return {k:z[k] for k in z.files},json.loads(meta.read_text())
+
+
 def main():
     OUT.mkdir(parents=True,exist_ok=True); CK.mkdir(parents=True,exist_ok=True)
-    tn,ta=load('nu'),load('antinu'); E=np.asarray(tn['energies'],float); inc=flux(E)
-    report={'version':'v0.20.7-coupled-gate','benchmark':'case7_L3_majorana_flip','cases':[]}
+    tn=load('nu'); E=np.asarray(tn['energies'],float); inc=flux(E)
+
+    tasks=[]
+    for c in CASES:
+        base=dict(name=c['name'],mu=c['mu'],coarse_km=c['coarse_km'])
+        tasks.extend([
+            dict(**base,refine=1,tau_refine=16),
+            dict(**base,refine=2,tau_refine=16),
+            dict(**base,refine=2,tau_refine=32),
+        ])
+
+    requested=max(1,int(os.environ.get('NUTAU_NPROC','6')))
+    workers=min(requested,len(tasks),os.cpu_count() or 1)
+    print(f'PARALLEL workers={workers} tasks={len(tasks)} internal_threads=1',flush=True)
+
+    ctx=mp.get_context('spawn')
+    with ProcessPoolExecutor(max_workers=workers,mp_context=ctx) as ex:
+        futures={ex.submit(worker,t):t for t in tasks}
+        for fut in as_completed(futures):
+            t=futures[fut]
+            name,refine,tau_refine,rec=fut.result()
+            print(f"DONE {name} r{refine} tau{tau_refine} segments={rec['segments']} sec={rec['seconds']:.1f}",flush=True)
+
+    report={'version':'v0.20.7-coupled-gate-multicore',
+            'benchmark':'case7_L3_majorana_flip','workers':workers,'cases':[]}
     overall=True
     for c in CASES:
-        print(f"CASE {c['name']} mu={c['mu']}",flush=True)
-        coarse,mc=run_config(tn,ta,inc,c['name'],c['mu'],c['coarse_km'],1,16)
-        fine,mf=run_config(tn,ta,inc,c['name'],c['mu'],c['coarse_km'],2,16)
-        fine32,m32=run_config(tn,ta,inc,c['name'],c['mu'],c['coarse_km'],2,32)
+        coarse,mc=load_completed(c['name'],1,16)
+        fine,mf=load_completed(c['name'],2,16)
+        fine32,m32=load_completed(c['name'],2,32)
         spatial=metrics(E,inc,coarse,fine)
         taugrid=metrics(E,inc,fine,fine32)
         passed=(spatial['worst_primary']<GATE and spatial['worst_secondary']<GATE and
                 taugrid['worst_primary']<GATE and taugrid['worst_secondary']<GATE and
                 mc['negative_mass_fraction']<1e-12 and mf['negative_mass_fraction']<1e-12 and m32['negative_mass_fraction']<1e-12)
         overall &= passed
-        print(f"  spatial primary={spatial['worst_primary']:.6g} secondary={spatial['worst_secondary']:.6g}",flush=True)
-        print(f"  tau16->32 primary={taugrid['worst_primary']:.6g} secondary={taugrid['worst_secondary']:.6g} PASS={passed}",flush=True)
+        print(f"CASE {c['name']} spatial primary={spatial['worst_primary']:.6g} secondary={spatial['worst_secondary']:.6g}",flush=True)
+        print(f"CASE {c['name']} tau16->32 primary={taugrid['worst_primary']:.6g} secondary={taugrid['worst_secondary']:.6g} PASS={passed}",flush=True)
         report['cases'].append(dict(config=c,coarse=mc,fine=mf,fine_tau32=m32,
                                     spatial=spatial,tau_grid=taugrid,PASS=passed))
     report['gate']=GATE; report['ALL_PASS']=bool(overall)
@@ -181,4 +223,6 @@ def main():
     print('STATUS wrote',OUT/'coupled_gate_status_v0_20_7.json',flush=True)
     raise SystemExit(0 if overall else 2)
 
-if __name__=='__main__': main()
+
+if __name__=='__main__':
+    main()
