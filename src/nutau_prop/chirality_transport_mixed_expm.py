@@ -1,4 +1,4 @@
-"""v0.20.3 candidate: mixed-grid combined-generator transport.
+"""v0.20.4 candidate: mixed-grid combined-generator transport.
 
 Neutrinos remain on the existing DIS table energy grid while taus use a finer
 nested log-energy grid.  A single sparse generator per constant-density slab
@@ -20,8 +20,9 @@ from scipy.sparse.linalg import expm_multiply
 
 from .constants import NA, M_TAU, C_TAU_CM
 from .prem import chord_profile
-from .kernels import tau_nutau_pdf, tau_secondary_numu_pdf
-from .chirality_transport_expm import _SpeciesOp, _scaled_kernel
+from .kernels import (tau_nutau_pdf, tau_secondary_numu_pdf,
+                      normalized_trapezoid_weights)
+from .chirality_transport_expm import _SpeciesOp
 
 
 def _refined_log_grid(E, factor):
@@ -70,13 +71,10 @@ def _decay_kernel_rect(E_tau, E_nu, polarization, secondary=False,
     z = np.linspace(1e-6, 1.0-1e-6, int(nz))
     if secondary:
         f = tau_secondary_numu_pdf(z, polarization, branching)
-        norm = np.trapezoid(f, z)
-        if norm > 0:
-            f *= branching/norm
+        w = normalized_trapezoid_weights(z, f, float(branching))
     else:
         f = tau_nutau_pdf(z, polarization)
-        f /= np.trapezoid(f, z)
-    w = f*(z[1]-z[0])
+        w = normalized_trapezoid_weights(z, f, 1.0)
     ln = np.log(np.asarray(E_nu, float))
     K = np.zeros((len(E_tau), len(E_nu)), float)
     for j, E in enumerate(E_tau):
@@ -103,7 +101,6 @@ class TauHelicityFlipTransportMixedExpm:
         self.beta = float(beta_tau)
         self.secondary_branching = float(secondary_branching)
 
-        # Rectangular CC production: neutrino grid -> tau grid.
         Kcc_n = _rect_interaction_kernel(self.E, table_nu["y"],
                                           table_nu["p_cc"], self.Etau)
         Kcc_a = _rect_interaction_kernel(self.E, table_antinu["y"],
@@ -111,7 +108,6 @@ class TauHelicityFlipTransportMixedExpm:
         self.Tn = csr_matrix(self.nu.scc[:, None] * Kcc_n)
         self.Ta = csr_matrix(self.anu.scc[:, None] * Kcc_a)
 
-        # Rectangular tau-decay kernels: tau grid -> neutrino grid.
         self.Kdec_minus = _decay_kernel_rect(self.Etau, self.E, -1.0, False)
         self.Kdec_plus  = _decay_kernel_rect(self.Etau, self.E, +1.0, False)
         self.Ksec_minus = _decay_kernel_rect(self.Etau, self.E, -1.0, True,
