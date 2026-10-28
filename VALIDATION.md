@@ -144,3 +144,33 @@ Because bin-by-bin atmospheric backgrounds are not included in the fallback
 response, the significance is an optimistic upper bound.  A result below
 2 sigma is therefore a robust negative gate.  A result above 2 sigma is only a
 motivation for a second-stage exact-response/background analysis.
+
+
+## v0.20.9 mandatory secondary-muon detector correction
+
+The validated transport explicitly evolves secondary `nu_mu` and `antinu_mu`
+from polarized tau decay. A tau-sector BSM interaction can therefore modify
+that secondary muon-flavor flux by changing the propagated tau-neutrino flux,
+tau production rate, and subsequent tau decay.
+
+The current ARCA projection must **not** assume that `nu_mu` CC tracks are an
+exactly BSM-blind control sample. Before any final ARCA/IceCube viability or
+no-go statement, the detector fold must include
+
+`primary nu_mu/antinu_mu + tau-decay secondary nu_mu/antinu_mu`
+
+for both SM and BSM hypotheses.
+
+Mandatory checks:
+- fold the BSM-modified secondary muon-neutrino flux into the ARCA CC-track
+  response;
+- include its contribution to the appropriate NC-shower response;
+- carry the same species-resolved correction into the IceCube event-level
+  comparison;
+- report the change in the **total detector-weighted muon-flavor event rate**,
+  not merely the ratio of the secondary component;
+- only treat tracks as effectively BSM-insensitive if this correction is shown
+  quantitatively negligible after detector folding.
+
+Detailed derivation and implementation requirements are recorded in
+`docs/secondary_numu_detector_correction_v0_20_9.md`.
