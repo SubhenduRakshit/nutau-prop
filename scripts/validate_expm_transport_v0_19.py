@@ -67,7 +67,7 @@ def interp_point(E,y,tgev):
     if not (np.isfinite(y[i]) and np.isfinite(y[j])): return np.nan
     if y[i]>0 and y[j]>0:
         a=(np.log(tgev)-np.log(E[i]))/(np.log(E[j])-np.log(E[i]))
-        return float(np.exp(np.log(y[i])+a*(np.log(y[j])-np.log(y[i])))
+        return float(np.exp(np.log(y[i])+a*(np.log(y[j])-np.log(y[i]))))
     a=(tgev-E[i])/(E[j]-E[i]); return float(y[i]+a*(y[j]-y[i]))
 
 
