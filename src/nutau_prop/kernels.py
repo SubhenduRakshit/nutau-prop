@@ -76,15 +76,38 @@ def tau_decay_pdf(z, polarization=-1.0):
     """Backward-compatible name; now returns the full inclusive tau->nu_tau spectrum."""
     return tau_nutau_pdf(z, polarization)
 
+def normalized_trapezoid_weights(z, f, target=1.0):
+    """Quadrature weights whose sum is exactly ``target``.
+
+    The old kernels normalized ``f`` with ``np.trapezoid`` but then deposited
+    full endpoint rectangle weights ``f*dz``.  That mixes two quadrature rules
+    and biases the total multiplicity.  Here the deposited weights are the
+    trapezoid-rule weights themselves, followed by an explicit normalization.
+    """
+    z=np.asarray(z,dtype=float); f=np.asarray(f,dtype=float)
+    if z.ndim!=1 or f.shape!=z.shape or len(z)<2:
+        raise ValueError("z and f must be matching 1D arrays with >=2 points")
+    dz=np.diff(z)
+    if np.any(dz<=0):
+        raise ValueError("z grid must be strictly increasing")
+    w=np.zeros_like(f)
+    w[0]=0.5*dz[0]*f[0]
+    w[-1]=0.5*dz[-1]*f[-1]
+    if len(z)>2:
+        w[1:-1]=0.5*(dz[:-1]+dz[1:])*f[1:-1]
+    norm=float(np.sum(w))
+    if norm<=0:
+        return w
+    return w*(float(target)/norm)
+
 def tau_decay_kernel(energies, polarization=-1.0, nz=800):
     z=np.linspace(1e-6,1-1e-6,nz)
     f=tau_nutau_pdf(z,polarization)
-    f/=np.trapezoid(f,z)
-    dz=z[1]-z[0]
+    w=normalized_trapezoid_weights(z,f,1.0)
     K=np.zeros((len(energies),len(energies)))
     for j,E in enumerate(energies):
-        for zz,ff in zip(z,f):
-            deposit_logE(K[j],energies,E*zz,float(ff*dz))
+        for zz,ww in zip(z,w):
+            deposit_logE(K[j],energies,E*zz,float(ww))
     return K
 
 def tau_secondary_numu_pdf(z, polarization=-1.0, branching=0.18):
@@ -102,12 +125,9 @@ def tau_secondary_numu_pdf(z, polarization=-1.0, branching=0.18):
 def tau_secondary_numu_kernel(energies, polarization=-1.0, branching=0.18, nz=800):
     z=np.linspace(1e-6,1-1e-6,nz)
     f=tau_secondary_numu_pdf(z,polarization,branching)
-    norm=np.trapezoid(f,z)
-    if norm>0:
-        f*=branching/norm
-    dz=z[1]-z[0]
+    w=normalized_trapezoid_weights(z,f,float(branching))
     K=np.zeros((len(energies),len(energies)))
     for j,E in enumerate(energies):
-        for zz,ff in zip(z,f):
-            deposit_logE(K[j],energies,E*zz,float(ff*dz))
+        for zz,ww in zip(z,w):
+            deposit_logE(K[j],energies,E*zz,float(ww))
     return K
