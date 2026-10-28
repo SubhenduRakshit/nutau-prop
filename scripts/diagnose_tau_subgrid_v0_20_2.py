@@ -1,19 +1,14 @@
 #!/usr/bin/env python3
 """v0.20.2 mixed-grid diagnostic for the combined-generator transport.
 
-Purpose
--------
 Keep the neutrino/daughter grid fixed at the existing 91-point Case-7 table,
-while refining only the tau log-energy grid by factors 1,2,4,8,16.  This tests
-whether the remaining v0.20 numerical diffusion is localized to tau advection
-and can be removed without rebuilding the expensive DIS tables.
-
-The reference is a direct continuous-loss + decay quadrature, independent of
-the discrete tau grid.  No full Earth chord and no production output.
+while refining only the tau log-energy grid by factors 1,2,4,8,16.  The
+reference is a direct continuous-loss + decay quadrature, independent of the
+discrete tau grid.  No full Earth chord and no production output.
 """
 from __future__ import annotations
 
-import json, math, os, time
+import json, math, time
 from pathlib import Path
 
 import numpy as np
@@ -50,17 +45,21 @@ def tau_grid(E, factor):
     return np.exp(np.asarray(out, float))
 
 
-def deposit(row, grid, eout, weight):
-    if weight == 0.0 or eout < grid[0] or eout > grid[-1]:
+def deposit_log(row, log_grid, eout, weight):
+    if weight == 0.0:
         return
-    lg = np.log(grid); u = math.log(float(eout)); j = int(np.searchsorted(lg, u))
+    u = math.log(float(eout))
+    if u < log_grid[0] or u > log_grid[-1]:
+        return
+    j = int(np.searchsorted(log_grid, u))
     if j == 0:
         row[0] += weight
-    elif j >= len(grid):
+    elif j >= len(log_grid):
         row[-1] += weight
     else:
-        f = (u-lg[j-1])/(lg[j]-lg[j-1])
-        row[j-1] += weight*(1.0-f); row[j] += weight*f
+        f = (u-log_grid[j-1])/(log_grid[j]-log_grid[j-1])
+        row[j-1] += weight*(1.0-f)
+        row[j] += weight*f
 
 
 def z_weights(sign):
@@ -78,14 +77,17 @@ def z_weights(sign):
 
 def rectangular_decay_kernels(Et, Enu, sign):
     z, wp, ws = z_weights(sign)
+    lnu = np.log(Enu)
     Kp = np.zeros((len(Et), len(Enu)), float)
     Ks = np.zeros((len(Et), len(Enu)), float)
     for j, ep in enumerate(Et):
         rp = Kp[j]; rs = Ks[j]
         for zz, a, b in zip(z, wp, ws):
             ee = ep*zz
-            if a != 0.0: deposit(rp, Enu, ee, float(a))
-            if b != 0.0: deposit(rs, Enu, ee, float(b))
+            if a != 0.0:
+                deposit_log(rp, lnu, ee, float(a))
+            if b != 0.0:
+                deposit_log(rs, lnu, ee, float(b))
     return csr_matrix(Kp), csr_matrix(Ks)
 
 
@@ -106,9 +108,10 @@ def full_tau_generator(Et, Enu, sign):
     Znn = csr_matrix((Nn, Nn)); Znt = csr_matrix((Nn, Nt))
     Kp, Ks = rectangular_decay_kernels(Et, Enu, sign)
     d = M_TAU/(C_TAU_CM*Et)
-    Dp = csr_matrix(d[:, None]*Kp.toarray())
-    Ds = csr_matrix(d[:, None]*Ks.toarray())
-    T = tau_loss_generator(Et) - diags(d, 0, format="csr")
+    D = diags(d, 0, format="csr")
+    Dp = D @ Kp
+    Ds = D @ Ks
+    T = tau_loss_generator(Et) - D
     return bmat([[Znn, Znn, Znt],
                  [Znn, Znn, Znt],
                  [Dp,  Ds,  T]], format="csr")
@@ -121,7 +124,8 @@ def exact_reference(E0, Enu, Et, sign):
     U = (a/b)*np.expm1(b*H_CM) if b != 0 else a*H_CM
     surv = math.exp(-min(float(U), 745.0))
     Eend = E0*math.exp(-b*H_CM)
-    tau_proj = np.zeros(len(Et)); deposit(tau_proj, Et, Eend, surv)
+    ltau = np.log(Et); lnu = np.log(Enu)
+    tau_proj = np.zeros(len(Et)); deposit_log(tau_proj, ltau, Eend, surv)
 
     primary = np.zeros(len(Enu)); secondary = np.zeros(len(Enu))
     pdec = -np.expm1(-min(float(U), 745.0))
@@ -134,13 +138,16 @@ def exact_reference(E0, Enu, Et, sign):
         z = np.linspace(1e-6, 1.0-1e-6, NZ)
         fp = tau_nutau_pdf(z, pol); fp /= np.trapezoid(fp, z)
         fs = tau_secondary_numu_pdf(z, pol, BR); ns = np.trapezoid(fs, z)
-        if ns > 0: fs *= BR/ns
+        if ns > 0:
+            fs *= BR/ns
         dz = z[1]-z[0]
         for ed, wdec in zip(Edec, ww):
             for zz, pp, ss in zip(z, fp, fs):
                 ee = float(ed*zz)
-                if pp != 0: deposit(primary, Enu, ee, float(wdec*pp*dz))
-                if ss != 0: deposit(secondary, Enu, ee, float(wdec*ss*dz))
+                if pp != 0:
+                    deposit_log(primary, lnu, ee, float(wdec*pp*dz))
+                if ss != 0:
+                    deposit_log(secondary, lnu, ee, float(wdec*ss*dz))
     return dict(tau=tau_proj, primary=primary, secondary=secondary,
                 survival=surv, Eend=Eend)
 
@@ -151,14 +158,16 @@ def rel_l1(a, b):
 
 
 def run_one(Enu, factor, sign):
-    t0 = time.perf_counter(); Et = tau_grid(Enu, factor)
+    t0 = time.perf_counter()
+    Et = tau_grid(Enu, factor)
     G = full_tau_generator(Et, Enu, sign)
     build_sec = time.perf_counter()-t0
+    lnu = np.log(Enu); ltau = np.log(Et)
     rows = []
     for target in TARGETS_PEV:
-        jn = int(np.argmin(np.abs(np.log(Enu)-np.log(target*1e6))))
+        jn = int(np.argmin(np.abs(lnu-np.log(target*1e6))))
         E0 = float(Enu[jn])  # exactly a node of every nested tau grid
-        jt = int(np.argmin(np.abs(np.log(Et)-np.log(E0))))
+        jt = int(np.argmin(np.abs(ltau-np.log(E0))))
         x = np.zeros(2*len(Enu)+len(Et)); x[2*len(Enu)+jt] = 1.0
         s0 = time.perf_counter()
         y = np.asarray(expm_multiply(G.T*H_CM, x), float)
@@ -168,20 +177,20 @@ def run_one(Enu, factor, sign):
         nt = float(np.sum(tau)); nr = float(ref["survival"])
         if nt > 0:
             prob = tau/nt
-            meanlog = float(np.sum(prob*np.log(Et)))
-            w1 = float(np.sum(prob*np.abs(np.log(Et)-math.log(ref["Eend"]))))
+            meanlog = float(np.sum(prob*ltau))
+            w1 = float(np.sum(prob*np.abs(ltau-math.log(ref["Eend"]))))
         else:
             meanlog = float("nan"); w1 = float("nan")
-        row = dict(factor=int(factor), sign=sign, N_nu=len(Enu), N_tau=len(Et),
-                   E_requested_PeV=target, E0_grid_PeV=E0/1e6,
-                   tau_L1=rel_l1(tau, ref["tau"]),
-                   tau_number_relative_error=abs(nt-nr)/max(nr,1e-300),
-                   W1_logE=w1,
-                   delta_mean_logE=abs(meanlog-math.log(ref["Eend"])) if np.isfinite(meanlog) else None,
-                   primary_daughter_L1=rel_l1(p, ref["primary"]),
-                   secondary_daughter_L1=rel_l1(s, ref["secondary"]),
-                   build_seconds=build_sec, evolve_seconds=evolve_sec)
-        rows.append(row)
+        rows.append(dict(
+            factor=int(factor), sign=sign, N_nu=len(Enu), N_tau=len(Et),
+            E_requested_PeV=target, E0_grid_PeV=E0/1e6,
+            tau_L1=rel_l1(tau, ref["tau"]),
+            tau_number_relative_error=abs(nt-nr)/max(nr,1e-300),
+            W1_logE=w1,
+            delta_mean_logE=abs(meanlog-math.log(ref["Eend"])) if np.isfinite(meanlog) else None,
+            primary_daughter_L1=rel_l1(p, ref["primary"]),
+            secondary_daughter_L1=rel_l1(s, ref["secondary"]),
+            build_seconds=build_sec, evolve_seconds=evolve_sec))
     return rows
 
 
