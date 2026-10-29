@@ -1,0 +1,5 @@
+Iq=31/30 Iqbar=7/3 ratio=2.258064516
+Cmax_q_J1_strict=21.542349625
+Cmax_qbar_J0_strict=8.377580410
+binding=anti-q J=0
+positivity_single_coefficient_branch=C<=0

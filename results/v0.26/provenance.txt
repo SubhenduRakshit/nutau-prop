@@ -1,0 +1,7 @@
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+python 3.13.13 | packaged by conda-forge | (main, Apr  8 2026, 02:29:07) [Clang 19.1.7 ]
+lhapdf paths ['/Users/subhendurakshit/miniforge3/share/LHAPDF', '/Users/subhendurakshit/miniforge3/share/LHAPDF']
+CT18NLO q2min/q2max 1.6770249999999998 10000000000.0
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
