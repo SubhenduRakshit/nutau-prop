@@ -57,3 +57,5 @@ jobs:
             git commit -m 'results: v0.29 gluon d8 ATLAS Rivet Contur pilot [skip ci]'
             git push
           fi
+
+# rerun after analytic-LHE beam/PDF metadata compatibility fix
