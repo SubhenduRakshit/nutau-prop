@@ -32,13 +32,21 @@ jobs:
           init-shell: bash
           cache-environment: true
 
-      - name: Install Contur and PDF
+      - name: Install Contur
         shell: bash -el {0}
-        run: |
-          python -m pip install 'contur==3.1.4'
-          lhapdf install NNPDF31_lo_as_0130
-          rivet --show-analysis ATLAS_2025_I2905252 | head -20
-          contur --version
+        run: python -m pip install 'contur==3.1.4'
+
+      - name: Install NNPDF31 LO PDF set
+        shell: bash -el {0}
+        run: lhapdf install NNPDF31_lo_as_0130
+
+      - name: Check ATLAS Rivet analysis
+        shell: bash -el {0}
+        run: rivet --show-analysis ATLAS_2025_I2905252 | head -20
+
+      - name: Check Contur
+        shell: bash -el {0}
+        run: contur --version
 
       - name: Run analytic-LHE -> Pythia8 -> Rivet -> Contur pilot
         shell: bash -el {0}
@@ -57,5 +65,3 @@ jobs:
             git commit -m 'results: v0.29 gluon d8 ATLAS Rivet Contur pilot [skip ci]'
             git push
           fi
-
-# rerun after analytic-LHE beam/PDF metadata compatibility fix
