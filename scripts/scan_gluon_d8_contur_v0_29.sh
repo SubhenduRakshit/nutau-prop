@@ -12,7 +12,8 @@ PY
 )
   TAG=$(printf '%05.1f' "$C" | tr '.' 'p')
   Y="$OUT/C${TAG}.yoda"
-  yodascale -c ".* x $S" -o "$Y" "$REF"
+  # yodastack has a stable file:scale interface and preserves the Rivet AO structure.
+  yodastack -q -o "$Y" "$REF:$S"
   mkdir -p "$OUT/C${TAG}"
   contur "$Y" -o "$OUT/C${TAG}" --nomultip 2>&1 | tee "$OUT/C${TAG}.log"
 done
