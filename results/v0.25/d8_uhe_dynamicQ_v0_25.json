@@ -1,0 +1,11 @@
+{
+  "pdf": "CT18NLO",
+  "member": 0,
+  "Lambda_TeV": 4.0,
+  "unitarity_mode": "to_lambda",
+  "strict_C_bound_at_shat_eq_Lambda2": 8.377580409572781,
+  "loose_C_bound_at_shat_eq_Lambda2": 16.755160819145562,
+  "positivity": "C<=0 for O8,lu partial2 and O8,ld partial2 (Alioli convention)",
+  "cross_section_convention": "unpolarized quark PDF; fixed LH neutrino",
+  "note": "Earth propagation not run."
+}
