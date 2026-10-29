@@ -1,0 +1,53 @@
+name: d8-v0.27-gluon
+
+on:
+  push:
+    paths:
+      - '.github/workflows/d8-gluon-v027.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  gluon-screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up micromamba with LHAPDF
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: d8gluon
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+
+      - name: Install CT18NLO
+        shell: bash -el {0}
+        run: lhapdf install CT18NLO
+
+      - name: Exact dynamic-Q gluon UHE fold
+        shell: bash -el {0}
+        run: |
+          python scripts/d8_gluon_uhe_v0_27.py \
+            --pdf CT18NLO --lambda-tev 4 --unitarity-mode to_lambda \
+            --xis 1,0.5,0.25 --energies-pev 1,10,100,300 \
+            --nx 300 --ny 48 --outdir results/v0.27
+
+      - name: Commit results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.27/d8_gluon_uhe_v0_27.csv results/v0.27/d8_gluon_uhe_v0_27.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.27 exact gluon d8 UHE screen [skip ci]'
+            git push
+          else
+            echo 'No result changes to commit.'
+          fi
