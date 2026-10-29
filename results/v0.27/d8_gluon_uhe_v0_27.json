@@ -1,0 +1,12 @@
+{
+  "operator": "Q_l2G2D[33] = i(L3bar gamma^mu <->D^nu L3) G^A_{mu rho} G^{A rho}_{nu}",
+  "pdf": "CT18NLO",
+  "member": 0,
+  "Lambda_TeV": 4.0,
+  "unitarity_mode": "to_lambda",
+  "strict_C_bound_at_shat_eq_Lambda2": 25.132741228718345,
+  "positivity": "C<=0 (Murphy basis; Chala-Li PRD109 065015 Appendix B)",
+  "partonic": "dsigma/dy=C^2 shat^3/(8pi Lambda^8)*(1-y)*(1+(1-y)^2)",
+  "interference": "no tree-level SM elastic nu-g amplitude; omitted in first screen",
+  "note": "Earth propagation not run."
+}
