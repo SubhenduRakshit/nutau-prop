@@ -44,9 +44,9 @@ jobs:
         shell: bash -el {0}
         run: rivet --show-analysis ATLAS_2025_I2905252 | head -20
 
-      - name: Check Contur
+      - name: Check Contur import
         shell: bash -el {0}
-        run: contur --version
+        run: python -c 'import contur; print("Contur import OK")'
 
       - name: Run analytic-LHE -> Pythia8 -> Rivet -> Contur pilot
         shell: bash -el {0}
