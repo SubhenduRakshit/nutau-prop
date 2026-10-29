@@ -1,0 +1,17 @@
+# MadGraph5 commands for the FeynRules/UFO cross-check of Q_l2G2D[33].
+# Run after export_ufo_v0_29.wls has produced SM_GLUON_D8_UFO.
+import model models/gluon_d8/SM_GLUON_D8_UFO
+define p = g u c d s u~ c~ d~ s~
+generate g g > ta+ ta- NP=1
+output build/v0.29/mg5_gluon_d8 -f
+launch build/v0.29/mg5_gluon_d8
+set nevents 20000
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lhaid 315200
+set CG8 -25.132741228718345
+set LamG 4000
+set etaj -1
+set ptj -1
+done
