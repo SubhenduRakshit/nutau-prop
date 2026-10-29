@@ -4,7 +4,7 @@ cd "$(dirname "$0")"
 OUT=results/v0.29; mkdir -p "$OUT" build/v0.29
 N=${GLUON_D8_NEVENTS:-50000}
 for x in python lhapdf rivet contur pythia8-config yodastack; do command -v "$x" >/dev/null || { echo "MISSING: $x"; exit 2; }; done
-rivet --list-analyses | grep -q '^ATLAS_2025_I2905252$' || { echo 'MISSING Rivet ATLAS_2025_I2905252'; exit 3; }
+rivet --list-analyses | grep -q 'ATLAS_2025_I2905252' || { echo 'MISSING Rivet ATLAS_2025_I2905252'; exit 3; }
 python - <<'PY'
 import lhapdf
 try: lhapdf.mkPDF('NNPDF31_lo_as_0130',0)
