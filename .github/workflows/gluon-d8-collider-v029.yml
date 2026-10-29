@@ -1,0 +1,59 @@
+name: gluon-d8-collider-v0.29
+
+on:
+  push:
+    paths:
+      - '.github/workflows/gluon-d8-collider-v029.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  recast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up HEP environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: collider
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            rivet>=4.1.1
+            pythia8
+            hepmc3
+            compilers
+            -c conda-forge
+            -c hep-forge
+          init-shell: bash
+          cache-environment: true
+
+      - name: Install Contur and PDF
+        shell: bash -el {0}
+        run: |
+          python -m pip install 'contur==3.1.4'
+          lhapdf install NNPDF31_lo_as_0130
+          rivet --show-analysis ATLAS_2025_I2905252 | head -20
+          contur --version
+
+      - name: Run analytic-LHE -> Pythia8 -> Rivet -> Contur pilot
+        shell: bash -el {0}
+        env:
+          GLUON_D8_NEVENTS: '20000'
+        run: bash run_gluon_d8_collider_v0_29.sh
+
+      - name: Keep compact reproducibility outputs
+        shell: bash -el {0}
+        run: |
+          rm -f results/v0.29/*.lhe results/v0.29/*.hepmc
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.29
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.29 gluon d8 ATLAS Rivet Contur pilot [skip ci]'
+            git push
+          fi
