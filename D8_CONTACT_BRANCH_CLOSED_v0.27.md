@@ -45,6 +45,61 @@ I_q=\frac{31}{30},\qquad I_{\bar q}=\frac73,
 
 so the antiquark channel is intrinsically important.
 
+### Normalization reconciliation: why there is no residual sqrt(2)
+
+The quoted partonic cross section is for an **unpolarized** antiquark PDF. Only one massless antiquark helicity participates in the chiral operator, so the partonic spin average contributes a factor `1/2`:
+
+\[
+\frac{d\hat\sigma_{\bar q}}{dy}
+=\frac{1}{16\pi\hat s}\,\frac12\,|\mathcal M_h|^2.
+\]
+
+Combining this with the certified cross section gives
+
+\[
+|\mathcal M_h|^2
+=4 C_q^2\left(\frac{\hat s^2}{\Lambda^4}\right)^2(2-y)^2,
+\]
+
+hence, choosing the real tree amplitude,
+
+\[
+\mathcal M_h
+=2C_q\rho^2(2-y)
+=C_q\rho^2(3+\cos\theta),
+\qquad \rho=\frac{\hat s}{\Lambda^2}.
+\]
+
+Equivalently, if one writes
+
+\[
+\mathcal M_h=N\frac{3+\cos\theta}{2},
+\]
+
+then
+
+\[
+\boxed{N=2C_q\rho^2},
+\]
+
+not `sqrt(2) C_q rho^2`. The latter follows only if the unpolarized initial-spin average is inadvertently omitted when reconstructing a fixed-helicity amplitude from the cross section.
+
+With
+
+\[
+\mathcal M=16\pi\sum_J(2J+1)a_J P_J(\cos\theta),
+\]
+
+this immediately gives
+
+\[
+a_0^{(\bar q)}=\frac{3C_q}{16\pi}\rho^2,
+\qquad
+a_1^{(\bar q)}=\frac{C_q}{48\pi}\rho^2.
+\]
+
+Thus the strict coefficient bound below is unchanged.
+
 ## Partial-wave unitarity
 
 The crossed antiquark channel is the binding one:
@@ -94,6 +149,8 @@ For the most permissive \(\xi=1\):
 | sR | 300 PeV | +0.6501% | +0.1834% |
 
 Tighter EFT cuts reduce the effect further. The signal is also strongly endpoint dominated near the EFT cutoff.
+
+A useful coherence check is the strange-channel sign flip. Positivity fixes `C_q<0`; the SM interference scales as `C_q shat^2`, while the positive BSM square scales as `C_q^2 shat^4`. The exact fold therefore changes from a tiny negative correction at 10 PeV to a positive correction at 100 PeV, exactly as expected.
 
 ## Decision
 
