@@ -1,0 +1,68 @@
+name: d8-v0.25-dynamicQ
+
+on:
+  push:
+    paths:
+      - '.github/workflows/d8-dynamicq-v025.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dynamicq:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up micromamba with LHAPDF
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: d8cert
+          create-args: >-
+            python=3.11
+            numpy
+            sympy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+
+      - name: Install CT18NLO PDF set
+        shell: bash -el {0}
+        run: |
+          lhapdf install CT18NLO
+          python - <<'PY'
+          import lhapdf
+          p=lhapdf.mkPDF('CT18NLO',0)
+          print('CT18NLO loaded; q2 range',p.q2Min,p.q2Max)
+          PY
+
+      - name: Analytic regression
+        shell: bash -el {0}
+        run: python scripts/check_d8_analytic_v0_25.py
+
+      - name: Exact dynamic-Q UHE fold
+        shell: bash -el {0}
+        run: |
+          python scripts/d8_uhe_cert_v0_25.py \
+            --pdf CT18NLO \
+            --lambda-tev 4 \
+            --unitarity-mode to_lambda \
+            --xis 1,0.5,0.25 \
+            --energies-pev 1,10,100,300 \
+            --nx 260 --ny 40 \
+            --outdir results/v0.25
+
+      - name: Commit numerical results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.25/d8_uhe_dynamicQ_v0_25.csv results/v0.25/d8_uhe_dynamicQ_v0_25.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.25 exact CT18 dynamic-Q d8 fold [skip ci]'
+            git push
+          else
+            echo 'No result changes to commit.'
+          fi
