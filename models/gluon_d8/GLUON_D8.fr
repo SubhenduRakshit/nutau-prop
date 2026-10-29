@@ -1,0 +1,52 @@
+(* Minimal FeynRules extension for the collider projection of
+   Q_{l^2 G^2 D}^{33} = i (L3bar gamma^mu <->D^nu L3) G^A_{mu rho} G^{A rho}_{nu}.
+
+   Purpose: generate the gg tau+ tau- and gg nu_tau nubar_tau contact vertices
+   in the canonical Murphy normalization used by the UHE fold.
+
+   This file is loaded after the standard FeynRules SM.fr.  For the two-gluon
+   contact vertices relevant here, the electroweak pieces of D^nu do not enter;
+   del is therefore sufficient and avoids generating unrelated EW vertices.
+*)
+
+M$ModelName = "SM_GLUON_D8";
+M$Information = {
+  Authors -> {"Subhendu Rakshit project"},
+  Version -> "0.29",
+  Date -> "2026-10-29",
+  References -> {"Murphy JHEP 10 (2020) 174; Chala & Li PRD 109 (2024) 065015"}
+};
+
+M$Parameters = {
+  CG8 == {
+    ParameterType -> External,
+    Value -> -25.132741228718345,
+    InteractionOrder -> {NP,1},
+    ParameterName -> CG8,
+    TeX -> "C_G",
+    Description -> "Wilson coefficient of Q_l2G2D[33]"
+  },
+  LamG == {
+    ParameterType -> External,
+    Value -> 4000.0,
+    ParameterName -> LamG,
+    TeX -> "\\Lambda_G",
+    Description -> "EFT scale in GeV"
+  }
+};
+
+(* i bar(psi) gamma^mu <->partial^nu P_L psi *)
+Jtau[mu_,nu_] := I (
+   tabar.Ga[mu].ProjM.del[ta,nu]
+ - del[tabar,nu].Ga[mu].ProjM.ta
+);
+
+Jnutau[mu_,nu_] := I (
+   vtbar.Ga[mu].ProjM.del[vt,nu]
+ - del[vtbar,nu].Ga[mu].ProjM.vt
+);
+
+LGLUOND8 := Block[{mu,nu,rho,aa},
+  (CG8/LamG^4) (Jtau[mu,nu] + Jnutau[mu,nu])
+  FS[G,mu,rho,aa] FS[G,rho,nu,aa]
+];
