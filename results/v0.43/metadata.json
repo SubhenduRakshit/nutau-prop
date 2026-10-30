@@ -1,0 +1,26 @@
+{
+  "version": "v0.43b",
+  "detector": "IceCube HESE 7.5-year official public data+MC",
+  "official_release_repo": "icecube/HESE-7-year-data-release",
+  "likelihood": "official HESE binning + L_eff MC-statistical likelihood for real data; Poisson Asimov likelihood; detector spline nuisances fixed",
+  "asimov_denominator": "SM Asimov hypothesis is re-profiled with identical nuisance priors",
+  "profiled": [
+    "astro_norm",
+    "astro_gamma",
+    "conv_norm",
+    "prompt_norm",
+    "muon_norm",
+    "cr_delta_gamma",
+    "kpi_ratio",
+    "nunubar_ratio"
+  ],
+  "BSM_source": "results/v0.42d coupled transport",
+  "BSM_domain": "only Earth-crossing MC events inside the computed v0.42d mu/E grid are reweighted; outside region is left SM as a conservative control",
+  "secondary_numu": "included through total primary+tau-decay-secondary astrophysical muon-flavor flux, affecting both tracks and muon-flavor NC showers",
+  "limitations": [
+    "IceCube detector-systematic splines epsilon_dom/epsilon_head_on/anisotropy are fixed rather than profiled",
+    "v0.42d tau modifier is nu+nubar averaged",
+    "BSM modifier outside the v0.42d computed mu/E domain is set to unity",
+    "independent public-data recast; not an IceCube Collaboration result"
+  ]
+}

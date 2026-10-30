@@ -1,0 +1,2 @@
+n_data,n_mc,n_bins,nll,success,message,published_gamma,published_gamma_sigma,gamma_pull_vs_published,best_astro_norm,best_astro_gamma,best_conv_norm,best_prompt_norm,best_muon_norm,best_cr_delta_gamma,best_kpi_ratio,best_nunubar_ratio
+60,736814,840,129.66875601339822,True,CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH,2.87,0.2,0.03440837808633468,6.1761357030106,2.876881675617267,0.9506164300546995,0.0,1.187655907004463,-0.049784807953275445,0.9974511232228294,0.9970415450528229
