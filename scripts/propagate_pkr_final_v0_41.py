@@ -14,10 +14,12 @@ Physics choices
   and polarized secondary nu_mu/antinu_mu using the validated mixed-grid solver.
 
 The current CMS low-mass dijet publication quotes observed gq limits spanning
-0.03--0.13 for 50--250 GeV.  We therefore use gq=0.03 as a deliberately
+0.03--0.13 for 50--250 GeV. We therefore use gq=0.03 as a deliberately
 conservative common benchmark and solve kappa self-consistently for a 5% NP/SM
-cross-section ratio at 100 PeV.  If no 5% solution exists, that model/mass is
+cross-section ratio at 100 PeV. If no 5% solution exists, that model/mass is
 reported closed for this benchmark and is not propagated.
+
+v0.41a: workflow-trigger checkpoint; physics unchanged.
 """
 from __future__ import annotations
 import json, math, os
@@ -37,7 +39,7 @@ PDF='CT18NLO'
 GQ=0.03
 MASSES=(50.0,100.0,220.0)
 MODELS={'eq4p4_derivative':1.0,'eq4p3_dipole':2.0}
-TARGET_E=1.0e8 # GeV = 100 PeV
+TARGET_E=1.0e8
 TARGET_RATIO=0.05
 ENERGIES=np.geomspace(1e4,2e10,101)
 ZENITHS=(0.1,0.3,0.5,0.7,1.0)
@@ -49,13 +51,12 @@ class ResolvedPKRDIS(Case6DIS):
         s=2.0*M_N*E; q2=x*y*s
         if q2 < self.cfg.qmin_gev**2: return 0.0
         p=self._pdf_components(x,q2); sum_xf=sum(p.values())
-        # Case-6 contact coefficient matched at low Q: C4=kappa/M^2.
         c4=kappa/(M*M)
         d2=(4.0/math.pi)*c4*c4*x*s*s*y*(1.0-y)*sum_xf
         d2 *= (M*M/(M*M+q2))**2
         return factor*d2*GEV2_TO_CM2
     def dsdy_resolved(self,E,y,M,kappa,gq,factor):
-        lam_vert=gq/kappa # GeV
+        lam_vert=gq/kappa
         s=2.0*M_N*E
         xmin=max(self.cfg.qmin_gev**2/(s*y),1e-9)
         xmax=min(1.0-1e-10,lam_vert*lam_vert/s)
@@ -79,7 +80,6 @@ def ratio(E,M,kappa,gq,factor):
 def solve_kappa5(M,gq,factor):
     ks=np.geomspace(1e-7,5e-2,180)
     rs=np.array([ratio(TARGET_E,M,k,gq,factor) for k in ks])
-    # First upward crossing. Non-monotonicity from shrinking validity domain is allowed.
     idx=np.where((rs[:-1]<TARGET_RATIO)&(rs[1:]>=TARGET_RATIO))[0]
     if len(idx)==0:
         j=int(np.argmax(rs)); return None,float(ks[j]),float(rs[j])
@@ -109,7 +109,6 @@ def interp_log(E,y,e):
     return float(np.interp(np.log(e),np.log(E),y))
 
 def incident(gamma):
-    # arbitrary normalization; propagation ratios are normalization-independent
     return (ENERGIES/1e6)**(-gamma)
 
 def run_one(model,M,kappa,factor):
@@ -145,10 +144,8 @@ def main():
     import pandas as pd
     pd.DataFrame(summary).to_csv(OUT/'benchmark_gate_v0_41.csv',index=False)
     pd.DataFrame(allrows).to_csv(OUT/'earth_propagation_v0_41.csv',index=False)
-    # compact maxima for paper decision
     if allrows:
-        df=pd.DataFrame(allrows)
-        out=[]
+        df=pd.DataFrame(allrows); out=[]
         for (model,M,gam),g in df.groupby(['model','M_GeV','gamma']):
             j=g['tau_frac'].abs().idxmax(); r=g.loc[j]
             jm=g['secondary_numu_frac'].abs().idxmax(); rm=g.loc[jm]
