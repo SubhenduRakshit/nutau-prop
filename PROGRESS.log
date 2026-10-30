@@ -458,3 +458,26 @@ Reproducibility: focused v0.9 tests passed (3/3), complete suite passed
 (21/21). JHEP-style v0.9 manuscript compiled to an 8-page PDF; all pages
 rendered and inspected. Current author affiliation/email remain unknown and
 are required before journal submission.
+
+2026-10-30 — v0.33 CONSOLIDATED UHE-INTERACTION PORTFOLIO
+=========================================================
+Reconciled STERILE_UHE_SCREEN_v0.30.md, STERILE_UHE_CERTIFICATION_v0.31.md,
+the corrected STERILE_D6_RESOLVED_CERTIFICATION_v0.32.md, chat-nutau3, and
+the d=8, mediator, charged-scalar, leptogluon and leptoquark audit notes.
+
+No new numerical or transport run was performed. The current-bound sterile
+d=6 scalar/tensor branch is closed (<=0.71% in the controlled domain); the
+earlier preliminary 8--11% tensor value was a withdrawn factor-16 normalization
+error. The active cR/sR d=8 branch and hard-UHE dipole portal also fail. Active
+gluon d=8 and sterile tensor/Rayleigh pass only at a validity/strong-coupling
+endpoint.
+
+Current priorities are: (1) the non-resonant resolved derivative sterile
+mediator, conditional on a modern mass-dependent tau-specific monojet+IceCube
+recast and UV completion of its derivative vertex; (2) a strange-aligned
+tilde-R2 scalar leptoquark as the cleanest renormalizable resonant fallback;
+(3) the tau-neutrinogluon resonance, conditional on dipole matching and coloured
+partner constraints. A B-3L_tau vector is theoretically clean but fails the
+size objective because its allowed amplitude is small and universal u/d
+interference largely cancels. Details and the decision matrix are recorded in
+UHE_INTERACTION_PORTFOLIO_v0.33.md.
