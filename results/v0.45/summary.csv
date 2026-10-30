@@ -1,0 +1,3 @@
+model,max_Gamma_over_M,min_BR_qq,max_BR_invisible,max_gq_equiv_dijet,dijet_floor_pass_all,narrow_width_pass_all,vertex_scale_pass_all,verdict
+eq4p3_dipole,0.0008741478291886462,0.40963009048824023,0.5903699095117598,0.022870707381940518,True,True,True,WIDTH_AND_DIJET_PRESCREEN_PASS
+eq4p4_derivative,0.0007790235072994041,0.4596488437325463,0.5403511562674538,0.023808122296876056,True,True,True,WIDTH_AND_DIJET_PRESCREEN_PASS

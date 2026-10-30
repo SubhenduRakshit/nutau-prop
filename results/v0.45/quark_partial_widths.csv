@@ -1,0 +1,13 @@
+model,quark,mq_GeV,Gamma_qq_GeV,open
+eq4p4_derivative,u,0.00216,0.0035809862195676457,True
+eq4p4_derivative,d,0.00467,0.003580986219567643,True
+eq4p4_derivative,s,0.0934,0.0035809862193060295,True
+eq4p4_derivative,c,1.27,0.003580977268749478,True
+eq4p4_derivative,b,4.18,0.003579926791341398,True
+eq4p4_derivative,t,172.69,0.0,False
+eq4p3_dipole,u,0.00216,0.0035809862195676457,True
+eq4p3_dipole,d,0.00467,0.003580986219567643,True
+eq4p3_dipole,s,0.0934,0.0035809862193060295,True
+eq4p3_dipole,c,1.27,0.003580977268749478,True
+eq4p3_dipole,b,4.18,0.003579926791341398,True
+eq4p3_dipole,t,172.69,0.0,False

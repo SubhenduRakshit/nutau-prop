@@ -1,0 +1,18 @@
+{
+  "version": "v0.45",
+  "input": "results/v0.42d/benchmark_gate.csv",
+  "scope": "width/branching + conservative low-mass dijet prescreen; NOT monojet certification",
+  "quark_width": "Nc*gq^2*M/(12*pi)*(1+2r)*sqrt(1-4r)",
+  "nu_width_per_Weyl_pair": {
+    "eq4p4_derivative": "a^2*M^3/(48*pi)",
+    "eq4p3_dipole": "a^2*M^3/(12*pi)"
+  },
+  "normalization_bracket": "one Weyl pair vs operator+h.c. = factor 2 invisible width",
+  "cms_anchor": "CMS EXO-24-007 (2026) quotes observed universal-gq limits spanning 0.03--0.13 for 50--250 GeV, assuming BR(Z'->qq)=1. We compare gq*sqrt(BRqq) to the strongest possible 0.03 floor, so passing is conservative within NWA production scaling.",
+  "limitations": [
+    "Not an operator-specific monojet recast.",
+    "No additional invisible flavor multiplicity beyond the explicit one-pair / h.c. bracket.",
+    "Dijet comparison uses narrow-width production scaling and the published global minimum limit rather than the exact 50-GeV HEPData point.",
+    "Gauge completion/anomaly cancellation/kinetic mixing are not certified here."
+  ]
+}
