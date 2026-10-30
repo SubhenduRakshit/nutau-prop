@@ -1,0 +1,41 @@
+name: pkr-two-option-v0.37
+on:
+  push:
+    paths:
+      - '.github/workflows/pkr-two-option-v037.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pkr37
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+      - name: Install CT18NLO
+        shell: bash -el {0}
+        run: lhapdf install CT18NLO
+      - name: Run screen
+        shell: bash -el {0}
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: python scripts/pkr_two_option_energy_screen_v0_37.py
+      - name: Commit results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.37/
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.37 PKR two-option energy screen [skip ci]'
+            git push
+          fi
