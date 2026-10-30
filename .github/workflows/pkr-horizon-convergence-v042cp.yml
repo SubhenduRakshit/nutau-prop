@@ -1,4 +1,5 @@
 name: pkr-horizon-convergence-v0.42cp
+# parallel convergence trigger
 on:
   push:
     paths:
