@@ -1,0 +1,20 @@
+{
+  "version": "v0.51",
+  "analysis_internal": "cms_2107_13201",
+  "analysis_physics": "CMS EXO-20-004 jets+MET, arXiv:2107.13021; CheckMATE uses transposed internal identifier cms_2107_13201",
+  "signal": "MG5 LO pp -> Xd Xd~ j, Pythia8 shower/hadronization, CheckMATE Delphes+analysis",
+  "matching": "DMsimp spin-1 vector quark production; gVXd chosen to reproduce each PKR invisible partial width; total width fixed to v0.45 PKR total width",
+  "nwa_justification": "all v0.45 Gamma/M < 9e-4; invisible decay tensor does not affect visible recoil in the on-shell limit",
+  "primary_gate": "multibin observed upper limit when available; if optional multibin statistics crashes after a successful CMS analysis, a conservative single-bin robscons > 1.2 is accepted only as an exclusion fallback, never as a survival certificate",
+  "robust_thresholds": {
+    "survive": "multibin r<0.8",
+    "exclude": "multibin r>1.2, or single-bin robscons>1.2 only when multibin post-processing fails",
+    "marginal": "otherwise"
+  },
+  "limitations": [
+    "LO one-hard-jet matrix element without MLM merging",
+    "10% signal cross-section systematic",
+    "not an off-shell custom PKR UFO; dedicated operator UFO required if marginal",
+    "macOS CheckMATE/Spey multibin post-processing failure is preserved in per-benchmark logs and does not erase an already completed conservative single-bin exclusion"
+  ]
+}
