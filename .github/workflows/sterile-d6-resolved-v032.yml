@@ -1,0 +1,64 @@
+name: sterile-d6-resolved-v0.32
+
+on:
+  push:
+    paths:
+      - '.github/workflows/sterile-d6-resolved-v032.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dynamicq:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up micromamba with LHAPDF
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: sterile32
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+
+      - name: Install PDF sets
+        shell: bash -el {0}
+        run: |
+          lhapdf install CT18NLO
+          lhapdf install NNPDF31_nnlo_as_0118
+          python - <<'PY'
+          import lhapdf
+          for n in ['CT18NLO','NNPDF31_nnlo_as_0118']:
+              p=lhapdf.mkPDF(n,0)
+              print(n,'loaded',p.q2Min,p.q2Max)
+          PY
+
+      - name: Exact dynamic-Q sterile d6 + resolved mediator fold
+        shell: bash -el {0}
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: |
+          python scripts/sterile_d6_resolved_uhe_v0_32.py \
+            --pdfs CT18NLO,NNPDF31_nnlo_as_0118 \
+            --energies-pev 1,10,100,300 \
+            --nx 144 \
+            --outdir results/v0.32
+
+      - name: Commit numerical results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.32/
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.32 sterile d6/resolved dynamic-Q fold [skip ci]'
+            git push
+          else
+            echo 'No result changes to commit.'
+          fi
