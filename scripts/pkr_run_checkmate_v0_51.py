@@ -25,6 +25,14 @@ def run(cmd, cwd=None, log=None, env=None):
     return p.stdout
 
 
+def run_checkmate(cmd, log):
+    """Run CheckMATE but preserve usable analysis output if only multibin stats crashes."""
+    p = subprocess.run(cmd, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    Path(log).parent.mkdir(parents=True, exist_ok=True)
+    Path(log).write_text(p.stdout)
+    return p.returncode, p.stdout
+
+
 def executable_from_env(name, candidates):
     e = os.environ.get(name)
     if e and Path(e).exists(): return Path(e)
@@ -125,11 +133,18 @@ def parse_singlebin(root: Path):
     return mx
 
 
-def verdict(r):
-    if r is None: return "NO_MULTIBIN_RESULT"
-    if r > 1.20: return "ROBUSTLY_EXCLUDED_CHECKMATE"
-    if r < 0.80: return "ROBUSTLY_SURVIVES_CHECKMATE"
-    return "MARGINAL_OPERATOR_LEVEL_RECAST_REQUIRED"
+def verdict(rmb, rsingle):
+    if rmb is not None:
+        if rmb > 1.20: return "ROBUSTLY_EXCLUDED_CHECKMATE_MULTIBIN"
+        if rmb < 0.80: return "ROBUSTLY_SURVIVES_CHECKMATE_MULTIBIN"
+        return "MARGINAL_OPERATOR_LEVEL_RECAST_REQUIRED"
+    if rsingle is None:
+        return "NO_CHECKMATE_RESULT"
+    if rsingle > 1.20:
+        return "ROBUSTLY_EXCLUDED_CHECKMATE_SINGLEBIN_MULTIBIN_FAILED"
+    if rsingle < 0.80:
+        return "SINGLEBIN_SURVIVES_BUT_MULTIBIN_REQUIRED"
+    return "MARGINAL_MULTIBIN_REQUIRED"
 
 
 def main():
@@ -153,22 +168,39 @@ def main():
             run([str(SHOWER), str(lhe), str(hepmc), str(5101+i)], log=OUT/f"pythia_{tag}.log")
         card = write_checkmate_card(row, xsec_pb, hepmc); cmroot = WORK / "checkmate" / tag
         if force and cmroot.exists(): shutil.rmtree(cmroot)
-        run([str(checkmate), str(card)], log=OUT/f"checkmate_{tag}.log")
+        cmlog = OUT / f"checkmate_{tag}.log"
+        cm_rc, cm_stdout = run_checkmate([str(checkmate), str(card)], cmlog)
         mu95, rmb, cls = parse_multibin(cmroot); rsingle = parse_singlebin(cmroot)
+        if cm_rc != 0 and rsingle is None and rmb is None:
+            tail = "\n".join(cm_stdout.splitlines()[-30:])
+            raise RuntimeError(f"CheckMATE failed before producing a usable result for {tag} (rc={cm_rc})\n{tail}")
+        stats_status = "OK" if cm_rc == 0 else "CHECKMATE_NONZERO_MULTIBIN_STATS_FAILED"
+        if cm_rc != 0:
+            print(f"WARNING {tag}: CheckMATE rc={cm_rc} after analysis; preserving single-bin result and full log {cmlog}")
+        v = verdict(rmb, rsingle)
         rows.append(dict(tag=tag, model=row.model, convention=row.convention, xsec_pb=xsec_pb,
             BR_invisible=float(row.BR_invisible), gchi_width_matched=float(row.gchi_width_matched),
+            checkmate_returncode=cm_rc, stats_status=stats_status,
             multibin_mu95=mu95, multibin_r=rmb, multibin_CLs_mu1=cls,
-            max_singlebin_robscons=rsingle, verdict=verdict(rmb)))
-        print(f"{tag}: xsec={xsec_pb:.6g} pb  r_MB={rmb}  r_single={rsingle}  {verdict(rmb)}")
+            max_singlebin_robscons=rsingle, verdict=v))
+        print(f"{tag}: xsec={xsec_pb:.6g} pb  r_MB={rmb}  r_single={rsingle}  {v}")
 
     R = pd.DataFrame(rows); R.to_csv(OUT/"checkmate_gate.csv", index=False)
     summary=[]
     for model,q in R.groupby("model"):
-        vals=[x for x in q.multibin_r.tolist() if pd.notna(x)]
-        if len(vals)!=len(q): st="INCOMPLETE"
-        elif max(vals)<0.80: st="COLLIDER_MONOJET_PASS_BOTH_WIDTH_CONVENTIONS"
-        elif min(vals)>1.20: st="COLLIDER_MONOJET_FAIL_BOTH_WIDTH_CONVENTIONS"
-        else: st="MARGINAL_OR_WIDTH_CONVENTION_DEPENDENT"
+        mb = q.multibin_r.tolist(); sb = q.max_singlebin_robscons.tolist()
+        all_mb = all(pd.notna(x) for x in mb)
+        excluded = []
+        for m, s in zip(mb, sb):
+            if pd.notna(m): excluded.append(float(m) > 1.20)
+            else: excluded.append(pd.notna(s) and float(s) > 1.20)
+        if all(excluded):
+            st = "COLLIDER_MONOJET_FAIL_BOTH_WIDTH_CONVENTIONS" if all_mb else "COLLIDER_MONOJET_FAIL_BOTH_WIDTH_CONVENTIONS_SINGLEBIN_FALLBACK"
+        elif all_mb and max(float(x) for x in mb) < 0.80:
+            st = "COLLIDER_MONOJET_PASS_BOTH_WIDTH_CONVENTIONS"
+        else:
+            st = "INCOMPLETE_OR_MARGINAL_MULTIBIN_REQUIRED"
+        vals=[float(x) for x in mb if pd.notna(x)]
         summary.append(dict(model=model,min_multibin_r=min(vals) if vals else None,max_multibin_r=max(vals) if vals else None,status=st))
     S=pd.DataFrame(summary); S.to_csv(OUT/"summary.csv",index=False)
     meta={
@@ -178,9 +210,9 @@ def main():
         "signal":"MG5 LO pp -> Xd Xd~ j, Pythia8 shower/hadronization, CheckMATE Delphes+analysis",
         "matching":"DMsimp spin-1 vector quark production; gVXd chosen to reproduce each PKR invisible partial width; total width fixed to v0.45 PKR total width",
         "nwa_justification":"all v0.45 Gamma/M < 9e-4; invisible decay tensor does not affect visible recoil in the on-shell limit",
-        "primary_gate":"multibin observed upper limit mu95; r=1/mu95",
-        "robust_thresholds":{"survive":"r<0.8","exclude":"r>1.2","marginal":"0.8<=r<=1.2"},
-        "limitations":["LO one-hard-jet matrix element without MLM merging","10% signal cross-section systematic","not an off-shell custom PKR UFO; dedicated operator UFO required if marginal"],
+        "primary_gate":"multibin observed upper limit when available; if optional multibin statistics crashes after a successful CMS analysis, a conservative single-bin robscons > 1.2 is accepted only as an exclusion fallback, never as a survival certificate",
+        "robust_thresholds":{"survive":"multibin r<0.8","exclude":"multibin r>1.2, or single-bin robscons>1.2 only when multibin post-processing fails","marginal":"otherwise"},
+        "limitations":["LO one-hard-jet matrix element without MLM merging","10% signal cross-section systematic","not an off-shell custom PKR UFO; dedicated operator UFO required if marginal","macOS CheckMATE/Spey multibin post-processing failure is preserved in per-benchmark logs and does not erase an already completed conservative single-bin exclusion"],
     }
     (OUT/"metadata.json").write_text(json.dumps(meta,indent=2))
     print("\n=== v0.51 CheckMATE PKR monojet gate ==="); print(R.to_string(index=False))
