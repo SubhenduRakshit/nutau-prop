@@ -17,7 +17,7 @@ near r=1, a dedicated operator UFO is then required.
 """
 from __future__ import annotations
 
-import csv, math, os
+import math, os
 from pathlib import Path
 import pandas as pd
 
@@ -30,6 +30,7 @@ NEVENTS = int(os.environ.get("PKR_CM_NEVENTS", "100000"))
 MCHI = float(os.environ.get("PKR_CM_MCHI_GEV", "0.001"))
 PTJMIN = float(os.environ.get("PKR_CM_PTJMIN_GEV", "100.0"))
 PDF_LHAID = int(os.environ.get("PKR_CM_LHAID", "14400"))  # CT18NLO central
+CM_ANALYSIS = os.environ.get("PKR_CM_ANALYSIS", "cms_2107_13201")
 
 
 def gchi_for_width(M: float, mchi: float, gamma_inv: float) -> float:
@@ -47,15 +48,9 @@ def slug(model: str, conv: str) -> str:
 def mg5_card(tag: str, row: pd.Series, gchi: float) -> str:
     M = float(row.M_GeV); gq = float(row.gq); width = float(row.Gamma_total_GeV)
     proc = WORK / "mg5" / tag
-    # Explicitly zero all non-PKR visible couplings, including FCNC terms that
-    # exist in some historical DMsimp UFO mirrors.
     sets = [
-        f"set MY1 {M:.16g}",
-        f"set MXd {MCHI:.16g}",
-        f"set WY1 {width:.16g}",
-        f"set gVXd {gchi:.16g}",
-        "set gAXd 0",
-        "set gVXc 0",
+        f"set MY1 {M:.16g}", f"set MXd {MCHI:.16g}", f"set WY1 {width:.16g}",
+        f"set gVXd {gchi:.16g}", "set gAXd 0", "set gVXc 0",
     ]
     for p in ["gVd11","gVu11","gVd22","gVu22","gVd33","gVu33"]:
         sets.append(f"set {p} {gq:.16g}")
@@ -66,26 +61,14 @@ def mg5_card(tag: str, row: pd.Series, gchi: float) -> str:
     ]:
         sets.append(f"set {p} 0")
     runsets = [
-        f"set nevents {NEVENTS}",
-        "set ebeam1 6500",
-        "set ebeam2 6500",
-        "set pdlabel lhapdf",
-        f"set lhaid {PDF_LHAID}",
-        f"set ptj {PTJMIN:.16g}",
-        "set etaj 5.0",
-        "set maxjetflavor 5",
-        "set ickkw 0",
+        f"set nevents {NEVENTS}", "set ebeam1 6500", "set ebeam2 6500",
+        "set pdlabel lhapdf", f"set lhaid {PDF_LHAID}", f"set ptj {PTJMIN:.16g}",
+        "set etaj 5.0", "set maxjetflavor 5", "set ickkw 0",
     ]
     return "\n".join([
-        "set automatic_html_opening False",
-        f"import model {MODEL}",
-        "generate p p > xd xd~ j",
-        f"output {proc} -f",
-        f"launch {proc} -f",
-        *runsets,
-        *sets,
-        "done",
-        "",
+        "set automatic_html_opening False", f"import model {MODEL}",
+        "generate p p > xd xd~ j", f"output {proc} -f", f"launch {proc} -f",
+        *runsets, *sets, "done", "",
     ])
 
 
@@ -93,7 +76,7 @@ def checkmate_card(tag: str, hepmc: Path, xsec_pb: float) -> str:
     outdir = WORK / "checkmate" / tag
     return f"""[Parameters]
 Name: pkr_v051_{tag}
-Analyses: cms_2107_13021
+Analyses: {CM_ANALYSIS}
 OutputDirectory: {outdir}
 OutputExists: Overwrite
 SkipParamCheck: True
@@ -132,23 +115,16 @@ def main() -> None:
         card = WORK / "cards" / f"mg5_{tag}.txt"
         card.write_text(mg5_card(tag, r, gchi))
         manifest.append({
-            "tag": tag,
-            "model": r.model,
-            "convention": r.convention,
-            "M_GeV": float(r.M_GeV),
-            "gq": float(r.gq),
+            "tag": tag, "model": r.model, "convention": r.convention,
+            "M_GeV": float(r.M_GeV), "gq": float(r.gq),
             "kappa_GeV_inv": float(r.kappa_GeV_inv),
             "Gamma_nu_GeV": float(r.Gamma_nu_GeV),
             "Gamma_total_GeV": float(r.Gamma_total_GeV),
             "Gamma_over_M": float(r.Gamma_over_M),
             "BR_invisible": float(r.BR_invisible),
-            "gchi_width_matched": gchi,
-            "mchi_GeV": MCHI,
-            "nevents": NEVENTS,
-            "ptjmin_GeV": PTJMIN,
-            "lhaid": PDF_LHAID,
-            "mg5_card": str(card),
-            "mg5_dir": str(WORK / "mg5" / tag),
+            "gchi_width_matched": gchi, "mchi_GeV": MCHI,
+            "nevents": NEVENTS, "ptjmin_GeV": PTJMIN, "lhaid": PDF_LHAID,
+            "mg5_card": str(card), "mg5_dir": str(WORK / "mg5" / tag),
             "hepmc": str(WORK / "hepmc" / f"{tag}.hepmc"),
             "checkmate_card": str(WORK / "cards" / f"checkmate_{tag}.in"),
         })
@@ -158,7 +134,7 @@ def main() -> None:
     M.to_csv(OUT / "benchmark_manifest.csv", index=False)
     print("\n=== v0.51 prepared benchmarks ===")
     print(M[["model","convention","gchi_width_matched","BR_invisible","Gamma_over_M"]].to_string(index=False))
-    print(f"\nPrepared {len(M)} MG5 cards; nevents={NEVENTS}, pTj(min)={PTJMIN:g} GeV, LHAID={PDF_LHAID}.")
+    print(f"\nPrepared {len(M)} MG5 cards; analysis={CM_ANALYSIS}; nevents={NEVENTS}, pTj(min)={PTJMIN:g} GeV, LHAID={PDF_LHAID}.")
 
 
 if __name__ == "__main__":
