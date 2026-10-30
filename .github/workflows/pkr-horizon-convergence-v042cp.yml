@@ -1,0 +1,67 @@
+name: pkr-horizon-convergence-v0.42cp
+on:
+  push:
+    paths:
+      - 'scripts/pkr_horizon_conv_task_v0_42cp.py'
+      - 'scripts/pkr_horizon_conv_aggregate_v0_42cp.py'
+      - '.github/workflows/pkr-horizon-convergence-v042cp.yml'
+permissions:
+  contents: write
+jobs:
+  task:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [eq4p4_derivative, eq4p3_dipole]
+        setting: [coarse, medium, fine]
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      MKL_NUM_THREADS: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: nutau
+          create-args: >-
+            python=3.11 numpy scipy pandas lhapdf -c conda-forge
+      - name: Install CT18NLO
+        shell: micromamba-shell {0}
+        run: lhapdf install CT18NLO
+      - name: Install package
+        shell: micromamba-shell {0}
+        run: pip install -e .
+      - name: Run one convergence task
+        shell: micromamba-shell {0}
+        run: python scripts/pkr_horizon_conv_task_v0_42cp.py --model '${{ matrix.model }}' --setting '${{ matrix.setting }}' --outdir taskout
+      - uses: actions/upload-artifact@v4
+        with:
+          name: conv-${{ matrix.model }}-${{ matrix.setting }}
+          path: taskout/*.csv
+  aggregate:
+    needs: task
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: conv-*
+          path: conv-artifacts
+          merge-multiple: true
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: nutau
+          create-args: >-
+            python=3.11 numpy scipy pandas -c conda-forge
+      - name: Aggregate convergence
+        shell: micromamba-shell {0}
+        run: python scripts/pkr_horizon_conv_aggregate_v0_42cp.py --indir conv-artifacts --outdir results/v0.42cp
+      - name: Commit results
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/v0.42cp
+          git commit -m 'results: v0.42cp parallel focused horizon convergence' || exit 0
+          git pull --rebase origin main
+          git push
