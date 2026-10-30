@@ -10,7 +10,7 @@ Test the conditional PKR benchmark
 
 against the current CMS jets+MET / monojet implementation in CheckMATE2.
 
-The analysis identifier is `cms_2107_13021`, corresponding to CMS EXO-20-004. Current CheckMATE2 provides a multibin likelihood for this analysis.
+CMS EXO-20-004 is arXiv:2107.13021. CheckMATE2 internally labels this implementation `cms_2107_13201` (the last digits are transposed relative to the arXiv identifier). Its `analyses.json` maps INSPIRE 1894408 to this internal name. v0.51 therefore uses `cms_2107_13201` exactly as CheckMATE expects.
 
 ## Why a width-matched vector invisible state is sufficient for this gate
 
@@ -33,7 +33,7 @@ This is **not** claimed to validate off-shell Eq. (4.3)/(4.4) amplitudes. If the
 1. MG5_aMC LO: `p p > xd xd~ j`, 13 TeV, CT18NLO, `pT(j)>100 GeV`.
 2. Pythia8 ISR/FSR/MPI/hadronization.
 3. HepMC2 event record.
-4. CheckMATE2 detector simulation and `cms_2107_13021` analysis.
+4. CheckMATE2 detector simulation and internal `cms_2107_13201` analysis (CMS EXO-20-004 / arXiv:2107.13021).
 5. Primary result: observed multibin signal-strength upper limit `mu95`; define `r = 1/mu95`.
 
 The default is 100,000 generated events per benchmark and a 10% signal normalization uncertainty.
