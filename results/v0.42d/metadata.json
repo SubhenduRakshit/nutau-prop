@@ -1,0 +1,10 @@
+{
+  "version": "v0.42d",
+  "mu": 0.35,
+  "target_Erec_GeV": 5011872.336272725,
+  "Emin_GeV": 1000000.0,
+  "Emax_GeV": 300000000.0,
+  "sigma_log10E": 0.3,
+  "criterion": "medium-to-fine <=5%",
+  "boundary_note": "target is 0.7 dex above Emin; two-sigma lower migration scale is approximately 1.26 PeV"
+}
