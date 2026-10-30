@@ -1,0 +1,2 @@
+status,returncode,input_rows,has_stored_robs,has_stored_rexp
+FAIL_RUNTIME_OR_REPRODUCIBILITY,1,426,True,True

@@ -1,0 +1,10 @@
+{
+  "version": "v0.50",
+  "purpose": "unmodified LLP-CDFO CMS-EXO-20-004 chain validation on authors' processed DataFrame",
+  "source_dataframe": "results_dataFrames/pp2BB1j_cms_latest.pcl",
+  "official_limit_script": "CMS-EXO-20-004/cms_exo_20_004_UpperLimits.py",
+  "python": "3.13.13 | packaged by conda-forge | (main, Apr  8 2026, 02:29:07) [Clang 19.1.7 ]",
+  "status": "FAIL_RUNTIME_OR_REPRODUCIBILITY",
+  "important": "No PKR exclusion/survival verdict is produced by v0.50.",
+  "previous_status": "v0.48--v0.49c discarded for failed public-template validation"
+}
