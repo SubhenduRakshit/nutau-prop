@@ -20,7 +20,7 @@ jobs:
         with:
           environment-name: nutau
           create-args: >-
-            python=3.11 numpy scipy pandas lhapdf matplotlib pyyaml -c conda-forge
+            python=3.11 numpy scipy pandas lhapdf -c conda-forge
       - name: Install CT18NLO
         shell: micromamba-shell {0}
         run: lhapdf install CT18NLO
