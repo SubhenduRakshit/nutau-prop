@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
       }
       continue;
     }
-    auto evt = std::make_unique<HepMC::GenEvent>();
+    std::unique_ptr<HepMC::GenEvent> evt(new HepMC::GenEvent());
     to_hepmc.fill_next_event(pythia, evt.get());
     ascii_io << evt.get();
     ++accepted;
