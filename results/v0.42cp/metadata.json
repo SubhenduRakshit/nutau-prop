@@ -1,0 +1,7 @@
+{
+  "version": "v0.42cp",
+  "mu": 0.7,
+  "energy_min_GeV": 1000000.0,
+  "energy_max_GeV": 300000000.0,
+  "criterion": "medium-to-fine relative change <=5% preferred"
+}
