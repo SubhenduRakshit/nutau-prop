@@ -22,8 +22,7 @@ jobs:
             python=3.11 numpy scipy pandas lhapdf -c conda-forge
       - name: Install CT18NLO
         shell: micromamba-shell {0}
-        run: |
-          lhapdf install CT18NLO
+        run: lhapdf install CT18NLO
       - name: Install package
         shell: micromamba-shell {0}
         run: pip install -e .
@@ -34,6 +33,6 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add results/v0.41
-          git commit -m 'results: PKR constrained Earth propagation v0.41' || exit 0
+          git add results/v0.41b
+          git commit -m 'results: PKR vertical propagation screen v0.41b' || exit 0
           git push
