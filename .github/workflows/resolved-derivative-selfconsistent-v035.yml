@@ -1,0 +1,57 @@
+name: resolved-derivative-selfconsistent-v0.35
+
+on:
+  push:
+    paths:
+      - '.github/workflows/resolved-derivative-selfconsistent-v035.yml'
+      - 'scripts/resolved_derivative_selfconsistent_v0_35.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up micromamba with LHAPDF
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: deriv35
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+
+      - name: Install PDF sets
+        shell: bash -el {0}
+        run: |
+          lhapdf install CT18NLO
+          lhapdf install NNPDF31_nnlo_as_0118
+
+      - name: Run self-consistent kappa5 scan
+        shell: bash -el {0}
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: |
+          python scripts/resolved_derivative_selfconsistent_v0_35.py \
+            --pdfs CT18NLO,NNPDF31_nnlo_as_0118 \
+            --energies-pev 100,300 \
+            --masses-gev 5,10,20,40,70,100,150,220,300,500,750,1000,1500,2000 \
+            --target 0.05 --nx 112 --outdir results/v0.35
+
+      - name: Commit results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.35/
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.35 self-consistent derivative-Zprime kappa5 [skip ci]'
+            git push
+          fi
