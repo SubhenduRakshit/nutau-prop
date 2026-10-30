@@ -1,0 +1,31 @@
+{
+  "version": "v0.65_ct18_smoke",
+  "status": "PASS",
+  "purpose": "CT18NLO/LHAPDF compatibility smoke test only; no CheckMATE conclusion",
+  "benchmark": {
+    "BR_invisible": 0.45,
+    "M_GeV": 50.0,
+    "mchi_GeV": 0.001,
+    "gchi": 0.10509422185865111,
+    "width_GeV": 0.03255247767005853,
+    "gq_min": 0.03,
+    "gq_max": 0.03,
+    "lhaid": 14400
+  },
+  "checks": {
+    "param_card_matches_target_before": true,
+    "param_card_matches_target_after": true,
+    "banner_vs_lhe_init": true,
+    "banner_records_lhaid_14400": true,
+    "banner_records_lhapdf": true,
+    "event_payload_nonempty": true
+  },
+  "metrics": {
+    "mg5_banner_xsec_pb": 7.02231,
+    "lhe_init_xsec_pb": 7.02231,
+    "banner_vs_init_rel_diff": 0.0,
+    "event_payload_sha256": "884b268165fbd167778a14ad7feb093ae9e578cffd77f880d88d46946b7ecd42"
+  },
+  "patch_note": "pdf_lhapdf62.cc catches missing AlphaS_Lambda4/5 metadata and returns -1.0, the fallback already specified by upstream MG5.",
+  "next_step": "If PASS, run exactly one CT18NLO CheckMATE benchmark; no scan."
+}
