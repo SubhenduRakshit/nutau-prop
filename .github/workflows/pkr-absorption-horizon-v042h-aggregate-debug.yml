@@ -1,0 +1,49 @@
+name: pkr-v0.42h-aggregate-debug
+on:
+  push:
+    paths:
+      - '.github/workflows/pkr-absorption-horizon-v042h-aggregate-debug.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: task-*
+          path: task-artifacts
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 41029243138
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: nutau
+          create-args: >-
+            python=3.11 numpy scipy pandas lhapdf -c conda-forge
+      - name: Install CT18NLO
+        shell: micromamba-shell {0}
+        run: lhapdf install CT18NLO
+      - name: Install package
+        shell: micromamba-shell {0}
+        run: pip install -e .
+      - name: Aggregate with captured traceback
+        shell: micromamba-shell {0}
+        run: |
+          mkdir -p results/v0.42h
+          set +e
+          python scripts/pkr_horizon_aggregate_v0_42h.py --indir task-artifacts --outdir results/v0.42h > results/v0.42h/aggregate_debug.log 2>&1
+          status=$?
+          cat results/v0.42h/aggregate_debug.log
+          echo $status > results/v0.42h/aggregate_exit_code.txt
+          exit 0
+      - name: Commit diagnostics or results
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/v0.42h
+          git commit -m 'debug: v0.42h aggregate completed-artifact diagnosis' || exit 0
+          git push
