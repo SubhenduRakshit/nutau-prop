@@ -13,7 +13,7 @@ jobs:
       OMP_NUM_THREADS: 1
       OPENBLAS_NUM_THREADS: 1
       MKL_NUM_THREADS: 1
-      NUTAU_NPROC: 4
+      NUTAU_NPROC: 1
     steps:
       - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v2
