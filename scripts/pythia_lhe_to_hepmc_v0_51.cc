@@ -50,7 +50,8 @@ int main(int argc, char** argv) {
     }
     std::unique_ptr<HepMC::GenEvent> evt(new HepMC::GenEvent());
     to_hepmc.fill_next_event(pythia, evt.get());
-    ascii_io << evt.get();
+    HepMC::GenEvent* evt_ptr = evt.get();
+    ascii_io << evt_ptr;
     ++accepted;
   }
   pythia.stat();
