@@ -1,12 +1,28 @@
-# PKR Earth propagation v0.41 — constrained Eq. (4.4) and Eq. (4.3)
+# PKR Earth propagation v0.41 — conditional sterile-sink / absorption-horizon screen
 
-**Status:** propagation physics gate passed at screening level.  This note supersedes propagation conclusions based on unconstrained/fixed-cut Case-6 benchmarks, but preserves those older records as audit history.
+**Status:** **SUPERSEDED AS A PROPAGATION CERTIFICATION.**  v0.41 is retained as a conditional sterile-sink screen only.  The allowed-model and detector-level propagation gate remains open.
 
-## 1. Question
+## Corrected decision
 
-Return to the original aim of the project: after imposing the updated constraints and the corrected EFT-validity condition, can either of the final non-resonant PKR interactions produce a significant Earth-propagation signal?
+The three binding statuses are
 
-We study
+\[
+\boxed{\text{Absorption-horizon propagation mechanism: PROMISING}}
+\]
+
+\[
+\boxed{\text{Conditional active-to-sterile sink screen: PASSED}}
+\]
+
+\[
+\boxed{\text{Allowed-model + detector-level propagation gate: OPEN}}
+\]
+
+The earlier statement `PROPAGATION GATE: PASS` is **retracted**.
+
+## 1. Scope
+
+This screen asks whether the two surviving light resolved PKR interactions can generate a potentially observable Earth-propagation distortion after the updated split-coupling validity condition is imposed:
 
 - PKR Eq. (4.4), resolved derivative `Z'` interaction;
 - PKR Eq. (4.3), resolved transition-dipole `Z'` interaction.
@@ -14,163 +30,128 @@ We study
 For both models
 
 \[
-\kappa_i \equiv {c_i g_q\over\Lambda},\qquad
+\kappa_i={c_i g_q\over\Lambda},\qquad
 \Lambda_{\rm vert}={\Lambda\over c_i}={g_q\over\kappa_i},
 \]
 
-and the validity cut is imposed inside every PDF integral,
+with
 
 \[
-\boxed{\sqrt{\hat s}<g_q/\kappa_i}.
+\boxed{\sqrt{\hat s}<g_q/\kappa_i}
 \]
 
-The resolved propagator is retained exactly.  For equal `(M,kappa)`, the Eq. (4.3) hard kernel is twice Eq. (4.4).
+imposed inside every PDF integral.
 
-## 2. Current constraint choice
+## 2. Conditional 50 GeV benchmark
 
-CMS EXO-24-007 (23 March 2026) searches for 50--300 GeV narrow spin-1 dijet resonances with 138 fb^-1 and quotes observed universal-quark coupling limits spanning approximately
+The screen used
 
 \[
-g_q<0.03\text{--}0.13,
+M_{Z'}=50\ {\rm GeV},\qquad g_q=0.03,
 \]
 
-assuming the resonance decays only to quarks.  Because the PKR mediator also has an invisible neutrino channel, using the strongest end, `gq=0.03`, uniformly is deliberately conservative for this first propagation gate; a mass-by-mass branching-ratio recast can only be less trivial than this screen.
+and found the self-consistent 100-PeV 5% interaction benchmarks
 
-Current IceCube HESE cross-section data cover 60 TeV--10 PeV and remain compatible with the SM, but the published energy-bin uncertainties are much larger than a 5% extra contribution.  There is no published modern operator-specific `kappa(M)` likelihood for either PKR dimension-5 vertex.  Therefore this note does **not** invent a modern monojet/IceCube `kappa` exclusion; it uses the direct CMS quark-coupling envelope plus the already documented PKR historical product bounds as screening constraints.
-
-## 3. Why only 50 GeV is propagated in this conservative pass
-
-The v0.39 peak-capacity calculation already proved that at `gq=0.03` the 100 and 220 GeV points cannot reach a 5% UHE cross-section modification for either interaction after the true vertex-validity cut is imposed.
-
-Using the exact v0.39 scaling with fixed `gq`, the maximum 100-PeV fractions are approximately
-
-| M | Eq. (4.4) max | Eq. (4.3) max |
-|---:|---:|---:|
-| 100 GeV | 1.62% | 3.24% |
-| 220 GeV | 0.22% | 0.44% |
-
-so these masses are not useful for a conservative 5% propagation benchmark.  The 50 GeV point remains open and lies inside the new CMS search range.
-
-## 4. Self-consistent 50 GeV benchmarks
-
-CT18NLO dynamic-Q folds with `gq=0.03` give
-
-| model | kappa_5% [GeV^-1] | Lambda_vert=gq/kappa |
+| model | `kappa_5%` [GeV^-1] | `Lambda_vert=gq/kappa` |
 |---|---:|---:|
 | Eq. (4.4) derivative | 1.05797e-4 | 283.6 GeV |
 | Eq. (4.3) dipole | 5.88269e-5 | 510.0 GeV |
 
-Both are genuine first crossings of `sigma_NP/sigma_SM=5%` at 100 PeV with the moving validity cut evaluated inside the fold.
+These are **conditional benchmarks, not established allowed points**.  A complete model must still satisfy the mediator-width/branching-ratio, monojet/missing-energy, dijet and IceCube likelihood constraints with the same parameter split.
 
-The NP/SM fractions remain close to 5% over the relevant energy range:
+## 3. Topology caveat: literal PKR versus sterile-N completion
 
-| E | Eq. (4.4) | Eq. (4.3) |
-|---:|---:|---:|
-| 1 PeV | 5.43% | 4.80% |
-| 3 PeV | 5.35% | 4.87% |
-| 10 PeV | 5.24% | 4.94% |
-| 30 PeV | 5.13% | 4.98% |
-| 100 PeV | 5.00% | 5.00% |
-| 300 PeV | 4.88% | 5.00% |
+The pure-sink calculation is **not** the generic literal PKR prediction.  Read literally, Eqs. (4.3)/(4.4) are off-diagonal/LNV active-flavour transitions.  Treating the daughter as a disappearing sterile state requires an explicit active-to-sterile completion.
 
-This flatness is a useful physical feature of the light resolved mediator: the propagator tames the momentum growth that made the contact operators pathological.
+Therefore the v0.41 sink result should be interpreted as the **maximal disappearance envelope** for such a sterile-N completion.  For a literal active/antineutrino daughter, part of the interaction is redistribution rather than loss and the `nu_tau` deficit must be computed by the coupled transport system.
 
-## 5. Earth sterile-sink propagation envelope
+## 4. Why the vertical headline was misleading
 
-For the process `nu_tau N -> N_s X` with a sufficiently sterile/long-lived daughter, the new channel is a genuine active-flux sink.  Independently of SM regeneration, its exact disappearance optical depth is
+For a sterile sink with fractional extra interaction strength `r`, the additional suppression relative to SM transmission is approximately
 
 \[
-\tau_N(E,\theta)=N_A X(\theta)\,\sigma_{\rm NP}(E),
-\qquad
-P_{\rm sink}=e^{-\tau_N}.
+\Delta=1-e^{-r\tau_{\rm SM}}.
 \]
 
-The PREM vertical column obtained by the repository code is
+Large fractional suppression at very large `tau_SM` is not automatically useful because the SM event density is already exponentially depleted there.  A Poisson-only, monochromatic, single-bin toy figure of merit behaves for `r << 1` as
 
 \[
-X_{\rm vert}=1.09479\times10^{10}\ {m g\,cm^{-2}}.
+\Delta\sqrt{N}\propto r\tau_{\rm SM}e^{-\tau_{\rm SM}/2},
 \]
 
-### Vertical chord
-
-| E | Eq. (4.4) survival | Eq. (4.3) survival |
-|---:|---:|---:|
-| 1 PeV | 0.704 | 0.733 |
-| 3 PeV | 0.562 | 0.592 |
-| 10 PeV | 0.386 | 0.407 |
-| 30 PeV | 0.231 | 0.241 |
-| 100 PeV | 0.102 | 0.102 |
-| 300 PeV | 0.0355 | 0.0328 |
-
-Thus even a 5% interaction-level effect corresponds to a pure-sink suppression of roughly
-
-- 27--30% at 1 PeV;
-- 59--61% at 10 PeV;
-- 90% at 100 PeV;
-- 96--97% at 300 PeV
-
-for a vertical Earth chord.
-
-### Zenith dependence at 100 PeV
-
-For both models (they are matched to 5% there), the extra sterile-sink suppression is approximately
-
-| |cos theta| | pure-sink suppression |
-|---:|---:|
-| 0.1 | 7.5% |
-| 0.3 | 23.6% |
-| 0.5 | 41.2% |
-| 0.7 | 56.9% |
-| 1.0 | 89.8% |
-
-This strong angular dependence is the central observable.
-
-## 6. What this does and does not prove
-
-### Proven by v0.41d
-
-1. Both final PKR models have a conservative current-constraint benchmark at `M=50 GeV, gq=0.03` that gives a self-consistent 5% UHE cross-section contribution.
-2. The corrected `sqrt(shat)<gq/kappa` validity cut is applied point-by-point in the dynamic-Q PDF fold.
-3. The new interaction is a sterile sink, and its PREM optical depth is large: the Earth can amplify a 5% cross-section modification into an O(10--90%) zenith-dependent flux effect.
-4. Eq. (4.3) needs the smaller product coupling and has the higher vertex-validity scale; Eq. (4.4) has fewer transition-moment-specific model complications.
-
-### Not yet claimed as exact detector prediction
-
-The table above isolates the BSM sink.  The final arriving `nu_tau` spectrum also contains SM NC downscattering and `nu_tau -> tau -> nu_tau` regeneration.  These refill lower-energy bins and must be solved together with the sink for a precision spectrum.  The repository's repaired mixed transport also tracks the secondary `nu_mu` from tau decay; because the BSM sink removes parent `nu_tau`, the secondary `nu_mu` component must change as well and cannot be set identically to the SM value.
-
-A full mixed-grid PREM calculation was launched during this certification pass but the matrix-exponential solve remained numerically stiff on the UHE grid.  No result from that unfinished solve is used here.  The v0.41d optical-depth envelope is therefore the certified propagation **screen**, not a detector likelihood.
-
-## 7. Physics interpretation
-
-This substantially changes the paper outlook.  The surviving light resolved mediators do not need an enormous raw cross-section enhancement.  Because Earth attenuation is exponential, an experimentally allowed few-percent sterile sink can generate an order-one change in the upward `nu_tau` spectrum while leaving downward events essentially unaffected.
-
-That provides a clean target observable:
+which peaks at
 
 \[
-\boxed{\text{energy-dependent up/down and zenith distortion of the }\nu_\tau\text{ flux}}
+\tau_{\rm SM}=2.
 \]
 
-with a correlated reduction/modification of the tau-decay secondary `nu_mu` component.
-
-The two operators are almost degenerate at the propagation level once matched to the same 5% cross-section fraction; their discrimination comes mainly from collider/width/transition-moment constraints and their different required `kappa`, not from radically different Earth attenuation shapes.
-
-## 8. Decision
+The maximum is broad; the relevant analysis region is approximately
 
 \[
-\boxed{\text{PROPAGATION GATE: PASS}}
+\boxed{1\lesssim\tau_{\rm SM}\lesssim3},
 \]
 
-The original paper aim is therefore still viable.  The correct next physics task is no longer an operator survey.  It is to stabilize/converge the coupled PREM `nu_tau-tau` transport for these 50 GeV constrained benchmarks and then fold the species-resolved spectra into IceCube/ARCA/Gen2 observables, including secondary `nu_mu` tracks.
+not the vertical chord.  The exact detector optimum can move within this band because of effective area, solid angle, backgrounds, energy migration and regeneration.
 
-## 9. Reproducibility
+## 5. Certified result from v0.41d
+
+The exact dynamic-Q sterile-sink optical-depth calculation demonstrates that a few-percent allowed interaction contribution can generate an order-10% distortion near the SM absorption horizon.  It also demonstrates that the enormous vertical deficits previously highlighted occur mostly where the direct SM flux is already strongly attenuated.
+
+Hence the robust physics statement from v0.41 is:
+
+\[
+\boxed{\text{A moving absorption-horizon distortion is potentially observable.}}
+\]
+
+It is **not** yet a detector-level sensitivity result.
+
+## 6. Regeneration has no predetermined sign
+
+No claim is made that the pure-sink result is a conservative floor.  In the full system:
+
+1. `nu_tau -> tau -> nu_tau` regeneration refills lower-energy bins;
+2. this can reduce the local fractional deficit at fixed `(E,theta)`;
+3. the sterile sink removes parents that would otherwise generate the full descendant chain, which can increase the deficit elsewhere;
+4. NC migration and reconstructed-energy migration further mix these effects.
+
+The net sign is therefore energy- and zenith-dependent and must be computed.
+
+## 7. Analysis strategy after correction
+
+The next calculation must center the detector analysis on the broad absorption-horizon strip rather than on vertical events:
+
+- use `(E_rec, cos(theta))` bins;
+- bin more finely in zenith than in reconstructed energy;
+- overlay `tau_SM = 1,2,3` contours;
+- display the SM event density on the same axes as the BSM fractional distortion;
+- include the coupled `nu_tau <-> tau` system, NC degradation, tau-decay secondary `nu_mu`, detector effective area, migration and backgrounds;
+- compare the sterile-N disappearance completion against the literal active/LNV redistribution topology.
+
+The approximate scaling `sigma_SM ~ E^0.36` is useful only for intuition.  Numerical work should use the local slope
+
+\[
+\alpha(E)={d\ln\sigma_{\rm SM}\over d\ln E}
+\]
+
+from the actual cross-section tables.
+
+## 8. Reproducibility
+
+The original v0.41d numerical screen remains preserved:
 
 - `scripts/pkr_sink_envelope_v0_41d.py`
 - `results/v0.41d/benchmark_gate.csv`
 - `results/v0.41d/sink_envelope.csv`
 - `results/v0.41d/metadata.json`
-- PDF: CT18NLO
-- benchmark: `M=50 GeV, gq=0.03`
-- validity: `sqrt(shat)<gq/kappa` inside each PDF fold
-- Earth: PREM chord profile
+- CT18NLO PDFs
+- PREM Earth model
 
-Earlier failed/contact/strong-coupling candidates remain preserved in the master portfolio and are not deleted.
+These results are retained as the conditional sterile-sink envelope and are not deleted.
+
+## 9. Binding next gate
+
+\[
+\boxed{\text{v0.42: coupled transport + detector-weighted absorption-horizon map}}
+\]
+
+Only after that calculation, together with the explicit allowed-model constraint check, may the project claim a propagation gate pass.
