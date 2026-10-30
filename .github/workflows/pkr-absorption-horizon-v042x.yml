@@ -1,0 +1,72 @@
+name: pkr-absorption-horizon-v0.42x
+on:
+  push:
+    paths:
+      - 'scripts/pkr_horizon_task_v0_42x.py'
+      - 'scripts/pkr_horizon_aggregate_v0_42x.py'
+      - '.github/workflows/pkr-absorption-horizon-v042x.yml'
+permissions:
+  contents: write
+jobs:
+  task:
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [eq4p4_derivative, eq4p3_dipole]
+        mu: ['0.12','0.25','0.45','0.70']
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      MKL_NUM_THREADS: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: nutau
+          create-args: >-
+            python=3.11 numpy scipy pandas lhapdf -c conda-forge
+      - name: Install CT18NLO
+        shell: micromamba-shell {0}
+        run: lhapdf install CT18NLO
+      - name: Install package
+        shell: micromamba-shell {0}
+        run: pip install -e .
+      - name: Run one ultra-coarse coupled horizon task
+        shell: micromamba-shell {0}
+        run: python scripts/pkr_horizon_task_v0_42x.py --model '${{ matrix.model }}' --mu '${{ matrix.mu }}' --outdir taskout
+      - uses: actions/upload-artifact@v4
+        with:
+          name: task-${{ matrix.model }}-${{ matrix.mu }}
+          path: taskout/*.csv
+  aggregate:
+    needs: task
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: task-*
+          path: task-artifacts
+          merge-multiple: true
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: nutau
+          create-args: >-
+            python=3.11 numpy scipy pandas lhapdf -c conda-forge
+      - name: Install CT18NLO
+        shell: micromamba-shell {0}
+        run: lhapdf install CT18NLO
+      - name: Install package
+        shell: micromamba-shell {0}
+        run: pip install -e .
+      - name: Aggregate sign-finder
+        shell: micromamba-shell {0}
+        run: python scripts/pkr_horizon_aggregate_v0_42x.py --indir task-artifacts --outdir results/v0.42x
+      - name: Commit results
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/v0.42x
+          git commit -m 'results: v0.42x ultra-coarse coupled horizon sign finder' || exit 0
+          git push
