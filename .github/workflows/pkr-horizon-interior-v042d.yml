@@ -1,4 +1,5 @@
 name: pkr-horizon-interior-v0.42d
+# boundary-safe interior certification trigger
 on:
   push:
     paths:
