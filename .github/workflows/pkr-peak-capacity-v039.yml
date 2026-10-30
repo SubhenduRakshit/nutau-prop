@@ -1,0 +1,41 @@
+name: pkr-peak-capacity-v0.39
+on:
+  push:
+    paths:
+      - '.github/workflows/pkr-peak-capacity-v039.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pkr39
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+      - name: Install CT18NLO
+        shell: bash -el {0}
+        run: lhapdf install CT18NLO
+      - name: Run peak-capacity scan
+        shell: bash -el {0}
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: python scripts/pkr_peak_capacity_v0_39.py
+      - name: Commit results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.39/
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.39 PKR peak-capacity closure scan [skip ci]'
+            git push
+          fi
