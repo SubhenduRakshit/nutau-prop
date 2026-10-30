@@ -1,0 +1,34 @@
+{
+  "version": "v0.63_mg5_norm",
+  "status": "FAIL",
+  "purpose": "deterministic generator-level normalization certification only; no CheckMATE conclusion",
+  "execution_mode": "build process; edit persisted cards directly; verify; process-local generate_events -f",
+  "checks": {
+    "persisted_param_cards_match_targets": true,
+    "cards_stable_through_generation": false,
+    "event_payload_hashes_unique": true,
+    "param_card_hashes_unique": true,
+    "run_card_hashes_unique": false,
+    "mg5_banner_vs_lhe_init": true,
+    "sigma_over_BR_constant_within_2pct": true,
+    "cross_section_monotonic_with_BR": true
+  },
+  "metrics": {
+    "max_banner_vs_init_relative_difference": 2.2188263060468985e-16,
+    "sigma_over_BR_mean_pb": 16.069574814814814,
+    "max_relative_deviation_sigma_over_BR": 0.0036509758537943693
+  },
+  "tolerances": {
+    "sigma_over_BR": 0.02,
+    "banner_vs_init": 1e-06,
+    "param_card_relative": 1e-07
+  },
+  "history": {
+    "v0.52": "failed: launch -f ran with UFO defaults",
+    "v0.53": "failed: interactive launch did not produce LHE",
+    "v0.54": "failed: interactive launch state sequencing still did not produce LHE"
+  },
+  "next_step": "If PASS, run exactly one CheckMATE benchmark. If FAIL, stop and diagnose generator normalization.",
+  "pdf_for_certification": "MG5 built-in nn23lo1 on both beams",
+  "scope_note": "This certifies generator normalization/NWA BR scaling only. CT18NLO/LHAPDF compatibility remains unresolved and is required before the physical collider benchmark."
+}
