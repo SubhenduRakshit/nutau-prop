@@ -1,10 +1,24 @@
 {
   "version": "v0.42d",
-  "mu": 0.35,
-  "target_Erec_GeV": 5011872.336272725,
-  "Emin_GeV": 1000000.0,
-  "Emax_GeV": 300000000.0,
+  "execution": "Mac Studio local runner; no GitHub Actions required",
+  "pdf": "CT18NLO",
+  "M_GeV": 50.0,
+  "gq": 0.03,
+  "target_ratio": 0.05,
+  "validity": "sqrt(shat)<gq/kappa inside PDF fold",
+  "gamma": 2.5,
+  "mus": [
+    0.25,
+    0.35,
+    0.45,
+    0.55
+  ],
+  "tau_refine": 4,
+  "max_step_km": 96.0,
   "sigma_log10E": 0.3,
-  "criterion": "medium-to-fine <=5%",
-  "boundary_note": "target is 0.7 dex above Emin; two-sigma lower migration scale is approximately 1.26 PeV"
+  "topologies": {
+    "sterile_sink": "dirac_sink",
+    "active_redistribution_proxy": "majorana_flip"
+  },
+  "detector": "ARCA calibrated Fig.7 tau-CC upgoing public-response projection; not official likelihood"
 }
