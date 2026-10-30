@@ -1,0 +1,38 @@
+{
+  "version": "v0.68_checkmate_single",
+  "status": "PASS",
+  "benchmark": {
+    "tag": "eq4p4_derivative__one_Weyl_pair",
+    "model": "eq4p4_derivative",
+    "convention": "one_Weyl_pair",
+    "why_this_one": "lower BR_inv than operator_plus_hc; conservative NWA monojet test",
+    "M_GeV": 50.0,
+    "mchi_GeV": 0.001,
+    "gq": 0.03,
+    "gchi_width_matched": 0.08907665201691667,
+    "Gamma_total_GeV": 0.028427519041751198,
+    "Gamma_over_M": 0.0005685503808350239,
+    "BR_invisible": 0.3701925696633259,
+    "lhaid": 14400
+  },
+  "generator_checks": {
+    "param_card_before": true,
+    "param_card_after": true,
+    "banner_records_lhaid_14400": true,
+    "banner_vs_lhe_rel_diff": 0.0,
+    "xsec_over_BR_consistent_with_v067_within_2pct": true,
+    "xsec_over_BR_relative_difference_vs_v067": 0.007027222284315111
+  },
+  "cross_section_pb": 5.8175,
+  "checkmate": {
+    "analysis": "cms_2107_13201",
+    "returncode": 1,
+    "multibin_mu95": null,
+    "multibin_r": null,
+    "multibin_CLs_mu1": null,
+    "max_singlebin_robscons": 0.3270606438271486,
+    "detector_status": "MULTIBIN_UNRESOLVED_SINGLEBIN_DIAGNOSTIC_ONLY",
+    "finality": "not_final"
+  },
+  "interpretation_rule": "Only a valid multibin result can close the collider gate. If multibin is unavailable, single-bin robscons is diagnostic only. Because this is the lower-BR width convention, a robust multibin exclusion here also excludes the higher-BR operator_plus_hc convention within the validated NWA mapping."
+}
