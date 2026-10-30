@@ -1,4 +1,5 @@
 name: pkr-absorption-horizon-v0.42h
+# UHE-only coupled horizon trigger
 on:
   push:
     paths:
