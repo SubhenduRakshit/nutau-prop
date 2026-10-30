@@ -9,8 +9,14 @@ def main():
  ap=argparse.ArgumentParser();ap.add_argument('--indir',required=True);ap.add_argument('--outdir',required=True);a=ap.parse_args();src=Path(a.indir);out=Path(a.outdir);out.mkdir(parents=True,exist_ok=True)
  fs=sorted(src.rglob('task_*.csv'))
  if not fs:raise RuntimeError('no task csv')
- df=pd.concat([pd.read_csv(f) for f in fs],ignore_index=True);df.to_csv(out/'coupled_true_energy_map.csv',index=False)
- mod.MUS=np.array(sorted(df.mu.unique()),float);mod.EGRID=np.array(sorted(df.E_GeV.unique()),float);mod.SIGMA_LOG10E=.30
+ dfs=[pd.read_csv(f) for f in fs]
+ df=pd.concat(dfs,ignore_index=True);df.to_csv(out/'coupled_true_energy_map.csv',index=False)
+ # Every matrix task used the same 15-point np.geomspace grid, but CSV round-trip
+ # can give ulp-level differences across jobs.  Use one task as the canonical
+ # energy grid rather than unioning float values from all tasks.
+ canonical=np.sort(dfs[0].E_GeV.to_numpy(float))
+ if any(len(x.E_GeV)!=len(canonical) for x in dfs):raise RuntimeError('inconsistent task energy-grid lengths')
+ mod.MUS=np.array(sorted(df.mu.unique()),float);mod.EGRID=canonical;mod.SIGMA_LOG10E=.30
  det=mod.detector_weight(df);det.to_csv(out/'arca_public_response_map.csv',index=False)
  rows=[]
  for (model,topology),q in det.groupby(['model','topology']):
