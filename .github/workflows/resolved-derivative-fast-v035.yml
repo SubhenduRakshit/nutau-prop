@@ -1,0 +1,48 @@
+name: resolved-derivative-fast-v0.35
+
+on:
+  push:
+    paths:
+      - '.github/workflows/resolved-derivative-fast-v035.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: deriv35fast
+          create-args: >-
+            python=3.11
+            numpy
+            lhapdf
+            -c conda-forge
+          init-shell: bash
+          cache-environment: true
+      - name: Install CT18NLO
+        shell: bash -el {0}
+        run: lhapdf install CT18NLO
+      - name: Fast decision scan
+        shell: bash -el {0}
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: |
+          python scripts/resolved_derivative_selfconsistent_v0_35.py \
+            --pdfs CT18NLO --energies-pev 100,300 \
+            --masses-gev 5,40,100,220,500,1000,2000 \
+            --target 0.05 --nx 48 --outdir results/v0.35-fast
+      - name: Commit fast results
+        shell: bash -el {0}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/v0.35-fast/
+          if ! git diff --cached --quiet; then
+            git commit -m 'results: v0.35 fast self-consistent kappa5 scan [skip ci]'
+            git push
+          fi
