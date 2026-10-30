@@ -80,6 +80,29 @@ if [ ! -x "$CMINST/bin/CheckMATE" ]; then
         --with-python="$CONDA_PREFIX/bin/python"
     fi
 
+    # Apple Clang rejects two legacy ATLAS helper returns that narrow double -> float
+    # inside list initialization.  This analysis is unrelated to our CMS gate, but
+    # CheckMATE builds all analyses.  Add explicit casts; numerical values are unchanged.
+    ATLAS_SRC="tools/analysis/src/analyses/ATLAS_13TeV/atlas_2411_02040.cc"
+    if [ -f "$ATLAS_SRC" ]; then
+      python - "$ATLAS_SRC" <<'PY'
+from pathlib import Path
+import sys
+p = Path(sys.argv[1])
+s = p.read_text()
+old = "return {1.5*lambdas[0], 1.5*(lambdas[0] + lambdas[1]), 2.*lambdas[1]/(lambdas[1] + lambdas[2])};"
+new = "return {static_cast<float>(1.5*lambdas[0]), static_cast<float>(1.5*(lambdas[0] + lambdas[1])), static_cast<float>(2.*lambdas[1]/(lambdas[1] + lambdas[2]))};"
+if old in s:
+    n = s.count(old)
+    p.write_text(s.replace(old, new))
+    print(f"Applied Apple-Clang narrowing fix to {p} ({n} occurrence(s)).")
+elif new in s:
+    print(f"Apple-Clang narrowing fix already present in {p}.")
+else:
+    raise SystemExit(f"ERROR: expected narrowing pattern not found in {p}; refusing blind patch")
+PY
+    fi
+
     BUILDLOG="$WORK/checkmate_build_serial.log"
     echo "Continuing CheckMATE build serially; full log: $BUILDLOG"
     set +e
