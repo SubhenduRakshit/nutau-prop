@@ -1,0 +1,42 @@
+{
+  "version": "v0.44",
+  "input_transport": "results/v0.42d converged coupled transport",
+  "arca_response": "published Fig.7 coarse digitisation calibrated to exact published 220/year track and 60/year shower cosmic rates",
+  "important_absorption_fix": "ARCA upgoing Aeff already contains SM Earth absorption; use incident flux times SM Aeff and reweight only by BSM/SM transport ratios",
+  "zenith": {
+    "mu_edges": [
+      0.25,
+      0.3,
+      0.35,
+      0.39999999999999997,
+      0.44999999999999996,
+      0.49999999999999994,
+      0.5499999999999999
+    ],
+    "limitation": "transport uses fine mu bins; public shower Aeff is hemisphere-averaged and track Aeff held constant inside published coarse parent bin"
+  },
+  "reco_energy_edges_GeV": [
+    100000.0,
+    300000.0,
+    1000000.0,
+    3000000.0,
+    10000000.0,
+    30000000.0,
+    100000000.0
+  ],
+  "sigma_log10E": 0.3,
+  "horizon_band": [
+    1.0,
+    3.0
+  ],
+  "profiled": [
+    "astrophysical normalization",
+    "spectral index"
+  ],
+  "secondary_numu": "included in total primary+tau-decay-secondary muon-flavor modifier",
+  "direct_np_showers": "included with NC response proxy",
+  "background_status": "no bin-by-bin atmospheric background; ARCA Z is optimistic signal-only upper bound",
+  "gen2_status": "no fabricated response; x5/x10 generic acceptance/exposure scaling",
+  "map_gamma": 2.5,
+  "limitation_gamma": "transport modifiers fixed at gamma=2.5 while detector gamma is profiled"
+}

@@ -1,0 +1,21 @@
+model,topology,acceptance_multiplier,Z_scaled,interpretation
+eq4p3_dipole,active_redistribution_proxy,1.0,0.004908533231747544,ARCA_10y
+eq4p3_dipole,active_redistribution_proxy,5.0,0.010975813976004238,Gen2-like generic scaling; not detector response
+eq4p3_dipole,active_redistribution_proxy,10.0,0.015522144982949359,Gen2-like generic scaling; not detector response
+eq4p3_dipole,active_redistribution_proxy,166018.5131863428,2.0,required multiplier for 2sigma
+eq4p3_dipole,active_redistribution_proxy,373541.65466927143,3.0,required multiplier for 3sigma
+eq4p3_dipole,sterile_sink,1.0,0.01978105734768603,ARCA_10y
+eq4p3_dipole,sterile_sink,5.0,0.04423178889624766,Gen2-like generic scaling; not detector response
+eq4p3_dipole,sterile_sink,10.0,0.06255319574509711,Gen2-like generic scaling; not detector response
+eq4p3_dipole,sterile_sink,10222.591047371066,2.0,required multiplier for 2sigma
+eq4p3_dipole,sterile_sink,23000.829856584896,3.0,required multiplier for 3sigma
+eq4p4_derivative,active_redistribution_proxy,1.0,0.006245081213449487,ARCA_10y
+eq4p4_derivative,active_redistribution_proxy,5.0,0.013964426118279928,Gen2-like generic scaling; not detector response
+eq4p4_derivative,active_redistribution_proxy,10.0,0.01974868080722855,Gen2-like generic scaling; not detector response
+eq4p4_derivative,active_redistribution_proxy,102561.36927052963,2.0,required multiplier for 2sigma
+eq4p4_derivative,active_redistribution_proxy,230763.08085869165,3.0,required multiplier for 3sigma
+eq4p4_derivative,sterile_sink,1.0,0.02154266829144334,ARCA_10y
+eq4p4_derivative,sterile_sink,5.0,0.04817087071639656,Gen2-like generic scaling; not detector response
+eq4p4_derivative,sterile_sink,10.0,0.06812389867844898,Gen2-like generic scaling; not detector response
+eq4p4_derivative,sterile_sink,8619.081804189043,2.0,required multiplier for 2sigma
+eq4p4_derivative,sterile_sink,19392.93405942535,3.0,required multiplier for 3sigma
