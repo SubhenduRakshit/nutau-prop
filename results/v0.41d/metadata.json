@@ -1,0 +1,7 @@
+{
+  "pdf": "CT18NLO",
+  "gq": 0.03,
+  "M_GeV": 50.0,
+  "validity": "sqrt(shat)<gq/kappa",
+  "meaning": "pure BSM sterile-sink optical depth; SM regeneration not included"
+}
