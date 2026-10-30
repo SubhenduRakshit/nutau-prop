@@ -1,0 +1,17 @@
+{
+  "version": "v0.46",
+  "scope": "public monojet narrow-width rescaling screen; not a detector-level recast",
+  "input": "results/v0.45/width_br_dijet_gate.csv",
+  "cms_reference": {
+    "analysis": "CMS EXO-20-004 / JHEP 11 (2021) 153",
+    "luminosity_fb_inv": 137,
+    "mmed_GeV": 100,
+    "mDM_over_mmed": 0.3333333333333333,
+    "gchi": 1.0,
+    "observed_gq95": 0.018,
+    "BRinv_computed": 0.9946934579778903
+  },
+  "nwa_mapping": "sigma(pp->Z+j)*BRinv proportional to gq^2*BRinv for a narrow on-shell mediator",
+  "important_caveat": "The published exact 0.018 anchor is at 100 GeV. v0.46 does not invent a 50-GeV CMS point; it outputs the exact 50-GeV gq95 threshold needed to decide each PKR convention.",
+  "next_if_marginal": "Obtain/digitize the exact low-mass coupling curve or perform the validated CMS EXO-20-004 MadAnalysis/simplified-likelihood recast with generated pp->Z+j events."
+}
