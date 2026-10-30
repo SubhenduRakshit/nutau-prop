@@ -92,7 +92,7 @@ BestPerAnalysisResultFileColumns: analysis, sr, o, b, db, s, ds, s95obs, s95exp,
 [signal]
 Events: {hepmc}
 XSect: {xsec_pb:.12g} PB
-XSectErr: 10 %
+XSectErr: 10 %%
 """
     card.write_text(text); return card
 
