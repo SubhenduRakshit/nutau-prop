@@ -1,0 +1,37 @@
+{
+  "version": "v0.52_mg5_norm",
+  "status": "FAIL",
+  "purpose": "generator-level normalization certification only; no CheckMATE conclusion",
+  "fixed_parameters": {
+    "M_GeV": 50.0,
+    "gq": 0.03,
+    "mchi_GeV": 0.001,
+    "ptjmin_GeV": 100.0,
+    "lhaid": 14400
+  },
+  "BR_targets": [
+    0.25,
+    0.45,
+    0.6
+  ],
+  "nevents_per_point": 5000,
+  "checks": {
+    "persisted_param_cards_match_targets": false,
+    "event_payload_hashes_unique": false,
+    "param_card_hashes_unique": false,
+    "mg5_banner_vs_lhe_init": true,
+    "sigma_over_BR_constant_within_2pct": false,
+    "cross_section_monotonic_with_BR": false
+  },
+  "metrics": {
+    "max_banner_vs_init_relative_difference": 1.1529136143365155e-16,
+    "sigma_over_BR_mean_pb": 81.03227370370371,
+    "max_relative_deviation_sigma_over_BR": 0.5211267605633803
+  },
+  "tolerances": {
+    "sigma_over_BR": 0.02,
+    "banner_vs_init": 1e-06,
+    "param_card_relative": 1e-07
+  },
+  "next_step": "If PASS, run exactly one CheckMATE benchmark. If FAIL, stop and diagnose MG5 normalization; do not interpret collider r values."
+}
