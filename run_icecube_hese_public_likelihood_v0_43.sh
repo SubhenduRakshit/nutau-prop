@@ -11,8 +11,8 @@ else
   git -C cache/HESE-7-year-data-release pull --ff-only
 fi
 
-python scripts/icecube_hese_public_likelihood_v0_43.py | tee results/v0.43/run.log
+python scripts/icecube_hese_public_likelihood_v0_43b.py | tee results/v0.43/run.log
 
 git add results/v0.43
-git commit -m "results: v0.43 IceCube HESE public-data likelihood" || true
+git commit -m "results: v0.43b IceCube HESE public-data likelihood" || true
 git push
