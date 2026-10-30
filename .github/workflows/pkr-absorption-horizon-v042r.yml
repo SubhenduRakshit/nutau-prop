@@ -1,0 +1,39 @@
+name: pkr-absorption-horizon-v0.42r
+on:
+  push:
+    paths:
+      - 'scripts/pkr_absorption_horizon_reuse_v0_42r.py'
+      - '.github/workflows/pkr-absorption-horizon-v042r.yml'
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      MKL_NUM_THREADS: 1
+      NUTAU_NPROC: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: nutau
+          create-args: >-
+            python=3.11 numpy scipy pandas lhapdf -c conda-forge
+      - name: Install CT18NLO
+        shell: micromamba-shell {0}
+        run: lhapdf install CT18NLO
+      - name: Install package
+        shell: micromamba-shell {0}
+        run: pip install -e .
+      - name: Run v0.42r reuse-first horizon screen
+        shell: micromamba-shell {0}
+        run: python scripts/pkr_absorption_horizon_reuse_v0_42r.py
+      - name: Commit results
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add results/v0.42r
+          git commit -m 'results: v0.42r reuse-first coupled horizon screen' || exit 0
+          git push
