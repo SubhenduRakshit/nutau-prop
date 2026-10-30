@@ -1,0 +1,26 @@
+{
+  "version": "v0.64_mg5_norm_recertification",
+  "status": "PASS",
+  "source": "results/v0.63_mg5_norm/normalization_certification.csv",
+  "reran_MG5": false,
+  "checks": {
+    "physics_param_card_correct_before_and_after_generation": true,
+    "physics_param_card_hashes_unique": true,
+    "event_payload_hashes_unique": true,
+    "mg5_banner_vs_lhe_init": true,
+    "sigma_over_BR_constant_within_2pct": true,
+    "cross_section_monotonic_with_BR": true
+  },
+  "metrics": {
+    "sigma_over_BR_mean_pb": 16.069574814814814,
+    "max_relative_deviation_sigma_over_BR": 0.0036509758537943693,
+    "max_banner_vs_init_relative_difference": 2.2188263060468983e-16
+  },
+  "informational_not_gating": {
+    "cards_stable_through_generation": false,
+    "run_card_hashes_unique": false,
+    "reason": "MadEvent rewrites run-card bookkeeping; these are not physics/sample-reuse criteria once parameter-card and event-payload checks pass."
+  },
+  "scope": "Certifies generator normalization/NWA BR scaling with the v0.63 built-in nn23lo1 samples only. CT18NLO/LHAPDF compatibility remains unresolved and must be fixed before a physical CheckMATE benchmark.",
+  "next_step": "Fix CT18NLO/LHAPDF interface, then run exactly one physical CheckMATE benchmark."
+}
