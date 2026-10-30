@@ -5,6 +5,8 @@ cd "$(dirname "$0")"
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 export PKR_CM_ENV="${PKR_CM_ENV:-nutau-checkmate-v051}"
 export PKR_NORM_NEVENTS="${PKR_NORM_NEVENTS:-5000}"
+# Prevent MG5/MadEvent from opening generated HTML reports in Safari/Chrome.
+export BROWSER=true
 mkdir -p cache/v0.63_mg5_norm results/v0.63_mg5_norm
 
 eval "$(conda shell.bash hook)"
@@ -15,6 +17,8 @@ set +u
 conda activate "$PKR_CM_ENV"
 set -u
 source cache/v0.51/env.sh
+# Reassert after sourcing the cached environment.
+export BROWSER=true
 
 set +e
 python scripts/pkr_certify_mg5_normalization_v0_63.py 2>&1 | tee results/v0.63_mg5_norm/run.log
