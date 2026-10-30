@@ -19,7 +19,11 @@ if ! conda env list | awk '{print $1}' | grep -qx "$ENV_NAME"; then
     numpy scipy pandas pyhf jsonpatch future autoconf automake libtool make cmake \
     pkg-config compilers fortran-compiler git curl unzip
 fi
+# Conda's macOS Fortran activation hook may read GFORTRAN before defining it.
+# Temporarily disable nounset only for environment activation, then restore it.
+set +u
 conda activate "$ENV_NAME"
+set -u
 python -m pip install -q --upgrade spey spey-pyhf || true
 
 if command -v lhapdf >/dev/null 2>&1; then
