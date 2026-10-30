@@ -63,19 +63,44 @@ fi
 CMSRC="$WORK/checkmate2"
 CMINST="$WORK/checkmate-install"
 if [ ! -x "$CMINST/bin/CheckMATE" ]; then
-  rm -rf "$CMSRC" "$CMINST"
-  git clone -q --depth 1 https://github.com/CheckMATE2/checkmate2.git "$CMSRC"
+  # Preserve a partially compiled tree so reruns continue rather than starting over.
+  if [ ! -d "$CMSRC/.git" ]; then
+    rm -rf "$CMSRC"
+    git clone -q --depth 1 https://github.com/CheckMATE2/checkmate2.git "$CMSRC"
+  fi
   (
     cd "$CMSRC"
-    autoreconf -i
-    ./configure \
-      --prefix="$CMINST" \
-      --with-delphes="$DELPHES" \
-      --with-hepmc="$CONDA_PREFIX" \
-      --with-rootsys="$CONDA_PREFIX" \
-      --with-python="$CONDA_PREFIX/bin/python"
-    make -j"$NPROC"
-    make install
+    if [ ! -f Makefile ]; then
+      autoreconf -i
+      ./configure \
+        --prefix="$CMINST" \
+        --with-delphes="$DELPHES" \
+        --with-hepmc="$CONDA_PREFIX" \
+        --with-rootsys="$CONDA_PREFIX" \
+        --with-python="$CONDA_PREFIX/bin/python"
+    fi
+
+    BUILDLOG="$WORK/checkmate_build_serial.log"
+    echo "Continuing CheckMATE build serially; full log: $BUILDLOG"
+    set +e
+    make -j1 V=1 >"$BUILDLOG" 2>&1
+    RC=$?
+    set -e
+    if [ "$RC" -ne 0 ]; then
+      echo ""
+      echo "=== CheckMATE decisive build diagnostics ==="
+      grep -nE "error:|fatal error:|undefined symbols|Undefined symbols|ld: |linker command failed|No such file|cannot find" "$BUILDLOG" | tail -n 60 || true
+      echo ""
+      echo "=== Last 100 build-log lines ==="
+      tail -n 100 "$BUILDLOG"
+      return "$RC" 2>/dev/null || exit "$RC"
+    fi
+
+    make install >>"$BUILDLOG" 2>&1 || {
+      echo "CheckMATE make install failed; tail follows:"
+      tail -n 100 "$BUILDLOG"
+      return 5 2>/dev/null || exit 5
+    }
   )
 fi
 
