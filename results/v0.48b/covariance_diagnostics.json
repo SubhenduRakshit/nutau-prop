@@ -1,0 +1,14 @@
+{
+  "finite_original": true,
+  "symmetry_relative_error": 0.0,
+  "min_eigenvalue_original": 8.06941744499961,
+  "max_eigenvalue_original": 20523320.890854824,
+  "negative_eigenvalues_original": 0,
+  "eigenvalue_floor": 2.0523320890854825e-05,
+  "relative_frobenius_repair": 1.0406919324975346e-15,
+  "slogdet_original_sign": 1.0,
+  "slogdet_original_logabsdet": 456.8695429121469,
+  "slogdet_repaired_sign": 1.0,
+  "slogdet_repaired_logabsdet": 456.869542912247,
+  "condition_number_repaired": 2543346.03838999
+}

@@ -1,0 +1,31 @@
+{
+  "version": "v0.48b",
+  "analysis": "CMS EXO-20-004 monojet simplified likelihood",
+  "public_data_source": "HEPData v2 mirrored in andlessa/LLP-CDFO",
+  "hepdata_server_403": "v0.47 direct-server attempt retained as failed audit trail",
+  "signal_reference_100_GeV": {
+    "template_mdm": 30.0
+  },
+  "validation_250_GeV": {
+    "template_mdm": 75.0,
+    "total_morph_fractional_error": -0.13680846976503014,
+    "rms_bin_fractional_error": 0.2630459191950472
+  },
+  "morph_uncertainty": 0.2630459191950472,
+  "pdf": "CT18NLO",
+  "channels": "monojet only; mono-V omitted conservatively",
+  "method": "official 100 GeV signal template morphed to 50 GeV with LO V+j CT18NLO mass ratio; exact CMS 66-bin simplified likelihood",
+  "limitations": [
+    "50 GeV is below published coupling grid",
+    "LO mass morphing, not generated 50-GeV detector sample",
+    "mono-V channel omitted",
+    "morphing uncertainty has 15% floor"
+  ],
+  "supersedes_numerically": "v0.48 failed before producing a physics result",
+  "covariance_stabilization": {
+    "relative_eigenvalue_floor": 1e-12,
+    "max_allowed_relative_frobenius_repair": 1e-05,
+    "diagnostics_file": "covariance_diagnostics.json"
+  },
+  "root_handling": "adaptive scan for a physical sign-changing NWA gq branch; diagnostics recorded"
+}
