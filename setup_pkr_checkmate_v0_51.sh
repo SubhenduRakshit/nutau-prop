@@ -143,8 +143,8 @@ if [ ! -x "$SHOWER" ] || [ "$SRC" -nt "$SHOWER" ]; then
   PY_LIB="$(pythia8-config --libs 2>/dev/null || true)"
   HEP_CXX="$(HepMC-config --cflags 2>/dev/null || true)"
   HEP_LIB="$(HepMC-config --libs 2>/dev/null || true)"
-  "$CXX_BIN" -std=c++17 -O2 -I"$CONDA_PREFIX/include" $PY_CXX $HEP_CXX "$SRC" \
-    -L"$CONDA_PREFIX/lib" $PY_LIB $HEP_LIB -lpythia8 -lHepMC -o "$SHOWER"
+  "$CXX_BIN" -O2 -I"$CONDA_PREFIX/include" $PY_CXX $HEP_CXX "$SRC" \
+    -L"$CONDA_PREFIX/lib" $PY_LIB $HEP_LIB -lpythia8 -lHepMC -std=c++17 -o "$SHOWER"
 fi
 
 cat > "$WORK/env.sh" <<EOF
