@@ -81,8 +81,8 @@ if [ ! -x "$CMINST/bin/CheckMATE" ]; then
     fi
 
     # Apple Clang rejects two legacy ATLAS helper returns that narrow double -> float
-    # inside list initialization.  This analysis is unrelated to our CMS gate, but
-    # CheckMATE builds all analyses.  Add explicit casts; numerical values are unchanged.
+    # inside list initialization. This analysis is unrelated to our CMS gate, but
+    # CheckMATE builds all analyses. Add explicit casts; numerical values are unchanged.
     ATLAS_SRC="tools/analysis/src/analyses/ATLAS_13TeV/atlas_2411_02040.cc"
     if [ -f "$ATLAS_SRC" ]; then
       python - "$ATLAS_SRC" <<'PY'
@@ -127,8 +127,11 @@ PY
   )
 fi
 
-if ! grep -Rqs "cms_2107_13021" "$CMSRC/data" "$CMINST/share" 2>/dev/null; then
-  echo "ERROR: current CheckMATE build does not contain cms_2107_13021" >&2
+# CheckMATE internally names the CMS EXO-20-004 / arXiv:2107.13021 analysis
+# cms_2107_13201 (digits transposed). Use the package's actual identifier.
+CM_ANALYSIS="cms_2107_13201"
+if ! grep -Rqs "$CM_ANALYSIS" "$CMSRC/data" "$CMINST/share" 2>/dev/null; then
+  echo "ERROR: current CheckMATE build does not contain $CM_ANALYSIS" >&2
   return 3 2>/dev/null || false
 fi
 
@@ -148,6 +151,7 @@ cat > "$WORK/env.sh" <<EOF
 export PKR_MG5="$MG5/bin/mg5_aMC"
 export PKR_CHECKMATE="$CMINST/bin/CheckMATE"
 export PKR_CM_MODEL="$MODEL"
+export PKR_CM_ANALYSIS="$CM_ANALYSIS"
 export DYLD_LIBRARY_PATH="$DELPHES:$CONDA_PREFIX/lib:\${DYLD_LIBRARY_PATH:-}"
 export LD_LIBRARY_PATH="$DELPHES:$CONDA_PREFIX/lib:\${LD_LIBRARY_PATH:-}"
 EOF
@@ -156,4 +160,4 @@ echo "v0.51 collider environment ready"
 echo "  env:       $ENV_NAME"
 echo "  MG5:       $MG5/bin/mg5_aMC"
 echo "  CheckMATE: $CMINST/bin/CheckMATE"
-echo "  analysis:  cms_2107_13021"
+echo "  analysis:  $CM_ANALYSIS (CMS EXO-20-004 / arXiv:2107.13021)"
