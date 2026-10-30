@@ -33,6 +33,6 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add results/v0.41b
-          git commit -m 'results: PKR vertical propagation screen v0.41b' || exit 0
+          git add results/v0.41c
+          git commit -m 'results: PKR coarse vertical propagation gate v0.41c' || exit 0
           git push
