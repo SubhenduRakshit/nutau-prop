@@ -1,7 +1,7 @@
 [1/2] CT18 100-PeV base envelope: 168 a-points on 14 processes
 LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
-LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
 CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
 CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
 LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
 CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
