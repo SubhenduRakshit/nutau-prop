@@ -1,0 +1,37 @@
+=== v0.71 multibin output audit ===
+cmroot: /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair
+multibin/result-like files: 16
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/result.txt
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/analysis/signal_cms_2107_13201_signal.dat
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/analysis/signal_cms_2107_13201_cutflow.dat
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/multibin_limits/results.dat
+   Analysis: cms_2107_13201 , SR: combination
+  Limits with covariance matrix likelihood (spey):
+  Observed CLs for mu = 1: 0.14387599611785518
+  Expected CLs band for mu = 1: [np.float64(1.953099794238522e-05), np.float64(0.00028512681337278245), np.float64(0.003559000001499113), np.float64(0.032992517805324195), np.float64(0.1843382263601301)]
+  Observed upper limit: mu = 1.1784
+  Expected (+/-2sigma) upper limit: mu = 0.3589   0.4823   0.6706   0.9351   1.2569
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/internal/info.j
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/internal/processes.raw
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/internal/info.raw
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/fritz/fritz_error.log
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/fritz/fritz_signal.log
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/fritz/signal.ini
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/evaluation/signal_eventsResults.txt
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/evaluation/best_signal_regions.txt
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/evaluation/total_results.txt
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/evaluation/signal_processResults.txt
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/delphes/modified_cms13tev_card.tcl
+FILE /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/delphes/delphes_signal.log
+--- relevant checkmate.log lines ---
+11: 	cms_2107_13201 (monojet with multibin)
+25: 	/Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair
+29: 	 - Simplified likelihood calculation will be applied to multibin signal regions
+30: 	 - Observed, expected, CLs and upper limits will be calculated
+36:  |-> Fritz: Initialising handlers from file /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_ret...[0m
+46:  |-> delpheshandler: Initialising settings from /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin...[0m
+2100: [33mWarning: Error is dominated by Monte Carlo Statistics![0m
+2106: Calculating approximate likelihood with covariance matrix: cms_2107_13201, SR: combination... 
+2110: Upper limit: 1.1784367170979357
+2113: Test: Calculation of upper limit from multibin signal regions
+2119: Thanks for using Spey 0.2.7. 
