@@ -1,0 +1,35 @@
+{
+  "version": "v0.75_eq4p4_bestpoint_checkmate",
+  "source": "v0.74 single best screen point",
+  "benchmark": {
+    "M_GeV": 50.0,
+    "gq": 0.035499999999999976,
+    "a_GeV_inv": 0.0026126891138978474,
+    "kappa_GeV_inv": 9.275046354337352e-05,
+    "Gamma_inv_GeV": 0.011316819004738979,
+    "Gamma_total_GeV": 0.03638720010588361,
+    "Gamma_over_M": 0.0007277440021176721,
+    "BR_invisible": 0.31101098660540005,
+    "gchi_width_matched": 0.092372509478472
+  },
+  "generator": {
+    "cross_section_pb": 6.84033,
+    "banner_vs_lhe_rel": 0.0,
+    "lhaid14400": true,
+    "sigma_over_gq2BR_rel_vs_v068": 0.0005100490932438096,
+    "nevents_requested": 100000,
+    "mg5_workers": 14
+  },
+  "screen_prediction": {
+    "monojet_r_pred": 0.99828866112531
+  },
+  "checkmate": {
+    "analysis": "cms_2107_13201",
+    "returncode": 0,
+    "multibin_mu95": 0.8787094935630089,
+    "multibin_r": 1.1380325435488126,
+    "max_singlebin_robscons": 0.44576776651018873,
+    "status": "MARGINAL_EXCLUDED"
+  },
+  "decision": "Only this exact multibin result decides whether the narrow M=50 5%-effect window survives the calibrated CMS monojet recast; r in [0.8,1.2] remains intrinsically marginal for broader claims."
+}
