@@ -1,0 +1,24 @@
+{
+  "version": "v0.73_eq4p4_width_resolution",
+  "model_scope": "PKR Eq4.4 active-to-sterile/off-diagonal Hermitian completion",
+  "M_GeV": 50.0,
+  "gq": 0.03,
+  "kappa_GeV_inv": 0.0001068919824203,
+  "a_GeV_inv": 0.0035630660806766665,
+  "Gamma_q_GeV": 0.01790386271853219,
+  "Gamma_one_Weyl_GeV": 0.010523656323219005,
+  "Gamma_inv_operator_plus_hc_GeV": 0.02104731264643801,
+  "Gamma_total_GeV": 0.0389511753649702,
+  "Gamma_over_M": 0.000779023507299404,
+  "BR_inv": 0.5403511562674538,
+  "mu95_v072": 1.1784367170979357,
+  "r_one_v072": 0.8485818419360176,
+  "r_operator_plus_hc": 1.2386315043943426,
+  "thresholds": {
+    "robust_survival": 0.8,
+    "robust_exclusion": 1.2
+  },
+  "width_convention": "operator_plus_hc",
+  "collider_status": "ROBUST_EXCLUSION_THRESHOLD",
+  "note": "No new MG5/Pythia/CheckMATE run. Uses certified v0.72 likelihood and NWA BR rescaling."
+}
