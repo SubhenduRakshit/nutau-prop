@@ -1,0 +1,6 @@
+=== v0.72 CMS multibin recertification ===
+mu95=1.1784367171
+one_Weyl_pair: r=0.848582  MARGINAL
+operator_plus_hc NWA-rescaled: r=1.238632  ROBUST_EXCLUSION_THRESHOLD
+status: WIDTH_CONVENTIONS_STRADDLE_COLLIDER_BOUNDARY
+next: resolve exact Eq4.4 invisible-width normalization; no more collider events yet

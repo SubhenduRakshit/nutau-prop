@@ -1,0 +1,23 @@
+{
+  "version": "v0.72_multibin_recert",
+  "source": "existing v0.69 CheckMATE/Spey covariance fit; no rerun",
+  "analysis": "cms_2107_13201",
+  "signal_region": "combination",
+  "observed_mu95": 1.1784367170979357,
+  "one_Weyl_pair": {
+    "BR_invisible": 0.3701925696633259,
+    "multibin_r": 0.8485818419360176,
+    "classification": "MARGINAL",
+    "singlebin_robscons_v068": 0.3270606438271486
+  },
+  "operator_plus_hc_NWA_rescaled": {
+    "BR_invisible": 0.5403511562674538,
+    "BR_ratio_to_one_Weyl": 1.4596488437325463,
+    "multibin_r_rescaled": 1.2386315043943426,
+    "classification": "ROBUST_EXCLUSION_THRESHOLD",
+    "note": "same on-shell production/acceptance in validated NWA mapping; no second detector simulation"
+  },
+  "status": "WIDTH_CONVENTIONS_STRADDLE_COLLIDER_BOUNDARY",
+  "interpretation": "one_Weyl_pair is not excluded but is marginal under the predeclared 0.8/1.2 robustness band; operator_plus_hc lies above the 1.2 exclusion threshold after pure-BR NWA rescaling. Therefore Eq4.4 cannot receive a convention-independent collider verdict until the exact invisible-width normalization is resolved.",
+  "next_step": "resolve exact Eq4.4 width convention/normalization; do not generate more collider events yet"
+}
