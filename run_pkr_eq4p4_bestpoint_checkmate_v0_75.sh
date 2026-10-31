@@ -17,13 +17,19 @@ set +u; conda activate "$PKR_CM_ENV"; set -u
 source cache/v0.51/env.sh
 export BROWSER=true
 
-echo "v0.75: exact single best-point benchmark; MG5 workers=$PKR_MG5_NCORE, events=$PKR_NORM_NEVENTS"
+echo "v0.75: single best-point validation; MG5 workers=$PKR_MG5_NCORE, events=$PKR_NORM_NEVENTS"
 set +e
 python scripts/pkr_eq4p4_bestpoint_checkmate_v0_75.py 2>&1 | tee results/v0.75_eq4p4_bestpoint_checkmate/run.log
 RC=${PIPESTATUS[0]}
 set -e
 
+if [ "$RC" -eq 0 ]; then
+  python scripts/pkr_eq4p4_bestpoint_uncertainty_v0_75.py 2>&1 | tee results/v0.75_eq4p4_bestpoint_checkmate/uncertainty_run.txt
+fi
+
 git add results/v0.75_eq4p4_bestpoint_checkmate
-git commit -m "results: v0.75 exact Eq4.4 marginal-window CheckMATE benchmark" || true
+git commit -m "results: v0.75 Eq4.4 marginal-point validation with uncertainty audit" || true
 git push || true
+
+echo "v0.75 interpretation rule: 0.8<r<1.2 is boundary-unresolved validation only."
 exit "$RC"
