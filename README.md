@@ -1,4 +1,10 @@
-# nutau-prop: current normalization audit v0.86
+# nutau-prop: current constraint follow-up v0.87
+
+[v0.87](PKR_CONSTRAINT_DISPOSITION_v0.87.md) replaces the approximate dijet
+inputs with exact CMS HEPData entries and calculates the corrected collider
+envelopes. At M=50 GeV the nominal100-PeV maxima are0.34% (4.4) and0.80%
+(4.3). It also identifies the exact public IceCube response gap and the need
+for inverse sterile transitions. This does not claim a full IceCube fit.
 
 **Current correction:** [PKR_NORMALIZATION_RESOLUTION_v0.86.md](PKR_NORMALIZATION_RESOLUTION_v0.86.md)
 resolves the decay/DIS mismatch for the explicit Eq. 4.3/4.4 chiral transition.

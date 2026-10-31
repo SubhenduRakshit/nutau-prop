@@ -1,0 +1,10 @@
+{
+  "version": "v0.87",
+  "status": "EXACT_DIJET_INPUT_AND_CONDITIONAL_COLLIDER_ENVELOPE_COMPLETE",
+  "table_doi": "10.17182/hepdata.165379.v1/t3",
+  "source_url": "https://www.hepdata.net/download/table/ins3133152/Figure%202a/json",
+  "workers": 14,
+  "max_interpolation_error": 0.00019214062874783888,
+  "max_quadrature_change": 1.4069727560794831e-07,
+  "limits": "NWA with calibrated monojet shapes; not a combined confidence level or full IceCube fit"
+}

@@ -1,0 +1,67 @@
+{
+  "files": [
+    {
+      "file": "HESE_mc_truth.json",
+      "sha256": "ac72d3b6aba73d1524e5103a54eadb7244b8529833710f4c53471b59e97bf131",
+      "fields": {
+        "primaryType": 821764,
+        "primaryZenith": 821764,
+        "primaryEnergy": 821764,
+        "weightOverFluxOverLivetime": 821764,
+        "interactionType": 821764
+      }
+    },
+    {
+      "file": "HESE_mc_observable.json",
+      "sha256": "ca90a2fc6db81357375e4cd3680f1575c50cca441d4cabe7aaf06d43203cac6d",
+      "fields": {
+        "recoDepositedEnergy": 821764,
+        "recoLength": 821764,
+        "recoZenith": 821764,
+        "recoMorphology": 821764
+      }
+    },
+    {
+      "file": "HESE_mc_flux.json",
+      "sha256": "06e732ef179b1b5af86deaff3f5a55bdd713df5c3de988deb62220be9c767e4b",
+      "fields": {
+        "pionFlux": 821764,
+        "kaonFlux": 821764,
+        "promptFlux": 821764,
+        "conventionalSelfVetoCorrection": 821764,
+        "promptSelfVetoCorrection": 821764,
+        "muonWeightOverLivetime": 821764
+      }
+    }
+  ],
+  "has_interaction_type": true,
+  "has_true_inelasticity": false,
+  "has_true_hadronic_energy": false,
+  "explanation": "Reconstructed deposited energy is not true yE. The old HESE loader also discards interactionType.",
+  "response_counterexample": {
+    "SM_y_probabilities": [
+      0.5,
+      0.5
+    ],
+    "BSM_y_probabilities": [
+      0.75,
+      0.25
+    ],
+    "response_A": [
+      0.2,
+      0.8
+    ],
+    "response_B": [
+      0.8,
+      0.2
+    ],
+    "SM_acceptance_A": 0.5,
+    "SM_acceptance_B": 0.5,
+    "BSM_acceptance_A": 0.35000000000000003,
+    "BSM_acceptance_B": 0.6500000000000001
+  },
+  "EHE": {
+    "url": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/JHK49D",
+    "error": "403 Client Error: Forbidden for url: https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/JHK49D"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "scope": "exact two-state fixed-energy toy; no claim of a full Earth calculation",
+  "generator": "[[-S-T,T],[T,-T]]",
+  "implication": "For a stable N with the same Hermitian transition, inverse scattering must be included or bounded.",
+  "checks": [
+    {
+      "S": 1.0,
+      "T": 0.0,
+      "column": 3.0,
+      "active": 0.049787068367863944,
+      "sterile": 0.0,
+      "pure_sink_active": 0.049787068367863944,
+      "SM_active": 0.049787068367863944
+    },
+    {
+      "S": 0.0,
+      "T": 1.0,
+      "column": 2.0,
+      "active": 0.5091578194443671,
+      "sterile": 0.4908421805556329,
+      "pure_sink_active": 0.1353352832366127,
+      "SM_active": 1.0
+    },
+    {
+      "S": 1.0,
+      "T": 0.01,
+      "column": 2.0,
+      "active": 0.13271369044496306,
+      "sterile": 0.008475962714448837,
+      "pure_sink_active": 0.13265546508012172,
+      "SM_active": 0.1353352832366127
+    },
+    {
+      "S": 1.0,
+      "T": 0.00625,
+      "column": 40.0,
+      "active": 3.0465904935383444e-05,
+      "sterile": 0.004874735194125871,
+      "pure_sink_active": 3.3086216207858244e-18,
+      "SM_active": 4.248354255291589e-18
+    }
+  ]
+}

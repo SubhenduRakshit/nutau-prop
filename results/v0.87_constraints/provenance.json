@@ -1,0 +1,45 @@
+{
+  "version": "v0.87",
+  "parent_head": "11032aab4cc385cf2055273cdb5308a4b62ce759",
+  "host": "Subhendus-Mac-Studio-2.local",
+  "python": "3.13.13",
+  "worker_processes": 14,
+  "files": [
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/scripts/pkr_exact_constraints_v0_87.py",
+      "bytes": 9242,
+      "sha256": "b9a12b4e445944a808f5166327a0fe8f9153f65c7f55d572a007dc800ca1389d"
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/scripts/check_pkr_transport_identity_v0_87.py",
+      "bytes": 1626,
+      "sha256": "106573ff6f53b607100a152254f5950b74bd8369ca3b2f4c86d0e6452a79dc02"
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.86_normalization/base_folds.csv",
+      "bytes": 42242,
+      "sha256": "20425b4cde96c8d36c5c624e4e16e8f71cebb5ca4386a05016b8cb7a5b5456b1"
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.87_constraints/cms_dijet_figure2a.json",
+      "bytes": 41387,
+      "sha256": "e107d8d401fcc067f56df9b237eeedf9413bb8ca4b90d75118fc196e03800b41"
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.81_eq4p4_M50_same_seed_reweight/M50_same_seed_reweight.json",
+      "bytes": 1146,
+      "sha256": "3b639b44ad64dc4f3c0c82d62f3d99d167f2b05858e4992c620d84b14deaf5cf"
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.79_eq4p4_mass_acceptance_pilot/mass_ranking.csv",
+      "bytes": 1417,
+      "sha256": "c54688824a9a2453243ff907ef363e1380667c76e4a18d8825167de41a8139f5"
+    },
+    {
+      "path": "/Users/subhendurakshit/.codex/attachments/e77dbcc4-2a74-4075-9014-8be6097731d1/Pasted text.txt",
+      "bytes": 10848,
+      "sha256": "a705e690424107a341d2ed45d7feaeac925b1414f8446f063c9011ce4a97a2e3"
+    }
+  ],
+  "status": "Exact dijet inputs and conditional collider calculation completed; full IceCube response unavailable in inspected public inputs"
+}

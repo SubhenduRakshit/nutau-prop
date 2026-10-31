@@ -1,0 +1,16 @@
+100 direct folds on 14 processes; exact CMS mass entries, no detector rerun
+operator  M_GeV  dijet_gq_observed  r_cap            screen  a_GeV_inv       gq  interpolated_ratio100  monojet_r  Gamma_over_M  ratio100  quadrature_change100  ratio220  quadrature_change220  interpolation_error
+     4.4   50.0           0.035670    1.0 dijet_and_monojet   0.002292 0.040209               0.003395        1.0      0.000817  0.003395          1.013881e-09  0.003373          5.702012e-08         4.399866e-06
+     4.3   50.0           0.035670    1.0 dijet_and_monojet   0.008904 0.018680               0.007954        1.0      0.010653  0.007953          2.099968e-08  0.007578          5.679935e-08         1.705669e-04
+     4.4  100.0           0.082596    1.0 dijet_and_monojet   0.000594 0.083293               0.000903        1.0      0.002807  0.000903          1.039998e-07  0.000951          1.255999e-07         1.657396e-06
+     4.3  100.0           0.082596    1.0 dijet_and_monojet   0.000297 0.083293               0.001084        1.0      0.002807  0.001084          7.333427e-09  0.001162          5.082807e-08         6.226165e-07
+     4.4  220.0           0.114380    1.0 dijet_and_monojet   0.000470 0.115890               0.000456        1.0      0.005486  0.000456          1.103064e-07  0.000497          1.158639e-07         1.752869e-06
+     4.3  220.0           0.114380    1.0 dijet_and_monojet   0.000235 0.115890               0.000581        1.0      0.005486  0.000581          9.656447e-08  0.000647          7.926758e-08         6.549603e-08
+operator  M_GeV                          status  min_r_for_5pct  a_GeV_inv       gq  dijet_gq_observed  verified_target_ratio
+     4.4   50.0 NO_DIJET_WIDTH_VALID_5PCT_POINT             NaN        NaN      NaN           0.035670                    NaN
+     4.3   50.0       TARGET_REQUIRES_MONOJET_R        5.831854   0.007632 0.047332           0.035670               0.049996
+     4.4  100.0 NO_DIJET_WIDTH_VALID_5PCT_POINT             NaN        NaN      NaN           0.082596                    NaN
+     4.3  100.0       TARGET_REQUIRES_MONOJET_R       54.712065   0.003023 0.114655           0.082596               0.049999
+     4.4  220.0 NO_DIJET_WIDTH_VALID_5PCT_POINT             NaN        NaN      NaN           0.114380                    NaN
+     4.3  220.0 NO_DIJET_WIDTH_VALID_5PCT_POINT             NaN        NaN      NaN           0.114380                    NaN
+HESE true inelasticity available: False

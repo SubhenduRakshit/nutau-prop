@@ -1,0 +1,2049 @@
+{
+  "associated_files": [
+    {
+      "alt_location": "/opt/hepdata/var/data/43/165379/1773636490/submission.tar/Figure_002-a.png",
+      "description": "Image file",
+      "id": 4204039,
+      "preview_location": "/record/resource/4204040?view=true",
+      "type": "png"
+    }
+  ],
+  "description": "Upper limits at 95% CL on the universal coupling $g_q$ between the $Z'$ boson and quarks. The $Z'$ boson is assumed to decay to quark-antiquark pairs with a 100% branching fraction. The solid line represents the observed limits. The dashed line and the inner (yellow) and outer (blue) bands represent the median and the regions containing 68% and 95%, respectively, of the distribution of expected limits under the background-only hypothesis.",
+  "doi": "10.17182/hepdata.165379.v1/t3",
+  "headers": [
+    {
+      "colspan": 1,
+      "name": "$Z'$ mass [GeV]"
+    },
+    {
+      "colspan": 1,
+      "name": "Observed limit"
+    },
+    {
+      "colspan": 1,
+      "name": "Expected limit"
+    }
+  ],
+  "keywords": {},
+  "location": "Figure 2a",
+  "name": "Figure 2a",
+  "qualifier_order": [],
+  "qualifiers": {},
+  "related_tables": [],
+  "related_to_this": [],
+  "resources": [
+    {
+      "description": "Image file",
+      "type": "png",
+      "url": "https://www.hepdata.net/record/resource/4204039?landing_page=true"
+    },
+    {
+      "description": "Thumbnail image file",
+      "type": "png",
+      "url": "https://www.hepdata.net/record/resource/4204040?landing_page=true"
+    }
+  ],
+  "review": {
+    "messages": false,
+    "review_flag": "passed"
+  },
+  "size": 12860,
+  "size_check": true,
+  "table_license": {
+    "description": "CC0 enables reusers to distribute, remix, adapt, and build upon the material in any medium or format, with no conditions.",
+    "name": "CC0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "values": [
+    {
+      "x": [
+        {
+          "value": "50"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.03567"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0055943",
+                "plus": "0.0075612"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.010047",
+                "plus": "0.014715"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.038571"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "55"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.031005"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0054195",
+                "plus": "0.0073248"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.0097333",
+                "plus": "0.014085"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.037365"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "60"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.03166"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0053299",
+                "plus": "0.0067111"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.0095724",
+                "plus": "0.013721"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.036748"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "65"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.034871"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0056798",
+                "plus": "0.0071516"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.010201",
+                "plus": "0.014804"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.03916"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "70"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.054609"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0064722",
+                "plus": "0.0076963"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.011624",
+                "plus": "0.015747"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.044624"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "75"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.081306"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0076541",
+                "plus": "0.0091963"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.013364",
+                "plus": "0.01893"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.051304"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "80"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.085211"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.009442",
+                "plus": "0.011451"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.016486",
+                "plus": "0.023119"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.063288"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "85"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.065782"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.011382",
+                "plus": "0.013802"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.019903",
+                "plus": "0.027861"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.074884"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "90"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.095187"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.01105",
+                "plus": "0.013059"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.019507",
+                "plus": "0.026523"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.078027"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "95"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.083675"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0097369",
+                "plus": "0.011238"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.016962",
+                "plus": "0.022331"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.067149"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "100"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.082596"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0086345",
+                "plus": "0.010183"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.015099",
+                "plus": "0.020693"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.056809"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "105"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.068144"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0074512",
+                "plus": "0.0091179"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.01303",
+                "plus": "0.018631"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.049023"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "110"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.058124"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0067433",
+                "plus": "0.0083347"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.01213",
+                "plus": "0.017253"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.045638"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "115"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.052277"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0066312",
+                "plus": "0.0083472"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.011929",
+                "plus": "0.017056"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.044879"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "120"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.046532"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0068677",
+                "plus": "0.0081806"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.012374",
+                "plus": "0.017161"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.045638"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "125"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.040606"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.006817",
+                "plus": "0.0088903"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.012263",
+                "plus": "0.017719"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.046137"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "130"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.036037"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0071617",
+                "plus": "0.0089218"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.012524",
+                "plus": "0.018218"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.047119"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "135"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.032809"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0073078",
+                "plus": "0.0089425"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.012779",
+                "plus": "0.018716"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.04808"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "140"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.034473"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0074512",
+                "plus": "0.0094465"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.01303",
+                "plus": "0.019274"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.049023"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "145"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.033739"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0076611",
+                "plus": "0.0093748"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.013397",
+                "plus": "0.019505"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.050404"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "150"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.034698"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.007899",
+                "plus": "0.0096659"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.013813",
+                "plus": "0.019871"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.051969"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "155"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.036196"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0080317",
+                "plus": "0.0098283"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.014045",
+                "plus": "0.020205"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.052843"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "160"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.038934"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0082589",
+                "plus": "0.010106"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.014442",
+                "plus": "0.020776"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.054338"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "165"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.045111"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0085112",
+                "plus": "0.01079"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.014884",
+                "plus": "0.021634"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.055997"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "170"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.054199"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0087863",
+                "plus": "0.010752"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.015365",
+                "plus": "0.022103"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.057807"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "175"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.069153"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0089355",
+                "plus": "0.010934"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.015626",
+                "plus": "0.022614"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.058789"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "180"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.0796"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0090238",
+                "plus": "0.011042"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.01578",
+                "plus": "0.022974"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.05937"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "185"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.08727"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0093387",
+                "plus": "0.01122"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.016356",
+                "plus": "0.023344"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.060326"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "190"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.092148"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0093688",
+                "plus": "0.011671"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.016383",
+                "plus": "0.023973"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.06164"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "195"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.09589"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.0097083",
+                "plus": "0.011984"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.01699",
+                "plus": "0.024615"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.063288"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "200"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.096791"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.01027",
+                "plus": "0.012278"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.017738",
+                "plus": "0.02538"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.065422"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "205"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.09973"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.010498",
+                "plus": "0.012892"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.018118",
+                "plus": "0.026622"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.067489"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "210"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.10421"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.011012",
+                "plus": "0.0134"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.01902",
+                "plus": "0.027671"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.07015"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "215"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.1086"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.011207",
+                "plus": "0.013951"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.019629",
+                "plus": "0.028955"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.072397"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "220"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11438"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.011779",
+                "plus": "0.014334"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.020345",
+                "plus": "0.029939"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.075037"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "225"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11899"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.012156",
+                "plus": "0.015051"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.020996",
+                "plus": "0.031045"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.077438"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "230"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11556"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.012566",
+                "plus": "0.01556"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.021705",
+                "plus": "0.032454"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.080054"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "235"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.12345"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.012972",
+                "plus": "0.015917"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.022423",
+                "plus": "0.033198"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.081892"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "240"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11805"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.013365",
+                "plus": "0.016398"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.023102",
+                "plus": "0.034392"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.08437"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "245"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.12902"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.013788",
+                "plus": "0.017063"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.023833",
+                "plus": "0.035756"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.08704"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "250"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11278"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.01407",
+                "plus": "0.01772"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.024302",
+                "plus": "0.036903"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.089631"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "255"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11727"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.014577",
+                "plus": "0.018193"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.025198",
+                "plus": "0.038093"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.092025"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "260"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11126"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.014889",
+                "plus": "0.018739"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.025737",
+                "plus": "0.039201"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.093994"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "265"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.1143"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.015195",
+                "plus": "0.019441"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.026265",
+                "plus": "0.0406"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.095922"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "270"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11344"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.016004",
+                "plus": "0.020293"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.027686",
+                "plus": "0.042816"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.10013"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "275"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.093552"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.016507",
+                "plus": "0.021103"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.028557",
+                "plus": "0.044254"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.10328"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "280"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.10083"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.017235",
+                "plus": "0.02239"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.029816",
+                "plus": "0.047092"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.10783"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "285"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11601"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.018346",
+                "plus": "0.023297"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.031327",
+                "plus": "0.049241"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.1122"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "290"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.11659"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.019226",
+                "plus": "0.024924"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.033313",
+                "plus": "0.053565"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.11816"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "295"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.12754"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.020399",
+                "plus": "0.026489"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.034861",
+                "plus": "0.056773"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.12365"
+        }
+      ]
+    },
+    {
+      "x": [
+        {
+          "value": "300"
+        }
+      ],
+      "y": [
+        {
+          "errors": [
+            {
+              "hide": true,
+              "symerror": 0
+            }
+          ],
+          "group": 0,
+          "value": "0.13162"
+        },
+        {
+          "errors": [
+            {
+              "asymerror": {
+                "minus": "-0.021952",
+                "plus": "0.028254"
+              },
+              "label": "$\\pm1\\sigma$"
+            },
+            {
+              "asymerror": {
+                "minus": "-0.037543",
+                "plus": "0.060556"
+              },
+              "label": "$\\pm2\\sigma$"
+            }
+          ],
+          "group": 1,
+          "value": "0.13189"
+        }
+      ]
+    }
+  ],
+  "x_count": 1
+}

@@ -526,3 +526,39 @@ was renumberedv0.86. Audited the newv0.85 claim: printed bounds imply a
 conditional relative-normalization discrepancy14.7456, but cannot establish
 which absolute implementation was wrong. Its rounding interval55.5--62.7
 does not contain64. Added explicit qualification while preserving its text.
+
+2026-10-31 — v0.87 EXACT DIJET FOLLOW-UP AND ICECUBE INPUT BOUNDARY
+================================================================
+User correctly objected that full collider/IceCube certification was assigned,
+not just normalization. Continued authorized work without asking again.
+Fetched official CMS HEPData Figure2a through Python HTTP after earlier browser
+failures. Exact observed gq limits at50/100/220GeV are.035670/.082596/.114380.
+Applied the matched v0.86 kernels, analytic monotone coupling bounds, complete
+sampled-a optimization and14-worker dynamic-Q CT18 direct checks. Nominalr<=1
+100PeV maxima are.3395/.0903/.0456% (44) and.7953/.1084/.0581% (43).
+Eq44 fails5% after dijet/width alone in these domains. Eq43 needs calibrated
+monojet r>=5.832/54.71 at50/100GeV and fails dijet/width capacity at220GeV.
+These are specified-domain NWA conclusions, not a global model exclusion.
+
+Audited all HESE7.5-year public MC field names/counts and recorded hashes.
+Raw interactionType exists; old example loader drops it. True x,y and true
+hadronic shower energy are absent. A sterile daughter still accompanies a
+visible hadronic shower. v0.43's flux-only modifier omits this new event term.
+An exact two-bin response counterexample proves SM-marginal responses do not
+uniquely determine a different-y BSM template. HESE12-year release supplies
+directional maps. Current EHE Dataverse metadata requests returned403; did not
+pretend to reverify inaccessible files. Saved concrete response requirements.
+
+Further analytic consistency check: stable N also has the inverse transition
+Nq->nu_tau q. Verified the exact two-state eigenmodes against a2x2 exponential,
+including pure-transition number conservation. An irreversible sink is not a
+globally valid transport model without bounding reconversion. No new Earth
+prediction is claimed from this fixed-energy diagnostic.
+
+Read full ATZ2021 erratum: its DIS corrections are dimension-six bounds; its
+MadGraph calculation is Rayleigh nu-e-gamma scattering, not evidence for a
+correction to derivative Eqs77/78. The attached reconstruction strengthens the
+normalization question but does not provide a modern detector likelihood.
+Code/results/plan/detailed disposition saved asv0.87. Full IceCube certification
+is not complete; the specific response dependency is now documented rather
+than replaced by an unexplained generic "unresolved" label. No messages sent.
