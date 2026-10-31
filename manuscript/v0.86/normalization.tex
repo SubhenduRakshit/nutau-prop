@@ -1,0 +1,243 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{jheppub}
+\usepackage{amsmath,amssymb,booktabs,slashed}
+\newcommand{\PL}{P_L}
+\newcommand{\dd}{\mathrm{d}}
+\preprint{nutau-prop / v0.86 / 31 October 2026}
+\title{A decay--scattering normalization audit of resolved neutrino transition operators}
+\author{Subhendu Rakshit}
+\hypersetup{pdftitle={Resolved neutrino transition normalization audit v0.86},pdfauthor={Subhendu Rakshit}}
+\abstract{We resolve a normalization mismatch in the project's implementations of
+two PKR-like resolved neutrino transition vertices. For a specified massless,
+distinct-state chiral transition, exact traces establish a factor four between
+tensor and derivative scattering rates, matching their decay-width ratio.
+The inherited derivative and tensor DIS kernels were respectively too large
+by factors sixteen and eight relative to the adopted widths. Fresh CT18 folds
+and conditional collider screens replace the affected numerical claims.
+This is a technical correction to the project implementation, not a finding
+that the published PKR calculation is incorrect or a general exclusion theorem.}
+\begin{document}
+\maketitle
+
+\section{Scope and coefficient conventions}
+The resolved interactions considered in ref.~\cite{PKR} motivate the following
+explicit vertices for one ordered, distinct-state chiral transition:
+\begin{equation}
+ V_{44}^\mu=a(k+k')^\mu\PL,\qquad
+ V_{43}^\mu=2a q_\nu\sigma^{\nu\mu}\PL,\qquad \kappa=g_q a.
+\end{equation}
+Here $q=k-k'$, $\PL=(1-\gamma_5)/2$ and
+$\sigma^{\mu\nu}=i[\gamma^\mu,\gamma^\nu]/2$, with metric $(+---)$.
+The tensor's factor two follows from the field strength. We include the
+Hermitian conjugate, with two distinct conjugate invisible decay channels.
+The incoming active neutrino has one helicity; only the incoming quark spin
+is averaged. Singlet-current colour factors cancel.
+
+The project realization is an active-to-sterile transition. Identifying it
+with a literal charge-conjugated active-flavour operator requires additional
+field, flavour and multiplicity information. Neither a sterile interpretation
+nor the original UFO conventions follow from the equation number alone.
+
+An additional exact selection rule matters. For anticommuting fields,
+$(C\PL)^T=-C\PL$ and
+$(C\sigma^{\mu\nu}\PL)^T=+C\sigma^{\mu\nu}\PL$ imply that both the
+charge-conjugated tensor bilinear and the scalar bilinear with an
+$\overleftrightarrow{\partial}$ derivative are antisymmetric in flavour.
+They vanish for literally identical diagonal fields. A nonzero derivative
+realization also needs distinct fields or an off-diagonal assignment;
+suppressed printed indices do not specify the original numerical model.
+
+\section{Analytic scattering and crossing checks}
+For $\nu(k)q(p)\to N(k')q(p')$, write $s=\hat s$, $t=(k-k')^2$,
+$u=-s-t$ and $K=k+k'$. Up to a phase,
+\begin{equation}
+ \mathcal M_{44}=\frac{\kappa}{t-M^2}
+ [\bar u(k')\PL u(k)]K_\mu[\bar u(p')\gamma^\mu u(p)].
+\end{equation}
+Current conservation and $q\cdot K=0$ eliminate the longitudinal propagator.
+The traces give
+\begin{align}
+ S&=\operatorname{Tr}[\slashed k'\PL\slashed k P_R]=-t,\\
+ H^{\mu\nu}&=\tfrac12\operatorname{Tr}[\slashed p'\gamma^\mu\slashed p\gamma^\nu],
+ &K_\mu K_\nu H^{\mu\nu}&=-4su,\\
+ \overline{|\mathcal M_{44}|^2}&=\frac{4\kappa^2stu}{(M^2-t)^2}.
+\end{align}
+Using $t=-sy$ and $u=-s(1-y)$,
+\begin{equation}
+ \frac{\dd\hat\sigma_{44}}{\dd y}
+ =\frac{\kappa^2s^2y(1-y)}{4\pi(M^2+sy)^2}.
+\end{equation}
+The massless external-fermion equations relate the tensor current to twice
+the derivative current up to a phase. This relation holds for virtual
+$t$-channel exchange: it does not assume an on-shell mediator. Therefore
+\begin{equation}
+ \dd\sigma_{43}=4\dd\sigma_{44}
+ \quad\text{at equal }a,g_q,M\text{ and phase-space domain}.
+\end{equation}
+For $s_N=2m_NE$, $Q^2=xs_Ny$ and $F=\sum_q(xf_q+xf_{\bar q})$,
+\begin{equation}
+ \frac{\dd^2\sigma_{44}}{\dd x\dd y}
+ =\frac{\kappa^2x s_N^2 y(1-y)F(x,Q^2)}{4\pi(M^2+Q^2)^2}.
+ \label{eq:fold}
+\end{equation}
+The contact limit has $\hat\sigma_{44}=\kappa^2s^2/(24\pi M^4)$,
+with relative corrections of order $s/M^2$.
+
+The vector decay polarization average is $1/3$. The one-channel squared
+amplitudes are $a^2M^4/3$ and $4a^2M^4/3$. Including both conjugate channels,
+\begin{equation}
+ \Gamma_{44}=\frac{a^2M^3}{24\pi},\qquad
+ \Gamma_{43}=\frac{a^2M^3}{6\pi}.
+\end{equation}
+These agree with the project's physical widths. In particular,
+\begin{equation}
+ \frac{1}{\Gamma_{\rm inv}}\frac{\dd^2\sigma}{\dd x\dd y}
+ =\frac{6g_q^2}{M^3}\frac{x s_N^2y(1-y)F}{(M^2+Q^2)^2}
+ \label{eq:invariant}
+\end{equation}
+is identical for both vertices at this multiplicity. A coefficient relabelling
+cannot repair a mismatch in this invariant. Extra invisible species require
+an explicit change in the width-to-incident-species relation.
+
+The inherited derivative DIS coefficient was $4/\pi$ instead of $1/(4\pi)$.
+The inherited tensor kernel was twice that value, while its width was four
+times the derivative width. Relative to the specified widths these kernels
+overstated the rates by sixteen and eight. The previous width calculation
+survives; the previous cross-section identification does not.
+
+\section{Numerical checks and corrected benchmarks}
+We used CT18NLO member zero with a leading-order hard process, an isoscalar
+target, five quark flavours, $Q\geq1.3$ GeV and $x\geq10^{-9}$.
+The integration starts at the physical $Q_{\min}$-dependent $y$ boundary.
+The reported ratio is the mean of $\sigma_{\rm NP}/\sigma^{\nu}_{\rm SM}$
+and $\sigma_{\rm NP}/\sigma^{\bar\nu}_{\rm SM}$, with SM including CC and NC.
+It is not a ratio to NC alone or a detector event ratio.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Benchmark & $g_q$ & $a\ (\mathrm{GeV}^{-1})$ & $R(100\,\mathrm{PeV})$ & $R(220\,\mathrm{PeV})$\\
+\midrule
+v0.73, Eq. 4.4 & .030 & .00356307 & 0.3106\% & 0.3046\%\\
+Early Eq. 4.3 & .030 & .00197258 & 0.6217\% & 0.6204\%\\
+v0.81, Eq. 4.4 & .038 & .00237978 & 0.3179\% & 0.3155\%\\
+v0.83, Eq. 4.3 & .017 & .00674371 & 0.6212\% & 0.5972\%\\
+\bottomrule
+\end{tabular}
+\caption{Fresh fixed-coupling results at $M=50$ GeV and $\sqrt{\hat s}<1/a$.
+The first two 100-PeV NP cross sections are $2.17770\times10^{-35}$ and
+$4.35948\times10^{-35}\ \mathrm{cm}^2$.}
+\end{table}
+
+Changing the cutoff to $0.5/a$ at fixed couplings lowers the first two
+100-PeV ratios to $0.1232\%$ and $0.3416\%$. Since $a=c/\Lambda$, the choice
+$1/a$ is a convention for the Wilson coefficient, not a universally established
+UV threshold. Equal amplitudes require $a_{44}=2a_{43}$. At a common physical
+cutoff both rates and widths then agree; imposing $1/a$ separately gives
+different domains and a prescription-dependent hierarchy. This is not a proof
+of equivalence between complete electroweak or UV theories.
+
+Exact symbolic matrix traces pass at general scattering angle and arbitrary
+decay mass, including the Ward identities. Twenty tests check the contact
+limit, endpoints, coefficient mapping and analytic coupling bounds. Fourteen
+Mac Studio worker processes, each with single-thread numerical libraries,
+computed 288 base folds and targeted refinements. The largest relative
+quadrature change at refined maxima was $1.42\times10^{-7}$, and the largest
+interpolation error was $1.93\times10^{-4}$. These figures do not include
+PDF, perturbative, low-$Q$ or experimental uncertainties.
+
+\section{Conditional collider screen}
+At fixed mass and in the narrow-width approximation, let $z=g_q^2$,
+$I=\Gamma_{\rm inv}$, $B=\Gamma_{qq}/g_q^2$ and
+\begin{equation}
+ P=\frac{zI}{Bz+I},\qquad r=K_M P,\qquad D=z-P=g_q^2\mathrm{BR}_{qq}.
+\end{equation}
+The bounds on $z$ can be solved analytically. A monojet condition
+$P\leq P_{\max}$ gives
+$z\leq P_{\max}I/(I-BP_{\max})$ only if $I>BP_{\max}$.
+A dijet condition $D\leq d$ gives
+\begin{equation}
+ z\leq\tfrac12\left[d+\sqrt{d^2+4dI/B}\right].
+\end{equation}
+We retain $\Gamma/M\leq0.1$, $g_q^2\leq4\pi$ and $1/a>M$.
+Every sampled $a$ interval was optimized and its winning value checked by a
+direct fold, avoiding a first-crossing-only scan.
+
+CMS reports universal-vector dijet coupling limits from 0.03 to 0.13 over
+50--300 GeV, assuming a fully hadronic decay~\cite{CMS}. We deliberately use
+the weakest value, $g_q\sqrt{\mathrm{BR}_{qq}}\leq0.13$, at each tested mass.
+This relaxes the mass-dependent constraint under the narrow-width mapping.
+The resulting nominal $r\leq1$ maxima are:
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$M\ (\mathrm{GeV})$ & Eq. 4.4 & Eq. 4.3\\
+\midrule
+50 & 3.142\% & 4.514\%\\
+100 & 0.2197\% & 0.2635\%\\
+220 & 0.0583\% & 0.0743\%\\
+\bottomrule
+\end{tabular}
+\end{center}
+These are conditional screens, not exact 95\% CL exclusions. The $M=50$ GeV
+normalization uses the existing 100k-event same-seed reference; 100 and 220 GeV
+use 20k-event pilot shapes. Exact mass-specific dijet data were not recovered.
+With the same deliberately weak dijet envelope but $r\leq1.2$, Eq. 4.3 at
+50 GeV reaches 5.258\%. Thus the relaxed nominal bound must not be promoted
+to a robust exclusion. Approximate mass-specific inputs yield smaller effects,
+but remain sensitivity diagnostics. Other mediator masses are not closed.
+
+At the same couplings, correcting DIS leaves the existing collider $r$
+unchanged because the widths already had this normalization. What changes is
+whether that point satisfies the UHE target. The $r=1.239$ benchmark is no
+longer a 5\% UHE benchmark.
+
+\section{Propagation and interpretation}
+For the specified sterile final state there is no SM interference and the
+new transport term is an active-flux sink. The unregenerated optical depth
+$N_AX\sigma_{\rm NP}$ inherits the rate correction. An already regenerated
+SM spectrum cannot simply be multiplied by a sink exponential: NC downscattering
+and tau decay couple energies. We do not claim a new transport solution or a
+tau-specific IceCube likelihood here.
+
+The corrected benchmark effects remain subpercent at 220 PeV. A large
+relative change on an opaque vertical chord is not, by itself, an observable
+cosmogenic event enhancement. The original objective remains a valid model
+with measurable tau-neutrino propagation distortions after laboratory,
+IceCube, validity and detector constraints. These benchmarks do not establish
+that goal, but neither do three mass screens prove a general no-go theorem.
+
+The error established here belongs to the project's normalization chain.
+An attribution to the published PKR analysis requires reproducing its actual
+field conventions and collider model. Modern experimental constraints and
+implementation errors must be discussed separately. All superseded results
+are preserved, with corrected code and machine-readable outputs in v0.86.
+
+\paragraph{The concurrently added published-bound reconstruction.}
+PKR quotes 5-GeV IceCube bounds $\kappa_{43}=4.8\times10^{-4}$ and
+$\kappa_{44}=2.5\times10^{-4}\ \mathrm{GeV}^{-1}$~\cite{PKR}. If the two
+bounds use an identical allowance, flavour sum and the coefficient convention
+above, they imply $F_{43}/F_{44}=(2.5/4.8)^2=0.271267$ for
+$\sigma_i=\kappa_i^2F_i$, instead of four. Our kernels evaluated at those
+couplings have ratio 14.7456. This is a conditional normalization discrepancy,
+but the pair does not determine which absolute implementation is wrong.
+Trusting the 4.3 anchor gives a 4.4 bound of $9.6\times10^{-4}$; trusting the 4.4
+anchor gives a 4.3 bound of $1.25\times10^{-4}\ \mathrm{GeV}^{-1}$.
+Neither is a new IceCube fit. The concurrent v0.85 note's inferred coefficient
+58.98 has rounding range 55.5--62.7, which does not contain 64. Extra uncertainty
+is necessary to support that suggested identification. This distinction
+separates the directly demonstrated repository error from a hypothesis about
+the published implementation.
+
+\begin{thebibliography}{9}
+\bibitem{PKR} S.~Pandey, S.~Karmakar and S.~Rakshit,
+\emph{Strong constraints on non-standard neutrino interactions: LHC vs. IceCube},
+\href{https://arxiv.org/abs/1907.07700}{arXiv:1907.07700}.
+\bibitem{CMS} CMS Collaboration,
+\emph{Search for low-mass vector and scalar resonances decaying into a
+quark-antiquark pair in proton-proton collisions at $\sqrt{s}=13$ TeV},
+CMS-EXO-24-007, \href{https://arxiv.org/abs/2603.21965}{arXiv:2603.21965};
+\href{https://cms-results.web.cern.ch/cms-results/public-results/publications/EXO-24-007/}{official results and branching-ratio assumptions}.
+\end{thebibliography}
+\end{document}

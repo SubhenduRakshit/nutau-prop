@@ -481,3 +481,48 @@ partner constraints. A B-3L_tau vector is theoretically clean but fails the
 size objective because its allowed amplitude is small and universal u/d
 interference largely cancels. Details and the decision matrix are recorded in
 UHE_INTERACTION_PORTFOLIO_v0.33.md.
+
+2026-10-31 — v0.86 EXACT DECAY/DIS NORMALIZATION RESOLUTION
+=========================================================
+User authorized work-mode calculations on Mac Studio for Eq. 4.3 and 4.4,
+with a 13:56 continuation if unfinished. Analytic criteria were written before
+the numerical folds. For the explicit distinct-state massless chiral vertices,
+exact general-angle Dirac traces and decay crossing require sigma43/sigma44=4
+and Gamma43/Gamma44=4. The legacy Eq4.4 DIS kernel mismatched its physical width
+by factor16; the legacy Eq4.3 kernel by factor8. The v0.82 widths survive, but
+its factor-two DIS paragraph and v0.83 UHE interpretation are superseded.
+Charge-conjugated derivative and tensor bilinears are both flavour-antisymmetric:
+literal diagonal fields give zero. The original PKR field/UFO mapping remains
+unverified; these findings establish repository errors, not that PKR is wrong.
+
+14 single-threaded worker processes ran fresh dynamic-Q CT18NLO folds on
+Subhendus-Mac-Studio-2.local. Old 5% benchmarks become 0.3106% (44) and 0.6217%
+(43) at100PeV, 0.3046%/0.6204% at220PeV. At fixed coupling the cutoff0.5/a
+lowers these further. Equal-amplitude a44=2a43 points agree at a common physical
+cutoff; a=c/Lambda does not by itself determine a universal validity scale.
+
+Analytic coupling bounds replaced brute-force gq scans. Every a interval was
+optimized, then maxima directly re-integrated. With nominal monojet r<=1 and
+the deliberately weak published global dijet envelope0.13, maximum100PeV
+effects at M50/100/220GeV are 3.142/.2197/.0583% (44) and4.514/.2635/.0743% (43).
+These are conditional screens. M50 Eq43 reaches5.258% if r<=1.2 in the same
+relaxed dijet envelope: no robust/general exclusion is claimed. Exact dijet
+tables, original UFO, full collider/UV validity and tau-specific IceCube remain
+open. HEPData access failed403; CMS primary summary/BR assumption verified.
+Existing same-coupling collider r values are unchanged; their 5%UHE labels fail.
+
+Exact trace gates and20 numerical invariant/bound tests passed. Refined-max
+quadrature changes<1.42e-7, interpolation error<1.93e-4; these do not estimate
+PDF/theory/systematic uncertainties. Initial import failure is preserved; set
+PYTHONPATH=src. Untracked user py.py shadowed pytest, avoided by running tests
+from/private/tmp. No unrelated user files or failed historical results removed.
+New module, scripts, data, provenance, detailed audit and JHEP-format technical
+note (LaTeX/PDF, author Subhendu Rakshit) saved asv0.86. Six PDF pages rendered
+and visually checked. This is a normalization supplement, not a completed
+publication or new transport/detector result. See PKR_NORMALIZATION_RESOLUTION_v0.86.md.
+Remote v0.84 threshold/v0.85 forensic notes arrived before the final push.
+They were rebased in without overwriting either; our unpublished local audit
+was renumberedv0.86. Audited the newv0.85 claim: printed bounds imply a
+conditional relative-normalization discrepancy14.7456, but cannot establish
+which absolute implementation was wrong. Its rounding interval55.5--62.7
+does not contain64. Added explicit qualification while preserving its text.

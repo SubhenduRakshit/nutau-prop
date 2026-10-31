@@ -1,4 +1,15 @@
-# nutau-prop v0.9
+# nutau-prop: current normalization audit v0.86
+
+**Current correction:** [PKR_NORMALIZATION_RESOLUTION_v0.86.md](PKR_NORMALIZATION_RESOLUTION_v0.86.md)
+resolves the decay/DIS mismatch for the explicit Eq. 4.3/4.4 chiral transition.
+The former 5% fixed-coupling benchmarks become approximately 0.62% and 0.31%.
+The [v0.86 technical note](manuscript/v0.86/normalization.pdf), its LaTeX source,
+and `results/v0.86_normalization/` contain the derivation and reproducibility
+checks. Collider results remain conditional screens, not all-constraints
+certificates. v0.82's DIS relation and v0.83's UHE interpretation are superseded;
+their historical artifacts are preserved. Run `bash run_pkr_normalization_v0_86.sh`.
+
+## Preserved public-data Case-6 audit and transport baseline
 
 The current public-data Case-6 audit is documented in `README_v0.9.md`,
 `STATUS_AUDIT_v0.9.md`, and `manuscript/v0.9/main.pdf`. The material below

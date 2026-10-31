@@ -1,5 +1,12 @@
 # PKR 5 GeV IceCube normalization reconstruction — v0.85
 
+> **v0.86 audit qualification:** the common-convention ratio discrepancy is
+> meaningful, but the printed bounds alone do not fix either absolute kernel.
+> The stated rounding interval55.5--62.7 excludes64; an extra uncertainty is
+> needed for the claimed compatibility. See the concurrent-work audit in
+> `PKR_NORMALIZATION_RESOLUTION_v0.86.md`. The original reasoning below is
+> preserved and must not be read as a new fitted IceCube bound.
+
 Date: 2026-10-31
 Status: model-independent forensic reconstruction from the published PKR 5 GeV limits
 

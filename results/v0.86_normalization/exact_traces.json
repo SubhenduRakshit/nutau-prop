@@ -1,0 +1,44 @@
+{
+  "version": "v0.86",
+  "status": "PASS",
+  "scattering": [
+    {
+      "cosine": "3/5",
+      "derivative": "1024/25",
+      "tensor": "4096/25",
+      "ratio": 4,
+      "ward": 0
+    },
+    {
+      "cosine": "-3/5",
+      "derivative": "1024/25",
+      "tensor": "4096/25",
+      "ratio": 4,
+      "ward": 0
+    },
+    {
+      "cosine": "0",
+      "derivative": "64",
+      "tensor": "256",
+      "ratio": 4,
+      "ward": 0
+    },
+    {
+      "cosine": "(1 - r**2)/(r**2 + 1)",
+      "derivative": "256*r**2/(r**4 + 2*r**2 + 1)",
+      "tensor": "1024*r**2/(r**4 + 2*r**2 + 1)",
+      "ratio": 4,
+      "ward": 0
+    }
+  ],
+  "charge_conjugated_flavour_selection": "derivative and tensor bilinears antisymmetric in flavour; diagonal vanishes",
+  "decay_spin_averaged_amplitude_squared_over_a2": [
+    "M**4/3",
+    "4*M**4/3"
+  ],
+  "total_conjugate_width_over_a2": [
+    "M**3/(24*pi)",
+    "M**3/(6*pi)"
+  ],
+  "scope": "one distinct-state chiral transition and conjugate; massless; no initial neutrino spin average"
+}

@@ -1,0 +1,14 @@
+{
+  "version": "v0.86",
+  "stage": "initial",
+  "workers": 14,
+  "thread_count_per_worker": 1,
+  "host": "Subhendus-Mac-Studio-2.local",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "seconds": 2.274009943008423,
+  "pdf": "CT18NLO member 0",
+  "hard_process": "LO",
+  "y_min": "Qmin^2/min(s,Lambda^2)",
+  "ratio_definition": "mean of NP/SM_nu and NP/SM_antinu; SM=CC+NC",
+  "collider": "calibrated NWA screen, not an all-constraints certificate"
+}

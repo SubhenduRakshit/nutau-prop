@@ -1,0 +1,21 @@
+initial: 288 targeted CT18 folds, 14 workers; BLAS threads=1
+24/288 folds complete
+48/288 folds complete
+72/288 folds complete
+96/288 folds complete
+120/288 folds complete
+144/288 folds complete
+168/288 folds complete
+192/288 folds complete
+216/288 folds complete
+240/288 folds complete
+264/288 folds complete
+288/288 folds complete
+operator  M_GeV     dijet_screen  r_cap  max_ratio100       gq  a_GeV_inv  cutoff_GeV  Gamma_over_M  monojet_r  gq_equiv_dijet       reference
+     4.4   50.0 no_dijet_relaxed    1.0      0.427111 0.501024   0.001951  512.606926           0.1   0.919708        0.500708      v0.81 100k
+     4.4  100.0 no_dijet_relaxed    1.0      0.029860 0.501222   0.000562 1779.436642           0.1   0.910429        0.501117 v0.79 20k pilot
+     4.4  220.0 no_dijet_relaxed    1.0      0.008300 0.500981   0.000462 2162.243958           0.1   0.990965        0.500637 v0.79 20k pilot
+     4.3   50.0 no_dijet_relaxed    1.0      0.643970 0.500999   0.001014  986.174644           0.1   0.993864        0.500657      v0.81 100k
+     4.3  100.0 no_dijet_relaxed    1.0      0.038125 0.501213   0.000292 3422.464066           0.1   0.984416        0.501100 v0.79 20k pilot
+     4.3  220.0 no_dijet_relaxed    1.0      0.009663 0.501014   0.000220 4542.763521           0.1   0.898139        0.500702 v0.79 20k pilot
+Done in 2.3s

@@ -1,5 +1,11 @@
 # PKR Eq. (4.3) transition-dipole width certification — v0.82
 
+> **v0.86 correction:** the widths below survive for the specified distinct-state
+> convention, but the cross-section factor-two claim is superseded. Exact
+> scattering traces give factor four, and the inherited absolute DIS kernel
+> also mismatched these widths. See `PKR_NORMALIZATION_RESOLUTION_v0.86.md`.
+> The original text is retained as history, not an accepted DIS normalization.
+
 Date: 2026-10-31
 Status: analytic normalization certification
 

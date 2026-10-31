@@ -1,0 +1,84 @@
+{
+  "version": "v0.86",
+  "pre_commit_head": "ef1c26ad0bedaf16cb7f97952255b98caf59c36c",
+  "host": "Subhendus-Mac-Studio-2.local",
+  "python": "3.13.13",
+  "numpy": "2.4.6",
+  "scipy": "1.18.0",
+  "sympy": "1.14.0",
+  "lhapdf": "6.5.6",
+  "lhapdf_module": "/Users/subhendurakshit/miniforge3/lib/python3.13/site-packages/lhapdf/__init__.py",
+  "files": [
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/src/nutau_prop/pkr_resolved.py",
+      "sha256": "eccb7ddffd815815fa4c4d84a05fd7bd668706765bcf1a663ba7c2cc11ade40f",
+      "bytes": 2244
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/src/nutau_prop/case6.py",
+      "sha256": "771917decd60545cd871836e90a501a3ec5b37ed781a0e4927b6bad6f3c974bb",
+      "bytes": 6603
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/src/nutau_prop/pdfs.py",
+      "sha256": "8705fc498de9802ac593d22197b52c11a3bf3a0e2844573af41214bf9bcad9b1",
+      "bytes": 1348
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/src/nutau_prop/constants.py",
+      "sha256": "76388020532c2174cfc77a14e418b69b519242811caece8119c418852454799b",
+      "bytes": 514
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/scripts/check_pkr_traces_v0_86.py",
+      "sha256": "66e1968e1fa7982517e6604fe3896a87f64ae81d621ea58e16903eefe2144471",
+      "bytes": 3428
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/scripts/pkr_normalization_fold_v0_86.py",
+      "sha256": "0e02b4618b09c46aa2d40c3653fb3a1592b5cfd702757dfb4df6e5b658f0745d",
+      "bytes": 8769
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/scripts/pkr_refine_screens_v0_86.py",
+      "sha256": "e7ff42299febd5e22e0050fd169efb12bfcebb0b08e7bb879b1279595658d068",
+      "bytes": 4062
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.76_eq4p4_mass_prescreen/base_mass_envelopes.csv",
+      "sha256": "7e4874de74b9ac10a259671f43113c5b80fe8b6ec0cbfda24772ffac843fb811",
+      "bytes": 20208
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.79_eq4p4_mass_acceptance_pilot/mass_ranking.csv",
+      "sha256": "c54688824a9a2453243ff907ef363e1380667c76e4a18d8825167de41a8139f5",
+      "bytes": 1417
+    },
+    {
+      "path": "/Users/subhendurakshit/Research/nutau-prop-cert/results/v0.81_eq4p4_M50_same_seed_reweight/M50_same_seed_reweight.json",
+      "sha256": "3b639b44ad64dc4f3c0c82d62f3d99d167f2b05858e4992c620d84b14deaf5cf",
+      "bytes": 1146
+    },
+    {
+      "path": "/Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO.info",
+      "sha256": "be60232d8e6c49982c82f5fa990fd5b0fd1050719944f31602bf27cdb16548b0",
+      "bytes": 1829
+    },
+    {
+      "path": "/Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat",
+      "sha256": "375db856d2f8c7087a626c92ebf228d3f080e5de83175519778ffaf6e72e5410",
+      "bytes": 1188689
+    }
+  ],
+  "analytic_status": "PASS: specified distinct-state massless chiral vertices",
+  "numerical_status": "PASS: targeted quadrature and interpolation gates",
+  "collider_status": "conditional NWA screens, no new experimental exclusion",
+  "unresolved": [
+    "original PKR UFO and field/multiplicity mapping",
+    "exact mass-specific dijet data",
+    "operator-specific collider validity and off-shell effects",
+    "tau-specific IceCube likelihood",
+    "UV completion and physical cutoff",
+    "updated coupled transport/detector prediction"
+  ]
+}
