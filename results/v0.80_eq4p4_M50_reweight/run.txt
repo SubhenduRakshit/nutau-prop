@@ -1,0 +1,12 @@
+=== v0.80 Eq4.4 M50 same-sample reweight ===
+P_rep/P_v075 = 0.907533
+xsec: 6.84033 -> 6.20782 pb
+mu95=1.347843145861702  multibin_r=0.7419260936039266  singlebin=0.4204442482358735
+status: ROBUST_SURVIVAL_THRESHOLD
+MG5 rerun: no; Pythia rerun: no; new events: no
+
+Thanks for using Spey 0.2.7. 
+Please make sure to cite the paper:
+    SciPost Phys. 16, no.1, 032 (2024) 
+    http://arxiv.org/abs/arXiv:2307.06996
+

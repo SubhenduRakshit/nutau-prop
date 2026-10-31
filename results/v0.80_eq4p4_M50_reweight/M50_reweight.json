@@ -1,0 +1,27 @@
+{
+  "version": "v0.80_eq4p4_M50_reweight",
+  "source": "same 100k v0.75 HepMC; no MG5/Pythia/new events",
+  "representative": {
+    "M_GeV": 50.0,
+    "gq": 0.038,
+    "a_GeV_inv": 0.002379776052245943,
+    "BR_inv": 0.24633580392761653,
+    "coupling_factor_gq2BR": 0.00035570890087147826
+  },
+  "reference_v075": {
+    "gq": 0.035499999999999976,
+    "BR_inv": 0.31101098660540005,
+    "coupling_factor_gq2BR": 0.0003919515958694549,
+    "cross_section_pb": 6.84033
+  },
+  "normalization_scale": 0.9075327275614722,
+  "rescaled_cross_section_pb": 6.207823342320565,
+  "checkmate": {
+    "returncode": 0,
+    "mu95": 1.347843145861702,
+    "multibin_r": 0.7419260936039266,
+    "singlebin_robscons": 0.4204442482358735,
+    "status": "ROBUST_SURVIVAL_THRESHOLD"
+  },
+  "interpretation": "Use 0.8<r<1.2 as boundary-unresolved. Do not chase r=1 with more event generation."
+}
