@@ -1,0 +1,9 @@
+{
+  "version": "v0.79_eq4p4_mass_acceptance_pilot",
+  "pilot_events_per_new_mass": 20000,
+  "ranking_metric": "sqrt(sum_b s_b^2/(b_b+db_b^2)); diagonal-background diagnostic only",
+  "clear_rank_requires": "best score_hi < second-best score_lo using pilot MC-scale diagnostic",
+  "clear_rank": true,
+  "candidate_M_GeV": 50.0,
+  "rule": "No exclusion claim from pilot. If no clear rank, do not authorize a full-statistics mass run."
+}

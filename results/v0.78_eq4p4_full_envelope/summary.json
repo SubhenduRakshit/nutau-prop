@@ -1,0 +1,9 @@
+{
+  "version": "v0.78_eq4p4_full_envelope",
+  "source": "v0.76 base CT18 envelopes; no new UHE integration",
+  "target": "sigma_NP/sigma_SM >= 5% at 100 PeV",
+  "correction": "all connected a intervals retained, including second crossings",
+  "dijet": "CMS EXO-24-007 digitized screening values from v0.76 with +/-0.005 robustness band",
+  "cross_mass_monojet_ranking": "NOT PERFORMED: requires sigma_prod(M)*A_b(M), not gq^2 BRinv alone",
+  "next_step": "obtain mass-dependent production x acceptance proxy before choosing any new CheckMATE benchmark"
+}

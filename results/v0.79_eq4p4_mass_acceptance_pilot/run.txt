@@ -1,0 +1,27 @@
+=== v0.79 production x acceptance pilot ===
+50 GeV: reuse v0.75; 100/220 GeV: fresh pilot samples
+running M=100 GeV pilot
+M100: removed all Lambda4/5 metadata reads from both bridge variants: {'pdf_lhapdf6.cc': 6, 'pdf_lhapdf62.cc': 8}
+M100: explicitly rebuilt patched libpdf.a
+M100: disabled process-local HTML opening and notifications
+M100: MG5 STDLIB already uses -lc++
+M100: appended $(STDLIB) to MG5 LDFLAGS on Darwin
+running M=220 GeV pilot
+M220: removed all Lambda4/5 metadata reads from both bridge variants: {'pdf_lhapdf6.cc': 6, 'pdf_lhapdf62.cc': 8}
+M220: explicitly rebuilt patched libpdf.a
+M220: disabled process-local HTML opening and notifications
+M220: MG5 STDLIB already uses -lc++
+M220: appended $(STDLIB) to MG5 LDFLAGS on Darwin
+ M_GeV  coupling_factor  sigma_unit_pb  representative_xsec_pb  sum_selected_signal  diag_background_weighted_score  pilot_mc_scale  score_lo  score_hi  pilot_multibin_r
+  50.0         0.000356   17451.976397                6.207823         21652.737981                        5.451820        0.019819  5.343772  5.559868          1.138033
+ 100.0         0.000629   11115.784989                6.987400         33826.253395                       12.910499        0.037745 12.423196 13.397801          5.438614
+ 220.0         0.007844    3342.918811               26.220600        258468.028405                       90.539934        0.026352 88.153998 92.925869         22.555746
+clear cross-mass rank: True
+full-statistics candidate: 50.0
+interpretation: pilot ranks production x acceptance only; no collider exclusion/survival claim
+
+Thanks for using Spey 0.2.7. 
+Please make sure to cite the paper:
+    SciPost Phys. 16, no.1, 032 (2024) 
+    http://arxiv.org/abs/arXiv:2307.06996
+
