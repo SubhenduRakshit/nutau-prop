@@ -1,0 +1,31 @@
+{
+  "version": "v0.74_eq4p4_survival_envelope",
+  "M_GeV": 50.0,
+  "target": "sigma_NP/sigma_SM=5% at 100 PeV",
+  "physical_width": "Eq4.4 O+h.c.; Gamma_inv=a^2 M^3/(24 pi)",
+  "nwa_monojet_scaling": "same M: r=r_ref*(gq^2 BRinv)/(gq_ref^2 BRinv_ref)",
+  "gq_critical_grid_estimate": 0.02333866421205265,
+  "base_envelope_max": 91.79478588500018,
+  "base_envelope_peak_a_GeV_inv": 0.009105998073513193,
+  "reference_a_reconstructed": 0.003563582068786942,
+  "reference_a_relative_error": 0.00014481575659619668,
+  "nominal_surviving_rows": 1,
+  "robust_surviving_rows": 0,
+  "best_screen_point": {
+    "gq": 0.035499999999999976,
+    "a_GeV_inv": 0.0026126891138978474,
+    "kappa_GeV_inv": 9.275046354337352e-05,
+    "Lambda_vertex_GeV": 382.74741326116254,
+    "Gamma_over_M": 0.0007277440021176721,
+    "BR_inv": 0.31101098660540005,
+    "gq_equiv_dijet": 0.029466903538216283,
+    "monojet_r_pred": 0.99828866112531,
+    "monojet_class": "NOMINAL_SURVIVAL_MARGINAL"
+  },
+  "status": "MARGINAL_SURVIVING_5PCT_WINDOW_FOUND",
+  "limitations": [
+    "NWA monojet extrapolation is calibrated at one M=50 GeV CheckMATE point; a surviving point needs one fresh detector validation.",
+    "CMS dijet comparison uses the conservative global 0.03 floor, not an exact 50-GeV likelihood.",
+    "This is a resolved-EFT screen with sqrt(shat)<1/a; exact partial-wave/gauge-completion constraints remain separate."
+  ]
+}

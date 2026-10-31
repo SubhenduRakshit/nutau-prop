@@ -1,0 +1,74 @@
+[1/2] CT18 100-PeV base envelope: 168 a-points on 14 processes
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+[2/2] width + calibrated monojet NWA envelope
+=== v0.74 Eq4.4 M=50 survival envelope ===
+reference a reproduction: 0.0035635821 (rel diff 0.014%)
+5% capacity requires gq >= ~0.02334 within Lambda_vertex>M
+nominal surviving rows (r<1 + width/dijet/vertex screen): 1
+robust surviving rows  (r<0.8): 0
+best screen point:
+  gq: 0.035499999999999976
+  a_GeV_inv: 0.0026126891138978474
+  kappa_GeV_inv: 9.275046354337352e-05
+  Lambda_vertex_GeV: 382.74741326116254
+  Gamma_over_M: 0.0007277440021176721
+  BR_inv: 0.31101098660540005
+  gq_equiv_dijet: 0.029466903538216283
+  monojet_r_pred: 0.99828866112531
+  monojet_class: NOMINAL_SURVIVAL_MARGINAL
+status: MARGINAL_SURVIVING_5PCT_WINDOW_FOUND
