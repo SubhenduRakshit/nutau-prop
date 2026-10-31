@@ -1,0 +1,21 @@
+{
+  "version": "v0.76_eq4p4_mass_prescreen",
+  "target": "5% at 100 PeV",
+  "cms_source": "CMS EXO-24-007 Figure 2a observed gq curve; digitized/rounded screen only",
+  "cms_digitization_error_assumed": 0.005,
+  "next_checkmate_candidate": {
+    "M_GeV": 50.0,
+    "status": "ROBUST_DIJET_SCREEN_WINDOW",
+    "n_valid": 14,
+    "gq": 0.037,
+    "a_GeV_inv": 0.002439890498209768,
+    "Lambda_vertex_GeV": 409.8544589331917,
+    "BR_inv": 0.2659983435739168,
+    "Gamma_over_M": 0.0007420627535248578,
+    "gq_equiv_dijet": 0.031699341754164355,
+    "cms_gq95_digitized": 0.038,
+    "monojet_nwa_proxy": 0.000364151732352692,
+    "best_dijet_margin": NaN
+  },
+  "rule": "Run one fresh CheckMATE point only for the mass with smallest gq^2 BRinv among robust-dijet screen survivors; do not infer cross-mass monojet exclusion from NWA proxy."
+}

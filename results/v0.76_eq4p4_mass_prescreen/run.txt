@@ -1,0 +1,20 @@
+[1/2] CT18 mass envelopes: 3 masses on 3 processes
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+=== v0.76 Eq4.4 mass prescreen ===
+ M_GeV                        status  n_valid    gq  a_GeV_inv  Lambda_vertex_GeV   BR_inv  Gamma_over_M  gq_equiv_dijet  cms_gq95_digitized  monojet_nwa_proxy  best_dijet_margin
+  50.0    ROBUST_DIJET_SCREEN_WINDOW       14 0.037   0.002440         409.854459 0.265998      0.000742        0.031699               0.038           0.000364                NaN
+ 100.0    ROBUST_DIJET_SCREEN_WINDOW       29 0.081   0.001444         692.440688 0.095809      0.002887        0.077022               0.083           0.000629                NaN
+ 220.0 NO_ROBUST_DIJET_SCREEN_WINDOW        0   NaN        NaN                NaN      NaN           NaN             NaN                 NaN                NaN          -0.001883
+next CheckMATE candidate:
+{'M_GeV': 50.0, 'status': 'ROBUST_DIJET_SCREEN_WINDOW', 'n_valid': 14, 'gq': 0.037, 'a_GeV_inv': 0.002439890498209768, 'Lambda_vertex_GeV': 409.8544589331917, 'BR_inv': 0.2659983435739168, 'Gamma_over_M': 0.0007420627535248578, 'gq_equiv_dijet': 0.031699341754164355, 'cms_gq95_digitized': 0.038, 'monojet_nwa_proxy': 0.000364151732352692, 'best_dijet_margin': nan}
