@@ -1,0 +1,15 @@
+{
+  "version": "v0.69_multibin_retry",
+  "source": "existing v0.68 HepMC; no MG5/Pythia rerun",
+  "backend": "numpy",
+  "patched_spey_wrapper_paths": [
+    "/Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.51/checkmate-install/bin/spey_wrapper.py",
+    "/Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.51/checkmate2/tools/python/spey_wrapper.py"
+  ],
+  "checkmate_returncode": 0,
+  "multibin_mu95": null,
+  "multibin_r": null,
+  "multibin_CLs_mu1": null,
+  "max_singlebin_robscons": 0.3270606438271486,
+  "status": "MULTIBIN_STILL_UNRESOLVED"
+}
