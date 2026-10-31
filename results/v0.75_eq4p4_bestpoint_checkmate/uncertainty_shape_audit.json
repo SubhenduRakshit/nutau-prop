@@ -1,0 +1,30 @@
+{
+  "version": "v0.75_uncertainty_companion",
+  "source_total_results": "/Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.75_eq4p4_bestpoint_checkmate/checkmate/eq4p4_derivative__v074_best/pkr_v075_eq4p4_derivative__v074_best/evaluation/total_results.txt",
+  "reference_total_results": "/Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/evaluation/total_results.txt",
+  "common_signal_regions": 66,
+  "multibin_r_nominal": 1.1380325435488126,
+  "decision_status": "MARGINAL_BOUNDARY_UNRESOLVED_VALIDATION_ONLY",
+  "configured_xsec_relative_uncertainty": 0.1,
+  "selected_bin_total_ds_over_s_signal_weighted_median": 0.1188032869506854,
+  "selected_bin_total_ds_over_s_signal_weighted_p84": 0.166034921435101,
+  "inferred_mc_only_ds_over_s_signal_weighted_median": 0.0640552027853972,
+  "inferred_mc_only_ds_over_s_signal_weighted_p84": 0.13254267264562047,
+  "inferred_independent_bin_mc_scale_on_summed_signal": 0.01981871293294357,
+  "approx_r_mc_scale_band": [
+    1.1154782032598711,
+    1.160586883837754
+  ],
+  "shape_after_xsec_scaling": {
+    "bins_with_s_ge_1_in_both_samples": 39,
+    "weighted_mean_ratio": 1.038495905326706,
+    "weighted_rms_fractional_deviation_about_mean": 0.22864340874911807,
+    "max_fractional_deviation_about_mean": 2.8525359328044475
+  },
+  "caveats": [
+    "The MC-only component assumes CheckMATE combines the configured 10% XS error and MC error in quadrature.",
+    "The r MC band is an overall-scale diagnostic, not a full nuisance-parameter likelihood propagation.",
+    "Collider shower/matching/detector and surrogate-operator modelling uncertainties are not reduced by increasing event count.",
+    "Do not interpret sub-percent movement around r=1 as a physical exclusion/survival decision."
+  ]
+}

@@ -1,0 +1,8 @@
+=== v0.75 uncertainty / shape audit ===
+multibin r: 1.1380  status: MARGINAL_BOUNDARY_UNRESOLVED_VALIDATION_ONLY
+selected-bin ds/s weighted median: 11.88%  p84: 16.60%
+inferred MC-only ds/s weighted median: 6.41%  p84: 13.25%
+effective independent-bin MC scale: 1.98%
+approx r MC-scale band: [1.115, 1.161]
+shape/xsec ratio mean: 1.0385; weighted RMS about mean: 22.86%; max: 285.25%
+interpretation: validation only inside 0.8<r<1.2; no fourth-decimal boundary claim
