@@ -109,7 +109,7 @@ There are two equivalent ways to reconstruct the corrected Eq. (4.4) IceCube bou
 
 These independent reconstructions agree to about 4%, well within the precision implied by the rounded published limits and the visual curve reading.
 
-Equivalently, in PKR's dimensionless plotting variables, the published black labels are approximately \(\epsilon_1=143\) and \(\epsilon_2=75.6\). The corrected Eq. (4.4) label should instead be
+Equivalently, using PKR's plotting variables, the published black labels are approximately \(\epsilon_1=143\) and \(\epsilon_2=75.6\). The corrected Eq. (4.4) label should instead be
 
 \[
 \epsilon_{2,\rm corr}\simeq 2\epsilon_1\simeq286,
