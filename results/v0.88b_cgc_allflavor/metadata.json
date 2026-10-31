@@ -1,0 +1,18 @@
+{
+  "version": "v0.88_cgc_allflavor",
+  "baseline": "CT18NLO LO transport kernel from Case6DIS; PREM",
+  "cgc": "rcBK+DLA-2015 literature-calibrated total cross-section surrogate",
+  "cgc_differential_assumption": "same conditional y distributions as SM; CC and NC totals share R_CGC(E)",
+  "incident": "equal e:mu:tau; equal nu:antinu; E^-2 and E^-2.5 both run",
+  "tau": "mixed-grid tau production/loss/decay/regeneration; leptonic e and mu secondaries each BR=0.18",
+  "glashow": "not included; report focus is >=10 PeV nucleon DIS",
+  "oscillations": "neglected inside Earth at UHE",
+  "nproc": 14,
+  "nx": 64,
+  "tau_refine": 8,
+  "max_step_km": 48.0,
+  "references": [
+    "Albacete, Illana, Soto-Ontoso, Phys Rev D92 014027 (2015), arXiv:1505.06583",
+    "Goncalves, Gratieri, Quadros, Eur Phys J C81 496 (2021)"
+  ]
+}

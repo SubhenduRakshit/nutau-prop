@@ -1,0 +1,129 @@
+v0.88b grid: 71 strictly increasing energy nodes; min dlogE=5.198270e-02
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+LHAPDF 6.5.6 loading /Users/subhendurakshit/miniforge3/envs/nutau-checkmate-v051/share/LHAPDF/CT18NLO/CT18NLO_0000.dat
+CT18NLO PDF set, member #0, version 1; LHAPDF ID = 14400
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+=== v0.88 CGC all-flavour Earth propagation ===
+model: rcBK+DLA-2015 total-cross-section surrogate; SM y-shapes retained
+incident: 1:1:1, nu=antinu, primary gamma=2.5 (gamma=2.0 also saved)
+
+flux change [%], CGC relative to CT18/DGLAP-like SM baseline:
+   location  cosz_abs        E_GeV flavour  cgc_xsec_ratio     delta_pct
+upgoing_avg       NaN  100000000.0       e        1.000000 -7.524453e-03
+      chord       0.1  100000000.0       e        1.000000 -8.465791e-02
+      chord       0.3  100000000.0       e        1.000000  1.073606e+00
+      chord       0.5  100000000.0       e        1.000000  4.517771e+00
+      chord       0.7  100000000.0       e        1.000000  1.032112e+01
+      chord       1.0  100000000.0       e        1.000000  4.466174e+01
+upgoing_avg       NaN  100000000.0      mu        1.000000 -7.524453e-03
+      chord       0.1  100000000.0      mu        1.000000 -8.465791e-02
+      chord       0.3  100000000.0      mu        1.000000  1.073606e+00
+      chord       0.5  100000000.0      mu        1.000000  4.517771e+00
+      chord       0.7  100000000.0      mu        1.000000  1.032112e+01
+      chord       1.0  100000000.0      mu        1.000000  4.466174e+01
+upgoing_avg       NaN  100000000.0     tau        1.000000 -1.836280e-02
+      chord       0.1  100000000.0     tau        1.000000 -1.149517e-01
+      chord       0.3  100000000.0     tau        1.000000  1.422222e+00
+      chord       0.5  100000000.0     tau        1.000000  5.375387e+00
+      chord       0.7  100000000.0     tau        1.000000  1.165256e+01
+      chord       1.0  100000000.0     tau        1.000000  4.644257e+01
+upgoing_avg       NaN  300000000.0       e        0.824106  1.575413e+01
+      chord       0.1  300000000.0       e        0.824106  4.024712e+01
+      chord       0.3  300000000.0       e        0.824106  2.434875e+02
+      chord       0.5  300000000.0       e        0.824106  1.137246e+03
+      chord       0.7  300000000.0       e        0.824106  5.761594e+03
+      chord       1.0  300000000.0       e        0.824106  6.793475e+06
+upgoing_avg       NaN  300000000.0      mu        0.824106  1.575413e+01
+      chord       0.1  300000000.0      mu        0.824106  4.024712e+01
+      chord       0.3  300000000.0      mu        0.824106  2.434875e+02
+      chord       0.5  300000000.0      mu        0.824106  1.137246e+03
+      chord       0.7  300000000.0      mu        0.824106  5.761594e+03
+      chord       1.0  300000000.0      mu        0.824106  6.793475e+06
+upgoing_avg       NaN  300000000.0     tau        0.824106  1.572451e+01
+      chord       0.1  300000000.0     tau        0.824106  4.005236e+01
+      chord       0.3  300000000.0     tau        0.824106  2.442270e+02
+      chord       0.5  300000000.0     tau        0.824106  1.144042e+03
+      chord       0.7  300000000.0     tau        0.824106  5.803460e+03
+      chord       1.0  300000000.0     tau        0.824106  6.821021e+06
+upgoing_avg       NaN 1000000000.0       e        0.666667  3.418985e+01
+      chord       0.1 1000000000.0       e        0.666667  1.655356e+02
+      chord       0.3 1000000000.0       e        0.666667  3.243859e+03
+      chord       0.5 1000000000.0       e        0.666667  1.163097e+05
+      chord       0.7 1000000000.0       e        0.666667  8.416552e+06
+      chord       1.0 1000000000.0       e        0.666667  3.139149e+15
+upgoing_avg       NaN 1000000000.0      mu        0.666667  3.418985e+01
+      chord       0.1 1000000000.0      mu        0.666667  1.655356e+02
+      chord       0.3 1000000000.0      mu        0.666667  3.243859e+03
+      chord       0.5 1000000000.0      mu        0.666667  1.163097e+05
+      chord       0.7 1000000000.0      mu        0.666667  8.416552e+06
+      chord       1.0 1000000000.0      mu        0.666667  3.139149e+15
+upgoing_avg       NaN 1000000000.0     tau        0.666667  3.417801e+01
+      chord       0.1 1000000000.0     tau        0.666667  1.653926e+02
+      chord       0.3 1000000000.0     tau        0.666667  3.242994e+03
+      chord       0.5 1000000000.0     tau        0.666667  1.163152e+05
+      chord       0.7 1000000000.0     tau        0.666667  8.418554e+06
+      chord       1.0 1000000000.0     tau        0.666667  3.139495e+15
+
+upgoing-angle average (gamma=2.5):
+       E_GeV flavour  cgc_xsec_ratio  flux_ratio  delta_pct
+ 100000000.0       e        1.000000    0.999925  -0.007524
+ 100000000.0      mu        1.000000    0.999925  -0.007524
+ 100000000.0     tau        1.000000    0.999816  -0.018363
+ 300000000.0       e        0.824106    1.157541  15.754132
+ 300000000.0      mu        0.824106    1.157541  15.754132
+ 300000000.0     tau        0.824106    1.157245  15.724508
+1000000000.0       e        0.666667    1.341898  34.189846
+1000000000.0      mu        0.666667    1.341898  34.189846
+1000000000.0     tau        0.666667    1.341780  34.178013
