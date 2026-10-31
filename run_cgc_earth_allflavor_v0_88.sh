@@ -9,6 +9,7 @@ conda activate "${NUTAU_ENV:-nutau-checkmate-v051}"
 [ -f cache/v0.51/env.sh ] && source cache/v0.51/env.sh
 set -u
 
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
 export NUTAU_NPROC="${NUTAU_NPROC:-14}"
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
