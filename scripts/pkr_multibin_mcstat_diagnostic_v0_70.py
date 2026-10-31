@@ -4,7 +4,7 @@
 Reads only the existing v0.69 CheckMATE output. No MG5, Pythia, Delphes,
 or likelihood rerun. For the CMS multibin `combination`, report signal yield s,
 CheckMATE signal uncertainty ds, and the exact Spey-wrapper gate
-s - 1.64*min(s,ds).  The multibin covariance likelihood is skipped when the
+s - 1.64*min(s,ds). The multibin covariance likelihood is skipped when the
 maximum of this quantity is <= 0.
 """
 from __future__ import annotations
@@ -15,8 +15,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TAG = "eq4p4_derivative__one_Weyl_pair"
 CMROOT = ROOT / "cache" / "v0.69_multibin_retry" / "checkmate" / TAG
-TOTAL = CMROOT / "evaluation" / "total_results.txt"
 OUT = ROOT / "results" / "v0.70_multibin_mcstat"
+
+
+def find_total_results() -> Path:
+    # CheckMATE can insert a Name/output subdirectory below OutputDirectory.
+    # v0.69's successful parser already searches recursively, so do the same.
+    candidates = list(CMROOT.rglob("total_results.txt"))
+    candidates = [p for p in candidates if p.parent.name == "evaluation"]
+    if not candidates:
+        raise RuntimeError(f"no evaluation/total_results.txt found recursively below {CMROOT}")
+    if len(candidates) > 1:
+        candidates.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    return candidates[0]
 
 
 def find_varj() -> Path:
@@ -27,14 +38,13 @@ def find_varj() -> Path:
 
 
 def main() -> int:
-    if not TOTAL.exists():
-        raise RuntimeError(f"missing existing CheckMATE result: {TOTAL}")
+    total = find_total_results()
     varj = find_varj()
     meta = json.loads(varj.read_text())
     names = meta["mb_signal_regions"]["combination"]
 
     rows = {}
-    for line in TOTAL.read_text(errors="replace").splitlines()[1:]:
+    for line in total.read_text(errors="replace").splitlines()[1:]:
         p = line.split()
         if len(p) < 7 or p[0] != "cms_2107_13201":
             continue
@@ -61,7 +71,7 @@ def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     result = {
         "version": "v0.70_multibin_mcstat",
-        "source": str(TOTAL),
+        "source": str(total),
         "analysis": "cms_2107_13201",
         "combination_bins_expected": len(names),
         "combination_bins_found": len(audit),
@@ -74,6 +84,7 @@ def main() -> int:
     (OUT / "mcstat_diagnostic.json").write_text(json.dumps(result, indent=2) + "\n")
 
     print("=== v0.70 CMS multibin MC-stat diagnostic ===")
+    print(f"source: {total}")
     print(f"bins: {len(audit)}/{len(names)}; positive s-1.64ds bins: {npos}")
     print(f"best SR: {best['sr']}")
     print(f"  s={best['s']:.8g}  ds={best['ds']:.8g}  ds_eff={best['ds_eff']:.8g}")
