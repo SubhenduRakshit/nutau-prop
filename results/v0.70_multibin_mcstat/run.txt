@@ -1,0 +1,8 @@
+=== v0.70 CMS multibin MC-stat diagnostic ===
+source: /Users/subhendurakshit/Research/nutau-prop-cert/cache/v0.69_multibin_retry/checkmate/eq4p4_derivative__one_Weyl_pair/pkr_v069_eq4p4_derivative__one_Weyl_pair/evaluation/total_results.txt
+bins: 66/66; positive s-1.64ds bins: 32
+best SR: B_2018_00
+  s=3290.3722  ds=366.71514  ds_eff=366.71514
+  s/ds_eff=8.9726
+  s-1.64*ds_eff=2688.9593
+Spey covariance gate: PASS
