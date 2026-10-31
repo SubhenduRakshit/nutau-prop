@@ -1,0 +1,34 @@
+{
+  "version": "v0.81_eq4p4_M50_same_seed_reweight",
+  "source": "same v0.75 HepMC and same Delphes seed 7501; normalization only",
+  "invalid_predecessor": "v0.80 changed seed to 8001 and is diagnostic only",
+  "representative": {
+    "M_GeV": 50.0,
+    "gq": 0.038,
+    "a_GeV_inv": 0.002379776052245943,
+    "BR_inv": 0.24633580392761653,
+    "coupling_factor_gq2BR": 0.00035570890087147826
+  },
+  "scale": 0.9075327275614722,
+  "xsec_ref_pb": 6.84033,
+  "xsec_rep_pb": 6.207823342320565,
+  "fixed_shape_check": {
+    "n_common_bins": 66,
+    "max_signal_scale_deviation": 4.617249445004745e-07,
+    "max_ds_scale_deviation": 4.617249445004745e-07,
+    "tolerance": 2e-06,
+    "pass": true
+  },
+  "checkmate": {
+    "returncode": 0,
+    "mu95": 0.9682387090846054,
+    "multibin_r": 1.0328031616763416,
+    "singlebin_robscons": 0.40454902379026614,
+    "status": "MARGINAL_BOUNDARY_UNRESOLVED"
+  },
+  "linear_diagnostic": {
+    "r_expected_from_v075_times_scale": 1.0328017783005738,
+    "relative_difference": 1.3394397616089192e-06
+  },
+  "interpretation": "Only v0.81, not v0.80, is the deterministic same-shape normalization reweight."
+}

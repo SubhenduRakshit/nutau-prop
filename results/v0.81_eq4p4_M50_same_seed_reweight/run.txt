@@ -1,0 +1,13 @@
+=== v0.81 Eq4.4 M50 deterministic same-seed reweight ===
+P_rep/P_v075 = 0.907533
+fixed-shape check: PASS; max s dev=4.617e-07, max ds dev=4.617e-07
+linear diagnostic r~1.032802
+mu95=0.9682387090846054  multibin_r=1.0328031616763416  singlebin=0.40454902379026614
+status: MARGINAL_BOUNDARY_UNRESOLVED
+MG5 rerun: no; Pythia rerun: no; new events: no; Delphes seed identical to v0.75
+
+Thanks for using Spey 0.2.7. 
+Please make sure to cite the paper:
+    SciPost Phys. 16, no.1, 032 (2024) 
+    http://arxiv.org/abs/arXiv:2307.06996
+
