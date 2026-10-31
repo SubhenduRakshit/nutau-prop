@@ -1,0 +1,9 @@
+{
+  "version": "v0.83_eq4p3_full_envelope_collider",
+  "width": "physical Eq4.3 O+h.c.: Gamma_inv=a^2 M^3/(6 pi), certified v0.82",
+  "uhe": "Eq4.3 ratio = 2 x corrected Eq4.4 base envelope at equal M,gq,a; full connected a intervals retained",
+  "monojet": "no-new-events NWA fixed-shape scaling using existing mass-dependent CMS bin vectors",
+  "dijet": "gq*sqrt(BRqq)<0.03 is sufficient screening only; failure is not exclusion; exact HEPData remains required near boundary",
+  "candidate_M_GeV": null,
+  "warning": "M100/M220 monojet shapes come from 20k v0.79 pilots and are screening diagnostics only."
+}
